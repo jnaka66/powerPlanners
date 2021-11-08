@@ -108,7 +108,7 @@ public class HexTileMapGenerator : MonoBehaviour
         Debug.Log(idx.ToString());
         textMesh.text = nums[idx];
         idx++;
-        textMesh.characterSize = .1f;
+        textMesh.characterSize = .2f;
 
         //Set postion of the TextMesh with offset
         textMesh.anchor = TextAnchor.MiddleCenter;

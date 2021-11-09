@@ -42,9 +42,6 @@ public class hexButtonGenerator : MonoBehaviour
                     {
                         makeButton(x, y);
                     }
-
-
-
                 }
             }
         }

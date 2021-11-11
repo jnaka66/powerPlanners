@@ -942,6 +942,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 822e9a425f3209b49aa35d3b8f62f4dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefab: {fileID: 7756400926701201729, guid: af2b77c830b9f134baf2d8571fffb8f2, type: 3}
   HexTilePrefab: {fileID: 3002736035154959864, guid: 9ca25a7a13354fc43804217cb9aa9ff6, type: 3}
   idx: 0
 --- !u!4 &2108810764

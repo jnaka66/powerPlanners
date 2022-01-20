@@ -19,7 +19,9 @@ public class hexButtonGenerator : MonoBehaviour
 
     void Start()
     {
-        createButtons();
+        if(false) {
+            createButtons();
+        }
     }
 
     void createButtons()

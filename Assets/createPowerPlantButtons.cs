@@ -1,8 +1,9 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 
-public class hexButtonGenerator : MonoBehaviour
+public class createPowerPlantButtons : MonoBehaviour
 {
     public GameObject prefabButton;
     public RectTransform ParentPanel;
@@ -17,9 +18,25 @@ public class hexButtonGenerator : MonoBehaviour
     float tileXOffset = .89f;
     float tileYOffset = .77f;
 
-    void Start()
-    {
-        // createButtons();
+    // void Start()
+    // {
+    //     createButtons();
+    // }
+
+    bool buildSelected = false;
+
+    public void spawnButtons() {
+        if(!buildSelected) {
+            createButtons();
+            buildSelected = true;
+        }
+        else {
+            deleteButtons();
+        }
+    }
+
+    public void deleteButtons() {
+        Debug.Log("need to delete buttons");
     }
 
     void createButtons()//this calls makeButton on all of the bottoms of the hexagons

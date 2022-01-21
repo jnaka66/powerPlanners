@@ -17,6 +17,7 @@ public class createPowerPlantButtons : MonoBehaviour
     float canvasTileYOffset = 21.5f;
     float tileXOffset = .89f;
     float tileYOffset = .77f;
+    int numOfButtons = 0;
 
     // void Start()
     // {
@@ -28,15 +29,21 @@ public class createPowerPlantButtons : MonoBehaviour
     public void spawnButtons() {
         if(!buildSelected) {
             createButtons();
+            Debug.Log("num"+numOfButtons);
             buildSelected = true;
         }
         else {
             deleteButtons();
+            buildSelected = false;
         }
     }
 
     public void deleteButtons() {
-        Debug.Log("need to delete buttons");
+        for(int i =0; i < numOfButtons; i++) {
+            buttontest = GameObject.Find("Button(Clone)");
+            buttontest.gameObject.SetActive(false);
+        }
+        numOfButtons = 0;
     }
 
     void createButtons()//this calls makeButton on all of the bottoms of the hexagons
@@ -133,6 +140,7 @@ public class createPowerPlantButtons : MonoBehaviour
         }
         
     }
+    public GameObject buttontest;
     void ButtonClicked(Button tempButton, string buttonNo,float x, float y)
     {
         Debug.Log("Button clicked = " + buttonNo);
@@ -142,7 +150,11 @@ public class createPowerPlantButtons : MonoBehaviour
         var ren = TempGo.GetComponent<SpriteRenderer>();
         ren.enabled = true;
 
-        tempButton.gameObject.SetActive(false);
+        // tempButton.gameObject.SetActive(false);
+        deleteButtons();
+        buildSelected = false;
+        // buttontest = GameObject.Find("Button(Clone)");
+        // buttontest.gameObject.SetActive(false);
         //var ren1 = tempButton.gameObject.GetComponent<Renderer>();
         //ren1.enabled = false;
 
@@ -162,6 +174,8 @@ public class createPowerPlantButtons : MonoBehaviour
 
         RectTransform rectTransform = goButton.GetComponent<RectTransform>();
         Vector2 anchoredPos = new Vector2(bottomLeftX + x * canvasTileXOffset, bottomLeftY + y * canvasTileYOffset);
-        rectTransform.anchoredPosition = anchoredPos;        
+        rectTransform.anchoredPosition = anchoredPos;     
+
+        numOfButtons++;   
     }
 }

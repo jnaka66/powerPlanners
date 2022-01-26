@@ -19,38 +19,104 @@ public class hexButtonGenerator : MonoBehaviour
 
     void Start()
     {
-        createButtons();
+        // createButtons();
     }
 
-    void createButtons()
+    void createButtons()//this calls makeButton on all of the bottoms of the hexagons
     {
         for (int y = 0; y < height *2; y++)
         {
             for (int x = 0; x < width; x++)
             {
-                if (y % 4 == 0)//even rows
+
+                if (y == 0 && x<width-2 && x>1)
                 {
-                    if ((y == 0 || y ==16)&& x<width-2 && x>1)
+                    makeButton(x, y);//bottom
+                    makeButton(x, y+2.5f);//top
+                    makeButton(x-.5f, y + .5f);//bot left
+                    makeButton(x - .5f, y + 2);//top left
+                    if (x == 2)//special case on left side
                     {
-                        makeButton(x, y);
+                        makeButton(x-1, y + 2.5f);
                     }
-                    if ((y == 4 || y == 12) && x < width - 1 && x > 0)
+                    if (x == width - 3)//special case on right side
                     {
-                        makeButton(x, y);
+                        makeButton(x + .5f, y + .5f);
+                        makeButton(x + .5f, y + 2);
+                        makeButton(x + 1, y + 2.5f);
                     }
-                    if (y == 8)
-                    {
-                        makeButton(x, y);
-                    }
-
-
-
                 }
+                
+                if (y == 4  && x < width-1 && x > 0)
+                {
+                    makeButton(x, y);
+                    makeButton(x, y + 2.5f);
+                    makeButton(x - .5f, y + .5f);//bot left
+                    makeButton(x - .5f, y + 2);//top left
+                    if (x == 1)//special case on left side
+                    {
+                        makeButton(x - 1, y + 2.5f);
+                    }
+                    if (x == width - 2)//special case on right side
+                    {
+                        makeButton(x + .5f, y + .5f);
+                        makeButton(x + .5f, y + 2);
+                        makeButton(x + 1, y + 2.5f);
+                    }
+                }
+                if (y == 8)
+                {
+                    makeButton(x, y);
+                    makeButton(x, y + 2.5f);
+                    makeButton(x - .5f, y + .5f);//bot left
+                    makeButton(x - .5f, y + 2);//top left
+                    if (x == 1)//special case on left side
+                    {
+                        makeButton(x - 1, y + 4);
+                    }
+                    if (x == width - 1)//special case on right side
+                    {
+                        makeButton(x + .5f, y + .5f);
+                        makeButton(x + .5f, y + 2);
+                    }
+                }
+                if (y == 12 && x < width - 1 && x > 0)
+                {
+                    makeButton(x, y);
+                    makeButton(x, y + 2.5f);
+                    makeButton(x - .5f, y + .5f);//bot left
+                    makeButton(x - .5f, y + 2);//top left
+                    if (x == width - 2)//special case on right side
+                    {
+                        makeButton(x + .5f, y + .5f);
+                        makeButton(x + .5f, y + 2);
+                        makeButton(x + 1, y);
+                    }
+                }
+                
+                if (y == 16 && x < width - 2 && x > 1)
+                {
+                    makeButton(x, y);
+                    makeButton(x, y + 2.5f);
+                    makeButton(x - .5f, y + .5f);//bot left
+                    makeButton(x - .5f, y + 2);//top left
+                    if (x == 2)//special case on left side
+                    {
+                        makeButton(x - 1, y);
+                    }
+                    if (x == width - 3)//special case on right side
+                    {
+                        makeButton(x + .5f, y + .5f);
+                        makeButton(x + .5f, y + 2);
+                        makeButton(x + 1, y);
+                    }
+                }
+
             }
         }
         
     }
-    void ButtonClicked(Button tempButton, string buttonNo,int x, int y)
+    void ButtonClicked(Button tempButton, string buttonNo,float x, float y)
     {
         Debug.Log("Button clicked = " + buttonNo);
 
@@ -64,8 +130,9 @@ public class hexButtonGenerator : MonoBehaviour
         //ren1.enabled = false;
 
     }
-    void makeButton(int x, int y)
+    void makeButton(float x, float y)//this makes buttons to build factories on all of the hex above it
     {
+        //make bottom button
         GameObject goButton = (GameObject)Instantiate(prefabButton);
         goButton.transform.SetParent(ParentPanel, false);
         goButton.transform.localScale = new Vector3(1, 1, 1);
@@ -78,6 +145,6 @@ public class hexButtonGenerator : MonoBehaviour
 
         RectTransform rectTransform = goButton.GetComponent<RectTransform>();
         Vector2 anchoredPos = new Vector2(bottomLeftX + x * canvasTileXOffset, bottomLeftY + y * canvasTileYOffset);
-        rectTransform.anchoredPosition = anchoredPos;
+        rectTransform.anchoredPosition = anchoredPos;        
     }
 }

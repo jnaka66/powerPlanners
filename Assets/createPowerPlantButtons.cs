@@ -19,8 +19,8 @@ public class createPowerPlantButtons : MonoBehaviour
     float tileYOffset = .77f;
     int numOfButtons = 0;
 
-    List<Vector2> built = new List<Vector2>();
 
+    List<Vector2> built = new List<Vector2>();
 
     // void Start()
     // {
@@ -51,12 +51,10 @@ public class createPowerPlantButtons : MonoBehaviour
 
     void createButtons()//this calls makeButton on all of the bottoms of the hexagons
     {
-        
         for (int y = 0; y < height *2; y++)
         {
             for (int x = 0; x < width; x++)
             {
-                
                 if (y == 0 && x<width-2 && x>1)
                 {
                     makeButton(x, y);//bottom
@@ -74,8 +72,9 @@ public class createPowerPlantButtons : MonoBehaviour
                         makeButton(x + 1, y + 2.5f);
                     }
                 }
-                
+
                 else if(y == 4  && x < width-1 && x > 0)
+
                 {
                     makeButton(x, y);
                     makeButton(x, y + 2.5f);
@@ -93,6 +92,8 @@ public class createPowerPlantButtons : MonoBehaviour
                     }
                 }
                 else if(y == 8)
+
+
                 {
                     makeButton(x, y);
                     makeButton(x, y + 2.5f);
@@ -108,6 +109,7 @@ public class createPowerPlantButtons : MonoBehaviour
                         makeButton(x + .5f, y + 2);
                     }
                 }
+
                 else if(y == 12 && x < width - 1 && x > 0)
                 {
                     makeButton(x, y);
@@ -121,8 +123,8 @@ public class createPowerPlantButtons : MonoBehaviour
                         makeButton(x + 1, y);
                     }
                 }
-                
                 else if (y == 16 && x < width - 2 && x > 1)
+
                 {
                     makeButton(x, y);
                     makeButton(x, y + 2.5f);
@@ -147,8 +149,10 @@ public class createPowerPlantButtons : MonoBehaviour
     public GameObject buttontest;
     void ButtonClicked(Button tempButton, string buttonNo,float x, float y)
     {
+
         Debug.Log("added built= " + x + " "+y);
         built.Add(new Vector2(x, y));
+
         GameObject TempGo = Instantiate(powerPlant);
         TempGo.transform.position = new Vector2(x * tileXOffset,y * tileYOffset/2 -.5f);
         var ren = TempGo.GetComponent<SpriteRenderer>();
@@ -161,7 +165,7 @@ public class createPowerPlantButtons : MonoBehaviour
         // buttontest.gameObject.SetActive(false);
         //var ren1 = tempButton.gameObject.GetComponent<Renderer>();
         //ren1.enabled = false;
-        
+
 
     }
     void makeButton(float x, float y)//this makes buttons to build factories on all of the hex above it
@@ -184,5 +188,6 @@ public class createPowerPlantButtons : MonoBehaviour
 
             numOfButtons++;
         }
+
     }
 }

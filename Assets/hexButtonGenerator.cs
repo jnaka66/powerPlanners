@@ -19,7 +19,7 @@ public class hexButtonGenerator : MonoBehaviour
 
     void Start()
     {
-        createButtons();
+        // createButtons();
     }
 
     void createButtons()//this calls makeButton on all of the bottoms of the hexagons

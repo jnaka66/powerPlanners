@@ -19,6 +19,9 @@ public class createPowerPlantButtons : MonoBehaviour
     float tileYOffset = .77f;
     int numOfButtons = 0;
 
+
+    List<Vector2> built = new List<Vector2>();
+
     // void Start()
     // {
     //     createButtons();
@@ -26,20 +29,25 @@ public class createPowerPlantButtons : MonoBehaviour
 
     bool buildSelected = false;
 
-    public void spawnButtons() {
-        if(!buildSelected) {
+    public void spawnButtons()
+    {
+        if (!buildSelected)
+        {
             createButtons();
-            Debug.Log("num"+numOfButtons);
+            Debug.Log("num" + numOfButtons);
             buildSelected = true;
         }
-        else {
+        else
+        {
             deleteButtons();
             buildSelected = false;
         }
     }
 
-    public void deleteButtons() {
-        for(int i =0; i < numOfButtons; i++) {
+    public void deleteButtons()
+    {
+        for (int i = 0; i < numOfButtons; i++)
+        {
             buttontest = GameObject.Find("Button(Clone)");
             buttontest.gameObject.SetActive(false);
         }
@@ -48,20 +56,19 @@ public class createPowerPlantButtons : MonoBehaviour
 
     void createButtons()//this calls makeButton on all of the bottoms of the hexagons
     {
-        for (int y = 0; y < height *2; y++)
+        for (int y = 0; y < height * 2; y++)
         {
             for (int x = 0; x < width; x++)
             {
-
-                if (y == 0 && x<width-2 && x>1)
+                if (y == 0 && x < width - 2 && x > 1)
                 {
                     makeButton(x, y);//bottom
-                    makeButton(x, y+2.5f);//top
-                    makeButton(x-.5f, y + .5f);//bot left
+                    makeButton(x, y + 2.5f);//top
+                    makeButton(x - .5f, y + .5f);//bot left
                     makeButton(x - .5f, y + 2);//top left
                     if (x == 2)//special case on left side
                     {
-                        makeButton(x-1, y + 2.5f);
+                        makeButton(x - 1, y + 2.5f);
                     }
                     if (x == width - 3)//special case on right side
                     {
@@ -70,8 +77,9 @@ public class createPowerPlantButtons : MonoBehaviour
                         makeButton(x + 1, y + 2.5f);
                     }
                 }
-                
-                if (y == 4  && x < width-1 && x > 0)
+
+                else if (y == 4 && x < width - 1 && x > 0)
+
                 {
                     makeButton(x, y);
                     makeButton(x, y + 2.5f);
@@ -88,7 +96,9 @@ public class createPowerPlantButtons : MonoBehaviour
                         makeButton(x + 1, y + 2.5f);
                     }
                 }
-                if (y == 8)
+                else if (y == 8)
+
+
                 {
                     makeButton(x, y);
                     makeButton(x, y + 2.5f);
@@ -104,7 +114,8 @@ public class createPowerPlantButtons : MonoBehaviour
                         makeButton(x + .5f, y + 2);
                     }
                 }
-                if (y == 12 && x < width - 1 && x > 0)
+
+                else if (y == 12 && x < width - 1 && x > 0)
                 {
                     makeButton(x, y);
                     makeButton(x, y + 2.5f);
@@ -117,8 +128,8 @@ public class createPowerPlantButtons : MonoBehaviour
                         makeButton(x + 1, y);
                     }
                 }
-                
-                if (y == 16 && x < width - 2 && x > 1)
+                else if (y == 16 && x < width - 2 && x > 1)
+
                 {
                     makeButton(x, y);
                     makeButton(x, y + 2.5f);
@@ -138,15 +149,17 @@ public class createPowerPlantButtons : MonoBehaviour
 
             }
         }
-        
+
     }
     public GameObject buttontest;
-    void ButtonClicked(Button tempButton, string buttonNo,float x, float y)
+    void ButtonClicked(Button tempButton, string buttonNo, float x, float y)
     {
-        Debug.Log("Button clicked = " + buttonNo);
+
+        Debug.Log("added built= " + x + " " + y);
+        built.Add(new Vector2(x, y));
 
         GameObject TempGo = Instantiate(powerPlant);
-        TempGo.transform.position = new Vector2(x * tileXOffset,y * tileYOffset/2 -.5f);
+        TempGo.transform.position = new Vector2(x * tileXOffset, y * tileYOffset / 2 - .5f);
         var ren = TempGo.GetComponent<SpriteRenderer>();
         ren.enabled = true;
 
@@ -158,24 +171,28 @@ public class createPowerPlantButtons : MonoBehaviour
         //var ren1 = tempButton.gameObject.GetComponent<Renderer>();
         //ren1.enabled = false;
 
+
     }
     void makeButton(float x, float y)//this makes buttons to build factories on all of the hex above it
     {
-        //make bottom button
-        GameObject goButton = (GameObject)Instantiate(prefabButton);
-        goButton.transform.SetParent(ParentPanel, false);
-        goButton.transform.localScale = new Vector3(1, 1, 1);
+        if (!built.Contains(new Vector2(x, y)))
+        {
+            GameObject goButton = (GameObject)Instantiate(prefabButton);
+            goButton.transform.SetParent(ParentPanel, false);
+            goButton.transform.localScale = new Vector3(1, 1, 1);
 
-        Button tempButton = goButton.GetComponent<Button>();
-        tempButton.gameObject.SetActive(true);
-        string location = (bottomLeftX + x * tileXOffset).ToString() +","+ (bottomLeftY + y * tileYOffset).ToString();
+            Button tempButton = goButton.GetComponent<Button>();
+            tempButton.gameObject.SetActive(true);
+            string location = (bottomLeftX + x * tileXOffset).ToString() + "," + (bottomLeftY + y * tileYOffset).ToString();
 
-        tempButton.onClick.AddListener(() => ButtonClicked(tempButton,location, x ,y));
+            tempButton.onClick.AddListener(() => ButtonClicked(tempButton, location, x, y));
 
-        RectTransform rectTransform = goButton.GetComponent<RectTransform>();
-        Vector2 anchoredPos = new Vector2(bottomLeftX + x * canvasTileXOffset, bottomLeftY + y * canvasTileYOffset);
-        rectTransform.anchoredPosition = anchoredPos;     
+            RectTransform rectTransform = goButton.GetComponent<RectTransform>();
+            Vector2 anchoredPos = new Vector2(bottomLeftX + x * canvasTileXOffset, bottomLeftY + y * canvasTileYOffset);
+            rectTransform.anchoredPosition = anchoredPos;
 
-        numOfButtons++;   
+            numOfButtons++;
+        }
+
     }
 }

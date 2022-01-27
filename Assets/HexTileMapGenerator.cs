@@ -50,19 +50,17 @@ public class HexTileMapGenerator : MonoBehaviour
                         SetTileInfo(TempGo, x, y);
                         SetText(TempGo, x, y,nums);
 
-                        GameObject obj = Instantiate(prefab);
-                        obj.transform.position = new Vector2(x * tileXOffset + 0.45f, y * tileYOffset);
+                        //GameObject obj = Instantiate(prefab);
+                        //obj.transform.position = new Vector2(x * tileXOffset + 0.45f, y * tileYOffset);
+                        //
+                        //GameObject obj1 = Instantiate(prefab);
+                        //obj1.transform.position = new Vector2(x * tileXOffset+0.2f, y * tileYOffset+0.4f);
+                        //obj1.transform.rotation = new Quaternion(1.65f, 1.0f, 0.0f, 0.0f);
+                        //
+                        //GameObject obj2 = Instantiate(prefab);
+                        //obj2.transform.position = new Vector2(x * tileXOffset + 0.2f, y * tileYOffset - 0.4f);
+                        //obj2.transform.rotation = new Quaternion(0.5f, 1.0f, 0.0f, 0.0f);
 
-                        GameObject obj1 = Instantiate(prefab);
-                        obj1.transform.position = new Vector2(x * tileXOffset+0.2f, y * tileYOffset+0.4f);
-                        obj1.transform.rotation = new Quaternion(1.65f, 1.0f, 0.0f, 0.0f);
-
-                        GameObject obj2 = Instantiate(prefab);
-                        obj2.transform.position = new Vector2(x * tileXOffset + 0.2f, y * tileYOffset - 0.4f);
-                        obj2.transform.rotation = new Quaternion(0.5f, 1.0f, 0.0f, 0.0f);
-                        /*obj.SetActive(false);
-                        obj1.SetActive(false);
-                        obj2.SetActive(false);*/
 
 
                     }
@@ -75,19 +73,17 @@ public class HexTileMapGenerator : MonoBehaviour
                         SetTileInfo(TempGo, x, y);
                         SetText(TempGo, x, y, nums);
 
-                        GameObject obj = Instantiate(prefab);
-                        obj.transform.position = new Vector2(x * tileXOffset + 0.45f, y * tileYOffset);
-
-                        GameObject obj1 = Instantiate(prefab);
-                        obj1.transform.position = new Vector2(x * tileXOffset + 0.2f, y * tileYOffset + 0.4f);
-                        obj1.transform.rotation = new Quaternion(1.65f, 1.0f, 0.0f, 0.0f);
-
-                        GameObject obj2 = Instantiate(prefab);
-                        obj2.transform.position = new Vector2(x * tileXOffset + 0.2f, y * tileYOffset - 0.4f);
-                        obj2.transform.rotation = new Quaternion(0.5f, 1.0f, 0.0f, 0.0f);
-                       /* obj.SetActive(false);
-                        obj1.SetActive(false);
-                        obj2.SetActive(false);*/
+                        //GameObject obj = Instantiate(prefab);
+                        //obj.transform.position = new Vector2(x * tileXOffset + 0.45f, y * tileYOffset);
+                        //
+                        //GameObject obj1 = Instantiate(prefab);
+                        //obj1.transform.position = new Vector2(x * tileXOffset + 0.2f, y * tileYOffset + 0.4f);
+                        //obj1.transform.rotation = new Quaternion(1.65f, 1.0f, 0.0f, 0.0f);
+                        //
+                        //GameObject obj2 = Instantiate(prefab);
+                        //obj2.transform.position = new Vector2(x * tileXOffset + 0.2f, y * tileYOffset - 0.4f);
+                        //obj2.transform.rotation = new Quaternion(0.5f, 1.0f, 0.0f, 0.0f);
+  
                     }
                     if (y == 4)
                     {
@@ -98,19 +94,17 @@ public class HexTileMapGenerator : MonoBehaviour
                         SetTileInfo(TempGo, x, y);
                         SetText(TempGo, x, y, nums);
 
-                        GameObject obj = Instantiate(prefab);
-                        obj.transform.position = new Vector2(x * tileXOffset + 0.45f, y * tileYOffset);
+                        //GameObject obj = Instantiate(prefab);
+                        //obj.transform.position = new Vector2(x * tileXOffset + 0.45f, y * tileYOffset);
+                        //
+                        //GameObject obj1 = Instantiate(prefab);
+                        //obj1.transform.position = new Vector2(x * tileXOffset + 0.2f, y * tileYOffset + 0.4f);
+                        //obj1.transform.rotation = new Quaternion(1.65f, 1.0f, 0.0f, 0.0f);
+                        //
+                        //GameObject obj2 = Instantiate(prefab);
+                        //obj2.transform.position = new Vector2(x * tileXOffset + 0.2f, y * tileYOffset - 0.4f);
+                        //obj2.transform.rotation = new Quaternion(0.5f, 1.0f, 0.0f, 0.0f);
 
-                        GameObject obj1 = Instantiate(prefab);
-                        obj1.transform.position = new Vector2(x * tileXOffset + 0.2f, y * tileYOffset + 0.4f);
-                        obj1.transform.rotation = new Quaternion(1.65f, 1.0f, 0.0f, 0.0f);
-
-                        GameObject obj2 = Instantiate(prefab);
-                        obj2.transform.position = new Vector2(x * tileXOffset + 0.2f, y * tileYOffset - 0.4f);
-                        obj2.transform.rotation = new Quaternion(0.5f, 1.0f, 0.0f, 0.0f);
-                        /*obj.SetActive(false);
-                        obj1.SetActive(false);
-                        obj2.SetActive(false);*/
                     }
 
                 }
@@ -124,19 +118,17 @@ public class HexTileMapGenerator : MonoBehaviour
                         SetTileInfo(TempGo, x, y);
                         SetText(TempGo, x, y, nums);
 
-                        GameObject obj = Instantiate(prefab);
-                        obj.transform.position = new Vector2(x * tileXOffset + 0.45f +0.45f, y * tileYOffset);
+                        //GameObject obj = Instantiate(prefab);
+                        //obj.transform.position = new Vector2(x * tileXOffset + 0.45f +0.45f, y * tileYOffset);
+                        //
+                        //GameObject obj1 = Instantiate(prefab);
+                        //obj1.transform.position = new Vector2(x * tileXOffset + 0.2f+0.45f, y * tileYOffset + 0.4f);
+                        //obj1.transform.rotation = new Quaternion(1.65f, 1.0f, 0.0f, 0.0f);
+                        //
+                        //GameObject obj2 = Instantiate(prefab);
+                        //obj2.transform.position = new Vector2(x * tileXOffset + 0.2f+0.45f, y * tileYOffset - 0.4f);
+                        //obj2.transform.rotation = new Quaternion(0.5f, 1.0f, 0.0f, 0.0f);
 
-                        GameObject obj1 = Instantiate(prefab);
-                        obj1.transform.position = new Vector2(x * tileXOffset + 0.2f+0.45f, y * tileYOffset + 0.4f);
-                        obj1.transform.rotation = new Quaternion(1.65f, 1.0f, 0.0f, 0.0f);
-
-                        GameObject obj2 = Instantiate(prefab);
-                        obj2.transform.position = new Vector2(x * tileXOffset + 0.2f+0.45f, y * tileYOffset - 0.4f);
-                        obj2.transform.rotation = new Quaternion(0.5f, 1.0f, 0.0f, 0.0f);
-                        /*obj.SetActive(false);
-                        obj1.SetActive(false);
-                        obj2.SetActive(false);*/
                     }
                     if ((y == 3 || y == 5) && x < 9)
                     {
@@ -146,7 +138,7 @@ public class HexTileMapGenerator : MonoBehaviour
                         SetTileInfo(TempGo, x, y);
                         SetText(TempGo, x, y, nums);
 
-                        GameObject obj = Instantiate(prefab);
+                        /*GameObject obj = Instantiate(prefab);
                         obj.transform.position = new Vector2(x * tileXOffset + 0.45f+0.45f, y * tileYOffset);
 
                         GameObject obj1 = Instantiate(prefab);
@@ -155,11 +147,9 @@ public class HexTileMapGenerator : MonoBehaviour
 
                         GameObject obj2 = Instantiate(prefab);
                         obj2.transform.position = new Vector2(x * tileXOffset + 0.2f+0.45f, y * tileYOffset - 0.4f);
-                        obj2.transform.rotation = new Quaternion(0.5f, 1.0f, 0.0f, 0.0f);
+                        obj2.transform.rotation = new Quaternion(0.5f, 1.0f, 0.0f, 0.0f);*/
 
-                        /*obj.SetActive(false);
-                        obj1.SetActive(false);
-                        obj2.SetActive(false);*/
+
                     }
                 }
                 

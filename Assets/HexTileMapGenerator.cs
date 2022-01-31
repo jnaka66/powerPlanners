@@ -1,13 +1,12 @@
 
 using UnityEngine;
-//testing
+
 public class HexTileMapGenerator : MonoBehaviour
 {
-    public GameObject prefab;
     public GameObject HexTilePrefab;
     int width = 10;
     int height = 9;
-    
+
     float tileXOffset = .89f;
     float tileYOffset = .77f;
     public int idx = 0;
@@ -43,68 +42,29 @@ public class HexTileMapGenerator : MonoBehaviour
                 {
                     if((y==0 || y==8)&& x>1 && x < 8)
                     {
-
                         GameObject TempGo = Instantiate(HexTilePrefab);
                         TempGo.transform.position = new Vector2(x * tileXOffset, y * tileYOffset);
                         SetColor(TempGo);
                         SetTileInfo(TempGo, x, y);
                         SetText(TempGo, x, y,nums);
 
-                        //GameObject obj = Instantiate(prefab);
-                        //obj.transform.position = new Vector2(x * tileXOffset + 0.45f, y * tileYOffset);
-                        //
-                        //GameObject obj1 = Instantiate(prefab);
-                        //obj1.transform.position = new Vector2(x * tileXOffset+0.2f, y * tileYOffset+0.4f);
-                        //obj1.transform.rotation = new Quaternion(1.65f, 1.0f, 0.0f, 0.0f);
-                        //
-                        //GameObject obj2 = Instantiate(prefab);
-                        //obj2.transform.position = new Vector2(x * tileXOffset + 0.2f, y * tileYOffset - 0.4f);
-                        //obj2.transform.rotation = new Quaternion(0.5f, 1.0f, 0.0f, 0.0f);
-
-
-
+                        
                     }
                     if ((y == 2 || y== 6)&& x > 0 && x < 9)
                     {
-
                         GameObject TempGo = Instantiate(HexTilePrefab);
                         TempGo.transform.position = new Vector2(x * tileXOffset, y * tileYOffset);
                         SetColor(TempGo);
                         SetTileInfo(TempGo, x, y);
                         SetText(TempGo, x, y, nums);
-
-                        //GameObject obj = Instantiate(prefab);
-                        //obj.transform.position = new Vector2(x * tileXOffset + 0.45f, y * tileYOffset);
-                        //
-                        //GameObject obj1 = Instantiate(prefab);
-                        //obj1.transform.position = new Vector2(x * tileXOffset + 0.2f, y * tileYOffset + 0.4f);
-                        //obj1.transform.rotation = new Quaternion(1.65f, 1.0f, 0.0f, 0.0f);
-                        //
-                        //GameObject obj2 = Instantiate(prefab);
-                        //obj2.transform.position = new Vector2(x * tileXOffset + 0.2f, y * tileYOffset - 0.4f);
-                        //obj2.transform.rotation = new Quaternion(0.5f, 1.0f, 0.0f, 0.0f);
-  
                     }
                     if (y == 4)
                     {
-
                         GameObject TempGo = Instantiate(HexTilePrefab);
                         TempGo.transform.position = new Vector2(x * tileXOffset, y * tileYOffset);
                         SetColor(TempGo);
                         SetTileInfo(TempGo, x, y);
                         SetText(TempGo, x, y, nums);
-
-                        //GameObject obj = Instantiate(prefab);
-                        //obj.transform.position = new Vector2(x * tileXOffset + 0.45f, y * tileYOffset);
-                        //
-                        //GameObject obj1 = Instantiate(prefab);
-                        //obj1.transform.position = new Vector2(x * tileXOffset + 0.2f, y * tileYOffset + 0.4f);
-                        //obj1.transform.rotation = new Quaternion(1.65f, 1.0f, 0.0f, 0.0f);
-                        //
-                        //GameObject obj2 = Instantiate(prefab);
-                        //obj2.transform.position = new Vector2(x * tileXOffset + 0.2f, y * tileYOffset - 0.4f);
-                        //obj2.transform.rotation = new Quaternion(0.5f, 1.0f, 0.0f, 0.0f);
-
                     }
 
                 }
@@ -117,18 +77,6 @@ public class HexTileMapGenerator : MonoBehaviour
                         SetColor(TempGo);
                         SetTileInfo(TempGo, x, y);
                         SetText(TempGo, x, y, nums);
-
-                        //GameObject obj = Instantiate(prefab);
-                        //obj.transform.position = new Vector2(x * tileXOffset + 0.45f +0.45f, y * tileYOffset);
-                        //
-                        //GameObject obj1 = Instantiate(prefab);
-                        //obj1.transform.position = new Vector2(x * tileXOffset + 0.2f+0.45f, y * tileYOffset + 0.4f);
-                        //obj1.transform.rotation = new Quaternion(1.65f, 1.0f, 0.0f, 0.0f);
-                        //
-                        //GameObject obj2 = Instantiate(prefab);
-                        //obj2.transform.position = new Vector2(x * tileXOffset + 0.2f+0.45f, y * tileYOffset - 0.4f);
-                        //obj2.transform.rotation = new Quaternion(0.5f, 1.0f, 0.0f, 0.0f);
-
                     }
                     if ((y == 3 || y == 5) && x < 9)
                     {
@@ -137,19 +85,6 @@ public class HexTileMapGenerator : MonoBehaviour
                         SetColor(TempGo);
                         SetTileInfo(TempGo, x, y);
                         SetText(TempGo, x, y, nums);
-
-                        /*GameObject obj = Instantiate(prefab);
-                        obj.transform.position = new Vector2(x * tileXOffset + 0.45f+0.45f, y * tileYOffset);
-
-                        GameObject obj1 = Instantiate(prefab);
-                        obj1.transform.position = new Vector2(x * tileXOffset + 0.2f+0.45f, y * tileYOffset + 0.4f);
-                        obj1.transform.rotation = new Quaternion(1.65f, 1.0f, 0.0f, 0.0f);
-
-                        GameObject obj2 = Instantiate(prefab);
-                        obj2.transform.position = new Vector2(x * tileXOffset + 0.2f+0.45f, y * tileYOffset - 0.4f);
-                        obj2.transform.rotation = new Quaternion(0.5f, 1.0f, 0.0f, 0.0f);*/
-
-
                     }
                 }
                 

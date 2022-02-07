@@ -54,8 +54,29 @@ public class ScoreManager : MonoBehaviour
         
     }
 
-    void OnGUI()
+    public void endTurn()
     {
+        switch ((int)turn)
+        {
+            case 0:
+                turn = Turn.p2;
+                break;
+            case 1:
+                turn = Turn.p3;
+                break;
+            case 2:
+                turn = Turn.p4;
+                break;
+            default:
+                turn = Turn.p1;
+                break;
+        }
+        updateGUI();
+    }
+
+    void updateGUI()
+    {
+        Debug.Log("GUI");
         for (int i = 0; i < 3; i++)
         {
             GUI.Box(new Rect(0, 0, 100, 100), playerList[i].text);

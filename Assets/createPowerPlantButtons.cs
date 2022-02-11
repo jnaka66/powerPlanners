@@ -7,7 +7,9 @@ public class createPowerPlantButtons : MonoBehaviour
 {
     public GameObject prefabButton;
     public RectTransform ParentPanel;
+    public HexTileMapGenerator mapGen;
     public GameObject powerPlant;
+    //private List<Vector2> built;
     int width = 10;
     int height = 9;
 
@@ -20,19 +22,19 @@ public class createPowerPlantButtons : MonoBehaviour
     int numOfButtons = 0;
 
 
-    List<Vector2> built = new List<Vector2>();
+    
 
-    // void Start()
-    // {
-    //     createButtons();
-    // }
+    void Awake()
+    {
+        mapGen = GameObject.FindObjectOfType<HexTileMapGenerator>();
+    }
 
     bool buildSelected = false;
 
     public void spawnButtons() {
         if(!buildSelected) {
             createButtons();
-            Debug.Log("num"+numOfButtons);
+            //Debug.Log("num"+numOfButtons);
             buildSelected = true;
         }
         else {
@@ -149,9 +151,9 @@ public class createPowerPlantButtons : MonoBehaviour
     public GameObject buttontest;
     void ButtonClicked(Button tempButton, string buttonNo,float x, float y)
     {
-
-        Debug.Log("added built= " + x + " "+y);
-        built.Add(new Vector2(x, y));
+        mapGen.updateBuilt(x,y);
+        //Debug.Log("added penis= " + x + " "+y);
+        //built.Add(new Vector2(x, y));
 
         GameObject TempGo = Instantiate(powerPlant);
         TempGo.transform.position = new Vector2(x * tileXOffset,y * tileYOffset/2 -.5f);
@@ -170,7 +172,7 @@ public class createPowerPlantButtons : MonoBehaviour
     }
     void makeButton(float x, float y)//this makes buttons to build factories on all of the hex above it
     {
-        if (!built.Contains(new Vector2(x, y)))
+        if (!mapGen.getBuilt().Contains(new Vector2(x, y)))
         {
             GameObject goButton = (GameObject)Instantiate(prefabButton);
             goButton.transform.SetParent(ParentPanel, false);

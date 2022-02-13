@@ -1,19 +1,33 @@
 
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+
 
 public class HexTileMapGenerator : MonoBehaviour
 {
     public GameObject HexTilePrefab;
+    public GameObject city;
+    public List<Vector2> built = new List<Vector2>();
+    List<Vector2> buildCoords = new List<Vector2>();
+
     int width = 10;
     int height = 9;
 
     float tileXOffset = .89f;
     float tileYOffset = .77f;
+    float canvasTileXOffset = 50;
+    float canvasTileYOffset = 21.5f;
+
     public int idx = 0;
+    List<int> randomList = new List<int>();
+
     // Start is called before the first frame update
     void Start()
     {
+        initCoordinates();
         CreateHexTileMap();
+        
     }
 
     // Update is called once per frame
@@ -32,7 +46,19 @@ public class HexTileMapGenerator : MonoBehaviour
                                        "12","12","12","12"
         };
         Shuffle(nums);
-
+        //water tiles rng
+        var a = new System.Random(); // replace from new Random(DateTime.Now.Ticks.GetHashCode());
+                                // Since similar code is done in default constructor internally
+        //List<int> randomList = new List<int>();
+        int MyNumber = 0;
+        for (int i = 0; i < 6; i++){
+            MyNumber = a.Next(0, 69);
+            while(randomList.Contains(MyNumber))
+                MyNumber = a.Next(0, 69);
+            randomList.Add(MyNumber);
+            //Debug.Log("water "+ MyNumber);
+        }
+        
         for (int x = 0; x < width; x++)
         {
             for(int y = 0; y < height; y++)
@@ -90,6 +116,47 @@ public class HexTileMapGenerator : MonoBehaviour
                 
             }
         }
+        //now make random cities
+        for (int i = 0; i < 6; i++){//6 cities x
+            MyNumber = a.Next(0, buildCoords.Count);
+            Debug.Log(MyNumber);
+            Vector2 buildAt = buildCoords[MyNumber];
+            built.Add(buildAt);
+            float x = buildAt[0];
+            float y = buildAt[1];
+            GameObject TempGo = Instantiate(city);
+            TempGo.transform.position = new Vector2(x * tileXOffset,y * tileYOffset/2 -.5f);
+            var ren = TempGo.GetComponent<SpriteRenderer>();
+            ren.enabled = true;
+        }
+        /*
+        List<int> xCoordRandomList = new List<int>();
+        List<int> yCoordRandomList = new List<int>();
+        for (int i = 0; i < 6; i++){//6 cities x
+            MyNumber = a.Next(0, width);
+            while(xCoordRandomList.Contains(MyNumber))
+                MyNumber = a.Next(0, width);
+            xCoordRandomList.Add(MyNumber);
+            //Debug.Log("water "+ MyNumber);
+        }
+        for (int i = 0; i < 6; i++){//6 cities y
+            MyNumber = a.Next(0, height);
+            while(yCoordRandomList.Contains(MyNumber))
+                MyNumber = a.Next(0, height);
+            yCoordRandomList.Add(MyNumber);
+            //Debug.Log("water "+ MyNumber);
+        }
+        //now place cities
+        for (int i = 0; i < 6; i++){
+            int x=xCoordRandomList[i];
+            int y=yCoordRandomList[i];
+            built.Add(new Vector2(x, y));
+
+            GameObject TempGo = Instantiate(city);
+            TempGo.transform.position = new Vector2(x * tileXOffset,y * tileYOffset/2 -.5f);
+            var ren = TempGo.GetComponent<SpriteRenderer>();
+            ren.enabled = true;
+        }*/
     }
     void SetTileInfo(GameObject go, int x, int y)
     {
@@ -99,14 +166,19 @@ public class HexTileMapGenerator : MonoBehaviour
     }
     void SetText(GameObject go, int x, int y, string[] nums)
     {
+        
         GameObject childObj = new GameObject();
         childObj.transform.parent = go.transform;
         childObj.name = "Text Holder";
 
         //Create TextMesh and modify its properties
         TextMesh textMesh = childObj.AddComponent<TextMesh>();
-        Debug.Log(idx.ToString());
+        //Debug.Log(idx.ToString());
+        
+        
         textMesh.text = nums[idx];
+        
+        
         idx++;
         textMesh.characterSize = .2f;
 
@@ -128,7 +200,8 @@ public class HexTileMapGenerator : MonoBehaviour
     {
         int r = Random.Range(0, 3);
         var render = go.GetComponent<Renderer>();
-        if(idx % 17 == 0)
+        //randomList.Contains(MyNumber)
+        if(randomList.Contains(idx))
         {
             render.material.SetColor("_Color", Color.blue);
         }
@@ -156,5 +229,110 @@ public class HexTileMapGenerator : MonoBehaviour
             nums[i] = temp;
         }
     }
+    public void updateBuilt(float x, float y)
+    {
+        built.Add(new Vector2(x, y));        
+    }
+    public List<Vector2> getBuilt()
+    {
+        return built;      
+    }
+    //this is really bad but i didnt have a differnt way of doing it
+    //this is getting the coordinates of all of the building placement options
+    //built.Add(new Vector2(x, y));
+    public void initCoordinates(){
+        for (int y = 0; y < height *2; y++)
+        {
+            for (int x = 0; x < width; x++)
+            {
+                if (y == 0 && x<width-2 && x>1)
+                {
+                    buildCoords.Add(new Vector2(x, y));//bottom
+                    buildCoords.Add(new Vector2(x, y+2.5f));//top
+                    buildCoords.Add(new Vector2(x-.5f, y + .5f));//bot left
+                    buildCoords.Add(new Vector2(x - .5f, y + 2));//top left
+                    if (x == 2)//special case on left side
+                    {
+                        buildCoords.Add(new Vector2(x-1, y + 2.5f));
+                    }
+                    if (x == width - 3)//special case on right side
+                    {
+                        buildCoords.Add(new Vector2(x + .5f, y + .5f));
+                        buildCoords.Add(new Vector2(x + .5f, y + 2));
+                        buildCoords.Add(new Vector2(x + 1, y + 2.5f));
+                    }
+                }
 
+                else if(y == 4  && x < width-1 && x > 0)
+
+                {
+                    buildCoords.Add(new Vector2(x, y));
+                    buildCoords.Add(new Vector2(x, y + 2.5f));
+                    buildCoords.Add(new Vector2(x - .5f, y + .5f));//bot left
+                    buildCoords.Add(new Vector2(x - .5f, y + 2));//top left
+                    if (x == 1)//special case on left side
+                    {
+                        buildCoords.Add(new Vector2(x - 1, y + 2.5f));
+                    }
+                    if (x == width - 2)//special case on right side
+                    {
+                        buildCoords.Add(new Vector2(x + .5f, y + .5f));
+                        buildCoords.Add(new Vector2(x + .5f, y + 2));
+                        buildCoords.Add(new Vector2(x + 1, y + 2.5f));
+                    }
+                }
+                else if(y == 8)
+
+
+                {
+                    buildCoords.Add(new Vector2(x, y));
+                    buildCoords.Add(new Vector2(x, y + 2.5f));
+                    buildCoords.Add(new Vector2(x - .5f, y + .5f));//bot left
+                    buildCoords.Add(new Vector2(x - .5f, y + 2));//top left
+                    if (x == 1)//special case on left side
+                    {
+                        buildCoords.Add(new Vector2(x - 1, y + 4));
+                    }
+                    if (x == width - 1)//special case on right side
+                    {
+                        buildCoords.Add(new Vector2(x + .5f, y + .5f));
+                        buildCoords.Add(new Vector2(x + .5f, y + 2));
+                    }
+                }
+
+                else if(y == 12 && x < width - 1 && x > 0)
+                {
+                    buildCoords.Add(new Vector2(x, y));
+                    buildCoords.Add(new Vector2(x, y + 2.5f));
+                    buildCoords.Add(new Vector2(x - .5f, y + .5f));//bot left
+                    buildCoords.Add(new Vector2(x - .5f, y + 2));//top left
+                    if (x == width - 2)//special case on right side
+                    {
+                        buildCoords.Add(new Vector2(x + .5f, y + .5f));
+                        buildCoords.Add(new Vector2(x + .5f, y + 2));
+                        buildCoords.Add(new Vector2(x + 1, y));
+                    }
+                }
+                else if (y == 16 && x < width - 2 && x > 1)
+
+                {
+                    buildCoords.Add(new Vector2(x, y));
+                    buildCoords.Add(new Vector2(x, y + 2.5f));
+                    buildCoords.Add(new Vector2(x - .5f, y + .5f));//bot left
+                    buildCoords.Add(new Vector2(x - .5f, y + 2));//top left
+                    if (x == 2)//special case on left side
+                    {
+                        buildCoords.Add(new Vector2(x - 1, y));
+                    }
+                    if (x == width - 3)//special case on right side
+                    {
+                        buildCoords.Add(new Vector2(x + .5f, y + .5f));
+                        buildCoords.Add(new Vector2(x + .5f, y + 2));
+                        buildCoords.Add(new Vector2(x + 1, y));
+                    }
+                }
+            }
+        }
+    }
+    
 }

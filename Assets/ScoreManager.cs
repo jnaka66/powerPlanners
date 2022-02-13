@@ -48,10 +48,9 @@ public class ScoreManager : MonoBehaviour
     }
 
     public static ScoreManager instance;
-
     List<player> playerList;
-    enum Turn {p1 = 0, p2 = 1, p3 = 2, p4 = 3 };
-    Turn turn = Turn.p1;
+    public enum Turn {p1 = 0, p2 = 1, p3 = 2, p4 = 3 };
+    public Turn turn;
     int temp = 0;
 
     void Awake()
@@ -70,10 +69,14 @@ public class ScoreManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+<<<<<<< Updated upstream
         player1Text.text = "Player 1\nVP: " + p1VP.ToString() + "\nMoney: " + p1Money.ToString();
         player2Text.text = "Player 2\nVP: " + p2VP.ToString() + "\nMoney: " + p2Money.ToString();
         player3Text.text = "Player 3\nVP: " + p3VP.ToString() + "\nMoney: " + p3Money.ToString();
         player4Text.text = "Player 4\nVP: " + p4VP.ToString() + "\nMoney: " + p4Money.ToString();
+=======
+        turn = Turn.p1;
+>>>>>>> Stashed changes
         playerList = new List<player>();
         for (int i = 1; i < 5; i++)
         {

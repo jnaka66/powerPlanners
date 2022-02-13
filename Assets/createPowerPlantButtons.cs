@@ -8,7 +8,11 @@ public class createPowerPlantButtons : MonoBehaviour
     public GameObject prefabButton;
     public RectTransform ParentPanel;
     public HexTileMapGenerator mapGen;
-    public GameObject powerPlant;
+    public GameObject player1PowerPlant;
+    public GameObject player2PowerPlant;
+    public GameObject player3PowerPlant;
+    public GameObject player4PowerPlant;
+    public ScoreManager scoreMan;
     //private List<Vector2> built;
     int width = 10;
     int height = 9;
@@ -27,6 +31,7 @@ public class createPowerPlantButtons : MonoBehaviour
     void Awake()
     {
         mapGen = GameObject.FindObjectOfType<HexTileMapGenerator>();
+        scoreMan = GameObject.FindObjectOfType<ScoreManager>();
     }
 
     bool buildSelected = false;
@@ -152,14 +157,12 @@ public class createPowerPlantButtons : MonoBehaviour
     void ButtonClicked(Button tempButton, string buttonNo,float x, float y)
     {
         mapGen.updateBuilt(x,y);
-        //Debug.Log("added penis= " + x + " "+y);
+        //Debug.Log("turn= ", (int)scoreMan.turn);
         //built.Add(new Vector2(x, y));
-
-        GameObject TempGo = Instantiate(powerPlant);
-        TempGo.transform.position = new Vector2(x * tileXOffset,y * tileYOffset/2 -.5f);
-        var ren = TempGo.GetComponent<SpriteRenderer>();
-        ren.enabled = true;
-        ScoreManager.instance.AddPoint();
+        
+        makePowerPlant((int)scoreMan.turn,x,y); 
+        
+        
 
         // tempButton.gameObject.SetActive(false);
         deleteButtons();
@@ -170,6 +173,26 @@ public class createPowerPlantButtons : MonoBehaviour
         //ren1.enabled = false;
 
 
+    }
+    void makePowerPlant(int playerTurn,float x ,float y){
+        GameObject plant = new GameObject();
+        if(playerTurn==0){
+            plant = player1PowerPlant;
+        }
+        if(playerTurn==1){
+            plant = player2PowerPlant;
+        }
+        if(playerTurn==2){
+            plant = player3PowerPlant;
+        }
+        if(playerTurn==3){
+            plant = player4PowerPlant;
+        }
+        GameObject TempGo = Instantiate(plant);
+        TempGo.transform.position = new Vector2(x * tileXOffset,y * tileYOffset/2 -.5f);
+        var ren = TempGo.GetComponent<SpriteRenderer>();
+        ren.enabled = true;
+        ScoreManager.instance.AddPoint();
     }
     void makeButton(float x, float y)//this makes buttons to build factories on all of the hex above it
     {

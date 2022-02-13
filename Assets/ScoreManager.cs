@@ -24,8 +24,8 @@ public class ScoreManager : MonoBehaviour
     public static ScoreManager instance;
 
     List<player> playerList;
-    enum Turn {p1 = 0, p2 = 1, p3 = 2, p4 = 3 };
-    Turn turn = Turn.p1;
+    public enum Turn {p1 = 0, p2 = 1, p3 = 2, p4 = 3 };
+    public Turn turn;
     int temp = 0;
 
     void Awake()
@@ -44,6 +44,7 @@ public class ScoreManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        turn = Turn.p1;
         playerList = new List<player>();
         for (int i = 1; i < 5; i++)
         {

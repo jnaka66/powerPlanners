@@ -183,10 +183,10 @@ public class createPowerPlantButtons : MonoBehaviour
             plant = player2PowerPlant;
         }
         if(playerTurn==2){
-            plant = player2PowerPlant;
+            plant = player3PowerPlant;
         }
         if(playerTurn==3){
-            plant = player3PowerPlant;
+            plant = player4PowerPlant;
         }
         GameObject TempGo = Instantiate(plant);
         TempGo.transform.position = new Vector2(x * tileXOffset,y * tileYOffset/2 -.5f);

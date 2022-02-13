@@ -157,6 +157,7 @@ public class createPowerPlantButtons : MonoBehaviour
         TempGo.transform.position = new Vector2(x * tileXOffset,y * tileYOffset/2 -.5f);
         var ren = TempGo.GetComponent<SpriteRenderer>();
         ren.enabled = true;
+        ScoreManager.instance.AddPoint();
 
         // tempButton.gameObject.SetActive(false);
         deleteButtons();

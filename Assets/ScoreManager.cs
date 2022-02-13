@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {   
-    struct player
+    public class player
     {
         public int id;
         public int VP;
@@ -26,26 +26,35 @@ public class ScoreManager : MonoBehaviour
     List<player> playerList;
     enum Turn {p1 = 0, p2 = 1, p3 = 2, p4 = 3 };
     Turn turn = Turn.p1;
+    int temp = 0;
 
     void Awake()
     {
-        instance = this;
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(this);
+        }
+        else if(instance != null)
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        for (int i = 0; i < 3; i++)
+        playerList = new List<player>();
+        for (int i = 1; i < 5; i++)
         {
             playerList.Add(new player(i, 0, 0, "Player " + i + "\nVP: " + 0 + "\nMoney: " + 0));
         }
     }
 
-    void AddPoint()
+    public void AddPoint()
     {
-        player p = playerList[(int)turn];
-        p.VP += 1;
-        p.text = "Player " + p.id + "\nVP: " + p.VP + "\nMoney: " + p.money;
+        //Debug.Log("Add point");
+        temp++;
     }
 
     // Update is called once per frame
@@ -56,30 +65,41 @@ public class ScoreManager : MonoBehaviour
 
     public void endTurn()
     {
+        playerList[(int)turn].VP += temp;
+        playerList[(int)turn].text = "Player " + playerList[(int)turn].id + "\nVP: " + playerList[(int)turn].VP + "\nMoney: " + playerList[(int)turn].money;
+        temp = 0;
         switch ((int)turn)
         {
             case 0:
                 turn = Turn.p2;
+                //Debug.Log(playerList[0].text);
                 break;
             case 1:
                 turn = Turn.p3;
+                //Debug.Log("P3");
                 break;
             case 2:
                 turn = Turn.p4;
+                //Debug.Log("P4");
                 break;
             default:
                 turn = Turn.p1;
+                //Debug.Log("P1");
                 break;
         }
-        updateGUI();
     }
 
-    void updateGUI()
+    void OnGUI()
     {
-        Debug.Log("GUI");
-        for (int i = 0; i < 3; i++)
+        //Debug.Log("GUI");
+        for (int i = 0; i < 4; i++)
         {
-            GUI.Box(new Rect(0, 0, 100, 100), playerList[i].text);
+            if(i == (int)turn)
+            {
+                GUI.color = Color.yellow;
+            }
+            GUI.Box(new Rect(i * 120, 0, 100, 50), playerList[i].text);
+            GUI.color = Color.white;
         }
         
     }

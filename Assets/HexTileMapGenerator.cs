@@ -10,6 +10,10 @@ public class HexTileMapGenerator : MonoBehaviour
     public GameObject city;
     public List<Vector2> built = new List<Vector2>();
     List<Vector2> buildCoords = new List<Vector2>();
+    public List<Vector3> buildCoal = new List<Vector3>();
+    public List<Vector3> buildNatural = new List<Vector3>();
+    public List<Vector3> buildNuclear = new List<Vector3>();
+    public List<Vector3> buildSolar = new List<Vector3>();
 
     int width = 10;
     int height = 9;
@@ -119,7 +123,7 @@ public class HexTileMapGenerator : MonoBehaviour
         //now make random cities
         for (int i = 0; i < 6; i++){//6 cities x
             MyNumber = a.Next(0, buildCoords.Count);
-            Debug.Log(MyNumber);
+            //Debug.Log(MyNumber);
             Vector2 buildAt = buildCoords[MyNumber];
             built.Add(buildAt);
             float x = buildAt[0];

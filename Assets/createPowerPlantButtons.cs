@@ -13,6 +13,13 @@ public class createPowerPlantButtons : MonoBehaviour
     public GameObject player3PowerPlant;
     public GameObject player4PowerPlant;
     public ScoreManager scoreMan;
+    //format for each entry is <x,y,playerNum>
+    public List<Vector3> builtCoal;
+    public List<Vector3> builtNatural;
+    public List<Vector3> builtNuclear;
+    public List<Vector3> builtSolar;
+    public string plantType;
+
     //private List<Vector2> built;
     int width = 10;
     int height = 9;
@@ -32,11 +39,17 @@ public class createPowerPlantButtons : MonoBehaviour
     {
         mapGen = GameObject.FindObjectOfType<HexTileMapGenerator>();
         scoreMan = GameObject.FindObjectOfType<ScoreManager>();
+        builtCoal=mapGen.buildCoal;
+        builtSolar=mapGen.buildSolar;
+        builtNuclear=mapGen.buildNuclear;
+        builtNatural=mapGen.buildNatural;
     }
 
     bool buildSelected = false;
 
     public void spawnButtons() {
+        createButtons();
+        /*
         if(!buildSelected) {
             createButtons();
             //Debug.Log("num"+numOfButtons);
@@ -45,14 +58,30 @@ public class createPowerPlantButtons : MonoBehaviour
         else {
             deleteButtons();
             buildSelected = false;
-        }
+        }*/
     }
 
     public void deleteButtons() {
-        for(int i =0; i < numOfButtons; i++) {
+        while(GameObject.Find("Button(Clone)") != null){
             buttontest = GameObject.Find("Button(Clone)");
             buttontest.gameObject.SetActive(false);
         }
+        /*
+        for(int i =0; i < numOfButtons; i++) {
+            buttontest = GameObject.Find("Button(Clone)");
+            buttontest.gameObject.SetActive(false);//I tried implementing Destroy() but wasnt working for some reason
+        }
+        */
+        GameObject solar = GameObject.Find("buildSolarButton");
+        GameObject coal = GameObject.Find("buildCoalButton");
+        GameObject natty = GameObject.Find("buildNaturalButton");
+        GameObject nuke = GameObject.Find("buildNuclearButton");
+        solar.gameObject.SetActive(false);
+        coal.gameObject.SetActive(false);
+        natty.gameObject.SetActive(false);
+
+        nuke.gameObject.SetActive(false);
+
         numOfButtons = 0;
     }
 
@@ -159,8 +188,8 @@ public class createPowerPlantButtons : MonoBehaviour
         mapGen.updateBuilt(x,y);
         //Debug.Log("turn= ", (int)scoreMan.turn);
         //built.Add(new Vector2(x, y));
-        
-        makePowerPlant((int)scoreMan.turn,x,y); 
+        string ownedType = determineOwned(x,y);
+        makePowerPlant((int)scoreMan.turn,x,y,ownedType); 
         
         
 
@@ -174,7 +203,7 @@ public class createPowerPlantButtons : MonoBehaviour
 
 
     }
-    void makePowerPlant(int playerTurn,float x ,float y){
+    void makePowerPlant(int playerTurn,float x ,float y,string ownedType){
         GameObject plant = new GameObject();
         if(playerTurn==0){
             plant = player1PowerPlant;
@@ -188,7 +217,43 @@ public class createPowerPlantButtons : MonoBehaviour
         if(playerTurn==3){
             plant = player4PowerPlant;
         }
+        if(plantType=="coal"){
+            builtCoal.Add(new Vector3(x,y,playerTurn));
+        }
+        if(plantType=="natural"){
+            builtNatural.Add(new Vector3(x,y,playerTurn));
+        }
+        if(plantType=="nuclear"){
+            builtNuclear.Add(new Vector3(x,y,playerTurn));
+        }
+        if(plantType=="solar"){
+            builtSolar.Add(new Vector3(x,y,playerTurn));
+        }
+        if(ownedType !=""){
+            string plantRemove =ownedType+"Plant"+(playerTurn+1)+" "+x+","+y;
+            //Debug.Log(plantRemove);
+            GameObject plantToDestroy = GameObject.Find(plantRemove);
+            GameObject idkwhy = GameObject.Find(plantRemove+"(Clone)");
+            GameObject.Destroy(plantToDestroy);
+            GameObject.Destroy(idkwhy);
+            if(ownedType == "coal"){
+               
+                builtCoal.Remove(new Vector3(x,y,playerTurn));
+            }
+            if(ownedType == "solar"){
+                builtSolar.Remove(new Vector3(x,y,playerTurn));
+            }
+            if(ownedType == "nuclear"){
+                builtNuclear.Remove(new Vector3(x,y,playerTurn));
+            }
+            if(ownedType == "natural"){
+                builtNatural.Remove(new Vector3(x,y,playerTurn));
+            }
+        }
+        //Debug.Log(plantType+ " built by "+(int)scoreMan.turn+ " at "+x+","+y);
+        
         GameObject TempGo = Instantiate(plant);
+        TempGo.name = plantType+"Plant"+(playerTurn+1)+" "+x+","+y;
         TempGo.transform.position = new Vector2(x * tileXOffset,y * tileYOffset/2 -.5f);
         var ren = TempGo.GetComponent<SpriteRenderer>();
         ren.enabled = true;
@@ -196,7 +261,10 @@ public class createPowerPlantButtons : MonoBehaviour
     }
     void makeButton(float x, float y)//this makes buttons to build factories on all of the hex above it
     {
-        if (!mapGen.getBuilt().Contains(new Vector2(x, y)))
+        //allow owned locations
+        bool owned = !(determineOwned(x,y)=="");
+        
+        if (!mapGen.getBuilt().Contains(new Vector2(x, y)) || owned)
         {
             GameObject goButton = (GameObject)Instantiate(prefabButton);
             goButton.transform.SetParent(ParentPanel, false);
@@ -212,8 +280,62 @@ public class createPowerPlantButtons : MonoBehaviour
             Vector2 anchoredPos = new Vector2(bottomLeftX + x * canvasTileXOffset, bottomLeftY + y * canvasTileYOffset);
             rectTransform.anchoredPosition = anchoredPos;
 
-            numOfButtons++;
+            //numOfButtons++;
         }
 
+    }
+    //dont look below here
+    string determineOwned(float x, float y){
+        //Debug.Log("checking if "+ (int)scoreMan.turn + "owns"+x+","+y +" type is "+plantType);
+        if(plantType == "coal"){
+            for(int i=0;i<builtSolar.Count; i++){
+                if(builtSolar[i] == new Vector3(x,y,(int)scoreMan.turn)) return "solar";
+            }
+            for(int i=0;i<builtNuclear.Count; i++){
+                if(builtNuclear[i] == new Vector3(x,y,(int)scoreMan.turn)) return "nuclear";
+            }
+            for(int i=0;i<builtNatural.Count; i++){
+                if(builtNatural[i] == new Vector3(x,y,(int)scoreMan.turn)) return "natural";
+            }
+            return "";
+        }
+        if(plantType == "solar"){
+            for(int i=0;i<builtCoal.Count; i++){
+                Debug.Log(builtCoal[i]);
+                if(builtCoal[i] == new Vector3(x,y,(int)scoreMan.turn)) return "coal";
+            }
+            for(int i=0;i<builtNuclear.Count; i++){
+                if(builtNuclear[i] == new Vector3(x,y,(int)scoreMan.turn)) return "nuclear";
+            }
+            for(int i=0;i<builtNatural.Count; i++){
+                if(builtNatural[i] == new Vector3(x,y,(int)scoreMan.turn)) return "natural";
+            }
+            return "";
+        }
+        if(plantType == "nuclear"){
+            for(int i=0;i<builtSolar.Count; i++){
+                if(builtSolar[i] == new Vector3(x,y,(int)scoreMan.turn)) return "solar";
+            }
+            for(int i=0;i<builtCoal.Count; i++){
+                if(builtCoal[i] == new Vector3(x,y,(int)scoreMan.turn)) return "coal";
+            }
+            for(int i=0;i<builtNatural.Count; i++){
+                if(builtNatural[i] == new Vector3(x,y,(int)scoreMan.turn)) return "natural";
+            }
+            return "";
+        }
+        if(plantType == "natural"){
+            for(int i=0;i<builtSolar.Count; i++){
+                if(builtSolar[i] == new Vector3(x,y,(int)scoreMan.turn)) return "solar";
+            }
+            for(int i=0;i<builtNuclear.Count; i++){
+                if(builtNuclear[i] == new Vector3(x,y,(int)scoreMan.turn)) return "nuclear";
+            }
+            for(int i=0;i<builtCoal.Count; i++){
+                if(builtCoal[i] == new Vector3(x,y,(int)scoreMan.turn)) return "coal";
+            }
+            return "";
+        }
+        return "";
     }
 }

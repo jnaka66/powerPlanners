@@ -792,7 +792,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Nulcear Gas Plant
+  m_Text: Nuclear Plant
 --- !u!222 &354615986
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2519,7 +2519,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabButton: {fileID: 440912122}
   ParentPanel: {fileID: 1934052883}
-  powLine: {fileID: 7756400926701201729, guid: 6cad1b9a4c57bb24d9226e0aa2d29158, type: 3}
+  scoreMan: {fileID: 0}
+  mapGen: {fileID: 0}
+  player1PowerLine: {fileID: 7756400926701201729, guid: fc35f70e19d16254db0e54abc4b20a37, type: 3}
+  player2PowerLine: {fileID: 7756400926701201729, guid: 6cad1b9a4c57bb24d9226e0aa2d29158, type: 3}
+  player3PowerLine: {fileID: 7756400926701201729, guid: 1559af4199703c74a8e3f27463362777, type: 3}
+  player4PowerLine: {fileID: 7756400926701201729, guid: 46f5f5a3d7b638b4c97e0e6c512cb9ee, type: 3}
   buttontest: {fileID: 0}
 --- !u!1 &1280103230
 GameObject:

@@ -1387,7 +1387,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabButton: {fileID: 440912122}
   ParentPanel: {fileID: 1934052883}
-  powLine: {fileID: 7756400926701201729, guid: 6cad1b9a4c57bb24d9226e0aa2d29158, type: 3}
+  scoreMan: {fileID: 0}
+  mapGen: {fileID: 0}
+  player1PowerLine: {fileID: 7756400926701201729, guid: 961f171340fb48443860b80cb2d34087, type: 3}
+  player2PowerLine: {fileID: 7756400926701201729, guid: 6cad1b9a4c57bb24d9226e0aa2d29158, type: 3}
+  player3PowerLine: {fileID: 7756400926701201729, guid: b43c211bbb0f8ef40bf190a3eb18ac49, type: 3}
+  player4PowerLine: {fileID: 7756400926701201729, guid: 9f219bc7cf6b6f5439d7d9830b0849da, type: 3}
   buttontest: {fileID: 0}
 --- !u!1 &1342235161
 GameObject:

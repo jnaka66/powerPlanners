@@ -7,7 +7,14 @@ public class createPowerLines : MonoBehaviour
 {
     public GameObject prefabButton;
     public RectTransform ParentPanel;
-    public GameObject powLine;
+    
+    public ScoreManager scoreMan;
+    public HexTileMapGenerator mapGen;
+    public GameObject player1PowerLine;
+    public GameObject player2PowerLine;
+    public GameObject player3PowerLine;
+    public GameObject player4PowerLine;
+    
     int width = 10;
     int height = 9;
 
@@ -24,6 +31,12 @@ public class createPowerLines : MonoBehaviour
     //     createButtons();
     // }
 
+    void Awake()
+    {
+        mapGen = GameObject.FindObjectOfType<HexTileMapGenerator>();
+        scoreMan = GameObject.FindObjectOfType<ScoreManager>();
+    }
+
     bool buildSelected = false;
 
     public void spawnButtons()
@@ -31,7 +44,7 @@ public class createPowerLines : MonoBehaviour
         if (!buildSelected)
         {
             createButtons();
-            Debug.Log("num" + numOfButtons);
+            //Debug.Log("num" + numOfButtons);
             buildSelected = true;
         }
         else
@@ -275,15 +288,13 @@ public class createPowerLines : MonoBehaviour
 
     }
     public GameObject buttontest;
+    
+
     void ButtonClicked(Button tempButton, string buttonNo, float x, float y, Quaternion rotation)
     {
-        Debug.Log("Button clicked = " + buttonNo);
+        //Debug.Log("Button clicked = " + buttonNo);
 
-        GameObject TempGo = Instantiate(powLine);
-        TempGo.transform.position = new Vector2(x * tileXOffset, y * tileYOffset / 2 - .5f);
-        TempGo.transform.rotation = rotation;
-        var ren = TempGo.GetComponent<SpriteRenderer>();
-        ren.enabled = true;
+        makePowerLine((int)scoreMan.turn, x, y,rotation);
 
         // tempButton.gameObject.SetActive(false);
         deleteButtons();
@@ -292,6 +303,34 @@ public class createPowerLines : MonoBehaviour
         // buttontest.gameObject.SetActive(false);
         //var ren1 = tempButton.gameObject.GetComponent<Renderer>();
         //ren1.enabled = false;
+
+    }
+
+    void makePowerLine(int playerTurn, float x, float y, Quaternion rotation)
+    {
+        GameObject powLine = new GameObject();
+        if (playerTurn == 0)
+        {
+            powLine = player1PowerLine;
+        }
+        if (playerTurn == 1)
+        {
+            powLine = player2PowerLine;
+        }
+        if (playerTurn == 2)
+        {
+            powLine = player3PowerLine;
+        }
+        if (playerTurn == 3)
+        {
+            powLine = player4PowerLine;
+        }
+        GameObject TempGo = Instantiate(powLine);
+
+        TempGo.transform.position = new Vector2(x * tileXOffset, y * tileYOffset / 2 - .5f);
+        TempGo.transform.rotation = rotation;
+        var ren = TempGo.GetComponent<SpriteRenderer>();
+        ren.enabled = true;
 
     }
     void makeButton(float x, float y, Quaternion rotation)//this makes buttons to build factories on all of the hex above it

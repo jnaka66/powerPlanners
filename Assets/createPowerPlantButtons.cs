@@ -189,7 +189,14 @@ public class createPowerPlantButtons : MonoBehaviour
         //Debug.Log("turn= ", (int)scoreMan.turn);
         //built.Add(new Vector2(x, y));
         string ownedType = determineOwned(x,y);
-        makePowerPlant((int)scoreMan.turn,x,y,ownedType); 
+        if(scoreMan.buildPlant(plantType))
+        {
+            makePowerPlant((int)scoreMan.turn,x,y,ownedType);
+        }
+        else
+        {
+            Debug.Log("Not enough money");
+        }
         
         
 

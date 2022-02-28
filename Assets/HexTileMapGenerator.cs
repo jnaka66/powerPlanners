@@ -129,6 +129,10 @@ public class HexTileMapGenerator : MonoBehaviour
             float x = buildAt[0];
             float y = buildAt[1];
             GameObject TempGo = Instantiate(city);
+            TempGo.AddComponent<BoxCollider>();
+            TempGo.AddComponent<onHoverScript>();
+            var hover = TempGo.GetComponent<onHoverScript>();
+            hover.location = new Vector2(x,y);
             TempGo.transform.position = new Vector2(x * tileXOffset,y * tileYOffset/2 -.5f);
             var ren = TempGo.GetComponent<SpriteRenderer>();
             TempGo.AddComponent<BoxCollider>();

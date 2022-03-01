@@ -48,7 +48,9 @@ public class ScoreManager : MonoBehaviour
     public Turn turn;
     int temp = 0;
     int turnCount = 0;
+
     public const int defaultEarnings = 50;
+
 
     void Awake()
     {
@@ -167,6 +169,7 @@ public class ScoreManager : MonoBehaviour
                 //Debug.Log("P1");
                 break;
         }
+
         playerList[(int)turn].money += defaultEarnings;
         turnCount++;
         Debug.Log("TurnCount= "+turnCount);

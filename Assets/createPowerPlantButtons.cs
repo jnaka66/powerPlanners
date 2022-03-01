@@ -185,12 +185,13 @@ public class createPowerPlantButtons : MonoBehaviour
     public GameObject buttontest;
     void ButtonClicked(Button tempButton, string buttonNo,float x, float y)
     {
-        mapGen.updateBuilt(x,y);
+        
         //Debug.Log("turn= ", (int)scoreMan.turn);
         //built.Add(new Vector2(x, y));
         string ownedType = determineOwned(x,y);
         if(scoreMan.buildPlant(plantType))
         {
+            mapGen.updateBuilt(x,y);
             makePowerPlant((int)scoreMan.turn,x,y,ownedType);
         }
         else

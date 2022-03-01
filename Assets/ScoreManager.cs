@@ -38,12 +38,19 @@ public class ScoreManager : MonoBehaviour
     float tileXOffset = .89f;
     float tileYOffset = .77f;
 
+    //private GUIStyle currentStyle = null;
+    int boxHeight = 55;
+    int boxWidth = 100;
+    List<Texture2D> colorList;
 
-    List<player> playerList;
+    public List<player> playerList;
     public enum Turn {p1 = 0, p2 = 1, p3 = 2, p4 = 3 };
     public Turn turn;
     int temp = 0;
     int turnCount = 0;
+
+    public const int defaultEarnings = 50;
+
 
     void Awake()
     {
@@ -65,7 +72,14 @@ public class ScoreManager : MonoBehaviour
         playerList = new List<player>();
         for (int i = 1; i < 5; i++)
         {
-            playerList.Add(new player(i, 0, 0, "Player " + i + "\nVP: " + 0 + "\nMoney: " + 0));
+            if (i == 1)
+            {
+                playerList.Add(new player(i, 0, defaultEarnings*2, "Player " + i + "\nVP: " + 0 + "\nMoney: " + defaultEarnings*2));
+            }
+            else
+            {
+                playerList.Add(new player(i, 0, defaultEarnings, "Player " + i + "\nVP: " + 0 + "\nMoney: " + defaultEarnings));
+            }
         }
         diceSides = Resources.LoadAll<Sprite>("DiceSides/");
         diceSidesEvent = Resources.LoadAll<Sprite>("EventDiceSides/");
@@ -86,20 +100,56 @@ public class ScoreManager : MonoBehaviour
     public void AddPoint()
     {
         //Debug.Log("Add point");
-        temp++;
+        //temp++;
+        playerList[(int)turn].VP += 1;
+    }
+
+    public bool buildPlant(string plantType)
+    {
+        if (plantType == "coal" && playerList[(int)turn].money >= 50)
+        {
+            playerList[(int)turn].money -= 50;
+            return true;
+        }
+        if (plantType == "natural" && playerList[(int)turn].money >= 150)
+        {
+            playerList[(int)turn].money -= 150;
+            return true;
+        }
+        if (plantType == "nuclear" && playerList[(int)turn].money >= 200)
+        {
+            playerList[(int)turn].money -= 200;
+            return true;
+        }
+        if (plantType == "solar" && playerList[(int)turn].money >= 100)
+        {
+            playerList[(int)turn].money -= 100;
+            return true;
+        }
+        return false;
+    }
+
+    public bool buildLine()
+    {
+        if (playerList[(int)turn].money >= 25)
+        {
+            playerList[(int)turn].money -= 25;
+            return true;
+        }
+        return false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        playerList[(int)turn].text = "Player " + playerList[(int)turn].id + "\nVP: " + playerList[(int)turn].VP + "\nMoney: " + playerList[(int)turn].money;
     }
 
     public void endTurn()
     {
-        playerList[(int)turn].VP += temp;
-        playerList[(int)turn].text = "Player " + playerList[(int)turn].id + "\nVP: " + playerList[(int)turn].VP + "\nMoney: " + playerList[(int)turn].money;
-        temp = 0;
+        //playerList[(int)turn].VP += temp;
+        //playerList[(int)turn].text = "Player " + playerList[(int)turn].id + "\nVP: " + playerList[(int)turn].VP + "\nMoney: " + playerList[(int)turn].money;
+        //temp = 0;
         switch ((int)turn)
         {
             case 0:
@@ -119,6 +169,8 @@ public class ScoreManager : MonoBehaviour
                 //Debug.Log("P1");
                 break;
         }
+
+        playerList[(int)turn].money += defaultEarnings;
         turnCount++;
         Debug.Log("TurnCount= "+turnCount);
         if(turnCount>3){
@@ -131,18 +183,60 @@ public class ScoreManager : MonoBehaviour
     void OnGUI()
     {
         //Debug.Log("GUI");
+        //InitStyles();
         for (int i = 0; i < 4; i++)
         {
             if(i == (int)turn)
             {
                 GUI.color = Color.yellow;
             }
-            GUI.Box(new Rect(i * 120, 0, 100, 50), playerList[i].text);
+            if(i == 0)
+            {
+                GUI.backgroundColor = new Color(1.0f, 0.5f, 0.0f, 1.0f);
+                //currentStyle.normal.background = MakeTex(boxWidth, boxHeight, new Color(1.0f, 0.5f, 0.0f, 1.0f));
+            }
+            else if (i == 1)
+            {
+                GUI.backgroundColor = Color.black;
+                //currentStyle.normal.background = MakeTex(boxWidth, boxHeight, Color.black);
+            }
+            else if(i == 2)
+            {
+                GUI.backgroundColor = Color.white;
+                //currentStyle.normal.background = MakeTex(boxWidth, boxHeight, Color.white);
+            }
+            else
+            {
+                GUI.backgroundColor = Color.red;
+                //currentStyle.normal.background = MakeTex(boxWidth, boxHeight, Color.red);
+            }
+            GUI.Button(new Rect(i * 120, 0, boxWidth, boxHeight), playerList[i].text); //, currentStyle);
             GUI.color = Color.white;
         }
         
     }
+    /*
+    private void InitStyles()
+    {
+        if (currentStyle == null)
+        {
+            currentStyle = new GUIStyle(GUI.skin.box);
+        }
+    }
 
+    private Texture2D MakeTex(int width, int height, Color col)
+    {
+        Color[] pix = new Color[width * height];
+        for (int i = 0; i < pix.Length; ++i)
+        {
+            pix[i] = col;
+        }
+        Texture2D result = new Texture2D(width, height);
+        result.SetPixels(pix);
+        result.Apply();
+        return result;
+    }
+    */
     // If you left click over the dice then RollTheDice coroutine is started
     public void roll()
     {

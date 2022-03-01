@@ -294,7 +294,14 @@ public class createPowerLines : MonoBehaviour
     {
         //Debug.Log("Button clicked = " + buttonNo);
 
-        makePowerLine((int)scoreMan.turn, x, y,rotation);
+        if (scoreMan.buildLine())
+        {
+            makePowerLine((int)scoreMan.turn, x, y, rotation);
+        }
+        else
+        {
+            Debug.Log("Not enough money");
+        }
 
         // tempButton.gameObject.SetActive(false);
         deleteButtons();

@@ -139,6 +139,8 @@ public class HexTileMapGenerator : MonoBehaviour
             TempGo.AddComponent<onHoverScript>();
             var hover = TempGo.GetComponent<onHoverScript>();
             hover.location = new Vector2(x,y);
+            hover.objType = "Town";
+            hover.demand = Random.Range(50,125);
             ren.enabled = true;
         }
         /*

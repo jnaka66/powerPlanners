@@ -245,7 +245,6 @@ public class createPowerPlantButtons : MonoBehaviour
             GameObject.Destroy(plantToDestroy);
             GameObject.Destroy(idkwhy);
             if(ownedType == "coal"){
-               
                 builtCoal.Remove(new Vector3(x,y,playerTurn));
             }
             if(ownedType == "solar"){
@@ -259,14 +258,23 @@ public class createPowerPlantButtons : MonoBehaviour
             }
         }
         //Debug.Log(plantType+ " built by "+(int)scoreMan.turn+ " at "+x+","+y);
-        
         GameObject TempGo = Instantiate(plant);
         TempGo.name = plantType+"Plant"+(playerTurn+1)+" "+x+","+y;
         TempGo.transform.position = new Vector2(x * tileXOffset,y * tileYOffset/2 -.5f);
         var ren = TempGo.GetComponent<SpriteRenderer>();
         ren.enabled = true;
         ScoreManager.instance.AddPoint();
+
+        //hovering section
+        TempGo.AddComponent<BoxCollider>();
+        TempGo.AddComponent<onHoverScript>();
+        var hover = TempGo.GetComponent<onHoverScript>();
+        hover.location = new Vector2(x,y);//pass the location
+        hover.objType = plantType;//and type
+        hover.parent = TempGo;
     }
+
+
     void makeButton(float x, float y)//this makes buttons to build factories on all of the hex above it
     {
         //allow owned locations

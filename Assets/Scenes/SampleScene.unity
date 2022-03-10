@@ -918,7 +918,7 @@ RectTransform:
   m_Children:
   - {fileID: 1787299480}
   m_Father: {fileID: 1934052883}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2243,7 +2243,7 @@ RectTransform:
   m_Children:
   - {fileID: 5997183}
   m_Father: {fileID: 1934052883}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2525,6 +2525,10 @@ MonoBehaviour:
   player2PowerLine: {fileID: 7756400926701201729, guid: 6cad1b9a4c57bb24d9226e0aa2d29158, type: 3}
   player3PowerLine: {fileID: 7756400926701201729, guid: 1559af4199703c74a8e3f27463362777, type: 3}
   player4PowerLine: {fileID: 7756400926701201729, guid: 46f5f5a3d7b638b4c97e0e6c512cb9ee, type: 3}
+  Coal: {fileID: 587844300}
+  Natural: {fileID: 334419468}
+  Solar: {fileID: 1238402567}
+  Nuclear: {fileID: 909167692}
   buttontest: {fileID: 0}
 --- !u!1 &1280103230
 GameObject:
@@ -4053,8 +4057,8 @@ RectTransform:
   - {fileID: 904483959}
   - {fileID: 587844301}
   - {fileID: 1238774963}
-  - {fileID: 440912123}
   - {fileID: 1238402568}
+  - {fileID: 440912123}
   - {fileID: 1503246881}
   - {fileID: 334419469}
   - {fileID: 909167693}

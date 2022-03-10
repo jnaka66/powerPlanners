@@ -237,12 +237,12 @@ public class createPowerLines : MonoBehaviour
                         Debug.Log("x coord " + xCoord);
                         Debug.Log("y coord " + yCoord);
                     }*/
-                    if(topLeftX == xCoord && topLeftY == yCoord)
+                    if (topLeftX == xCoord && topLeftY == yCoord)
                     {
                         PowLineButtons[j].gameObject.SetActive(true);
                     }
-                    
-                    if (topRightX == xCoord &&topRightY == yCoord)
+
+                    if (topRightX == xCoord && topRightY == yCoord)
                     {
                         PowLineButtons[j].gameObject.SetActive(true);
                     }
@@ -252,8 +252,9 @@ public class createPowerLines : MonoBehaviour
                         PowLineButtons[j].gameObject.SetActive(true);
                     }
 
-                    if (topX == xCoord && topY == yCoord)
+                    if (topX == xCoord && ((yCoord - topY) >= 0) && ((yCoord - topY) <= 0.2f))
                     {
+
                         PowLineButtons[j].gameObject.SetActive(true);
                     }
 
@@ -270,232 +271,210 @@ public class createPowerLines : MonoBehaviour
                 }
             }
         }
-        
-        
-        /*for (int i = 0; i < PowLineButtons.Count; i++)
+
+        for (int i = 0; i < SolarPlants.Count; i++)
         {
-            PowLineButtons[i].gameObject.SetActive(true);
-        }*/
+            turn = (int)SolarPlants[i][2];
 
-        //for (int y = 0; y < height * 2; y++)
-        //{
-        //    for (int x = 0; x < width; x++)
-        //    {
-        //
-        //        if (y == 0 && x < width - 2 && x > 1)
-        //        {
-        //            makeButton(x+0.25f, y+0.25f, new Quaternion(0.5f, 1.0f, 0.0f, 0.0f));//bottom
-        //            makeButton(x + 0.25f, y + 2.25f, new Quaternion(1.65f, 1.0f, 0.0f, 0.0f));//top
-        //            makeButton(x - 0.25f, y + 0.25f,new Quaternion(1.65f, 1.0f, 0.0f, 0.0f));//bot left
-        //            makeButton(x - 0.25f, y + 2.25f, new Quaternion(0.5f, 1.0f, 0.0f, 0.0f));//top left
-        //            makeButton(x + .5f, y + 1.25f, new Quaternion(0.0f, 0.0f, 0.0f, 0.0f));
-        //            if (x == 2)//special case on left side
-        //            {
-        //                makeButton(x-0.5f , y+1.2f, new Quaternion(0.0f, 1.0f, 0.0f, 0.0f));
-        //                makeButton(x - 0.75f, y + 2.25f, new Quaternion(1.65f, 1.0f, 0.0f, 0.0f));
-        //            }
-        //            if (x == width - 3)//special case on right side
-        //            {
-        //               
-        //                makeButton(x + 0.75f, y + 2.25f, new Quaternion(0.5f, 1.0f, 0.0f, 0.0f));
-        //                makeButton(x + 1, y + 3.25f, new Quaternion(0.0f, 1.0f, 0.0f, 0.0f));
-        //            }
-        //
-        //        }
-        //
-        //        if (y == 4 && x < width - 1 && x > 0)
-        //        {
-        //            makeButton(x + 0.25f, y + 0.25f, new Quaternion(0.5f, 1.0f, 0.0f, 0.0f));//bottom
-        //            makeButton(x + 0.25f, y + 2.25f, new Quaternion(1.65f, 1.0f, 0.0f, 0.0f));//top
-        //            makeButton(x - 0.25f, y + 0.25f, new Quaternion(1.65f, 1.0f, 0.0f, 0.0f));//bot left
-        //            makeButton(x - 0.25f, y + 2.25f, new Quaternion(0.5f, 1.0f, 0.0f, 0.0f));//top left
-        //            makeButton(x + .5f, y + 1.25f, new Quaternion(0.0f, 0.0f, 0.0f, 0.0f));
-        //            makeButton(x, y - 0.75f, new Quaternion(0.0f, 0.0f, 0.0f, 0.0f));
-        //            if (x == 1)//special case on left side
-        //            {
-        //                makeButton(x - 0.75f, y + 2.25f, new Quaternion(1.65f, 1.0f, 0.0f, 0.0f));
-        //                makeButton(x-0.5f,y+1.25f, new Quaternion(0.0f, 1.0f, 0.0f, 0.0f));
-        //            }
-        //            if (x == width - 2)//special case on right side
-        //            {
-        //                makeButton(x + 0.75f, y + 2.25f, new Quaternion(0.5f, 1.0f, 0.0f, 0.0f));
-        //                
-        //            }
-        //
-        //        }
-        //        if (y == 8)
-        //        {
-        //            makeButton(x + 0.25f, y + 0.25f, new Quaternion(0.5f, 1.0f, 0.0f, 0.0f));//bottom
-        //            makeButton(x + 0.25f, y + 2.25f, new Quaternion(1.65f, 1.0f, 0.0f, 0.0f));//top
-        //            makeButton(x - 0.25f, y + 0.25f, new Quaternion(1.65f, 1.0f, 0.0f, 0.0f));//bot left
-        //            makeButton(x - 0.25f, y + 2.25f, new Quaternion(0.5f, 1.0f, 0.0f, 0.0f));//top left
-        //            makeButton(x + .5f, y + 1.25f, new Quaternion(0.0f, 0.0f, 0.0f, 0.0f));
-        //            makeButton(x, y - 0.6f, new Quaternion(0.0f, 0.0f, 0.0f, 0.0f));
-        //            if (x == 1)//special case on left side
-        //            {
-        //                makeButton(x-1.5f, y+1.25f, new Quaternion(0.0f, 1.0f, 0.0f, 0.0f));
-        //                makeButton(x - 0.75f, y + 4.2f, new Quaternion(0.5f, 1.0f, 0.0f, 0.0f));
-        //                //makeButton(x, y - 0.6f);
-        //                makeButton(x - 1.0f, y - 0.6f, new Quaternion(0.0f, 1.0f, 0.0f, 0.0f));
-        //            }
-        //
-        //
-        //        }
-        //        if (y == 12 && x < width - 1 && x > 0)
-        //        {
-        //            makeButton(x + 0.25f, y + 0.25f, new Quaternion(0.5f, 1.0f, 0.0f, 0.0f));//bottom
-        //            makeButton(x + 0.25f, y + 2.25f, new Quaternion(1.65f, 1.0f, 0.0f, 0.0f));//top
-        //            makeButton(x - 0.25f, y + 0.25f, new Quaternion(1.65f, 1.0f, 0.0f, 0.0f));//bot left
-        //            makeButton(x - 0.25f, y + 2.25f, new Quaternion(0.5f, 1.0f, 0.0f, 0.0f));//top left
-        //            makeButton(x + .5f, y + 1.25f, new Quaternion(0.0f, 0.0f, 0.0f, 0.0f));
-        //            makeButton(x, y - 0.6f, new Quaternion(0.0f, 0.0f, 0.0f, 0.0f));
-        //
-        //            if (x == 1)
-        //            {
-        //                makeButton(x - 1.0f, y - 0.6f, new Quaternion(0.0f, 1.0f, 0.0f, 0.0f));
-        //                makeButton(x-0.5f, y+1.25f, new Quaternion(0.0f, 1.0f, 0.0f, 0.0f));
-        //            }
-        //
-        //            if(x == width - 2)
-        //            {
-        //                makeButton(x+1.0f,y-0.6f, new Quaternion(0.0f, 1.0f, 0.0f, 0.0f));
-        //                makeButton(x - 1.0f, y - 0.6f, new Quaternion(0.0f, 1.0f, 0.0f, 0.0f));
-        //                makeButton(x +0.75f, y+0.25f, new Quaternion(1.65f, 1.0f, 0.0f, 0.0f));
-        //            }
-        //
-        //        }
-        //
-        //        if (y == 16 && x < width - 2 && x > 1)
-        //        {
-        //            makeButton(x + 0.25f, y + 0.25f, new Quaternion(0.5f, 1.0f, 0.0f, 0.0f));//bottom
-        //            makeButton(x + 0.25f, y + 2.25f, new Quaternion(1.65f, 1.0f, 0.0f, 0.0f));//top
-        //            makeButton(x - 0.25f, y + 0.25f, new Quaternion(1.65f, 1.0f, 0.0f, 0.0f));//bot left
-        //            makeButton(x - 0.25f, y + 2.25f, new Quaternion(0.5f, 1.0f, 0.0f, 0.0f));//top left
-        //            makeButton(x + .5f, y + 1.25f, new Quaternion(0.0f, 0.0f, 0.0f, 0.0f));
-        //            makeButton(x+1.0f, y-0.6f,new Quaternion(0.0f, 0.0f, 0.0f, 0.0f));
-        //            if (x == 2)//special case on left side
-        //            {
-        //                makeButton(x - 0.5f, y + 1.25f, new Quaternion(0.0f, 1.0f, 0.0f, 0.0f));
-        //                makeButton(x - 0.75f, y+0.25f, new Quaternion(1.65f, 1.0f, 0.0f, 0.0f));
-        //                makeButton(x, y-0.6f, new Quaternion(0.0f, 1.0f, 0.0f, 0.0f));
-        //                makeButton(x - 1.0f, y - 0.6f, new Quaternion(0.0f, 1.0f, 0.0f, 0.0f));
-        //            }
-        //
-        //            if(x == width - 3)
-        //            {
-        //                makeButton(x + 0.75f, y+0.25f, new Quaternion(1.65f, 1.0f, 0.0f, 0.0f));
-        //            }
-        //
-        //
-        //        }
-        //
-        //    }
-        //}
+            //makeButton(coalPlants[i][0]-0.25f, coalPlants[i][1] + 0.25f, new Quaternion(0.0f, 0.0f, 0.0f, 0.0f));
+            for (int j = 0; j < allPowLineSpots.Count; j++)
+            {
+                float xCoord = (float)allPowLineSpots[j][0];
+                float yCoord = (float)allPowLineSpots[j][1];
+                if (turn == (int)scoreMan.turn)
+                {
+                    float topLeftX = SolarPlants[i][0] - 0.25f;
+                    float topLeftY = SolarPlants[i][1] + 0.25f;
+                    float topRightX = SolarPlants[i][0] + 0.25f;
+                    float topRightY = SolarPlants[i][1] + 0.25f;
+                    float bottomX = SolarPlants[i][0];
+                    float bottomY = SolarPlants[i][1] - 0.75f;
+                    float topX = SolarPlants[i][0];
+                    float topY = SolarPlants[i][1] + 0.75f;
+                    float botLeftX = SolarPlants[i][0] - 0.25f;
+                    float botLeftY = SolarPlants[i][1] - 0.25f;
+                    float botRightX = SolarPlants[i][0] + 0.25f;
+                    float botRightY = SolarPlants[i][1] - 0.25f;
+                    if (i == 0)
+                    {
+                        Debug.Log("plant x " + SolarPlants[i][0]);
+                        Debug.Log("plant y " + SolarPlants[i][1]);
+                        Debug.Log("top  x " + topX);
+                        Debug.Log("top  y " + topY);
+                        //Debug.Log("x coord " + xCoord);
+                        //Debug.Log("y coord " + yCoord);
+                    }
+                    if (topLeftX == xCoord && topLeftY == yCoord)
+                    {
+                        PowLineButtons[j].gameObject.SetActive(true);
+                    }
 
-        //for (int x = 0; x < width; x++)
-        //{
-        //    for (int y = 0; y < height; y++)
-        //    {
+                    if (topRightX == xCoord && topRightY == yCoord)
+                    {
+                        PowLineButtons[j].gameObject.SetActive(true);
+                    }
 
-        //        if (y % 2 == 0)//even rows
-        //        {
-        //            if ((y == 0 || y == 8) && x > 1 && x < 8)
-        //            {
-        //                makeButton(x * tileXOffset + 0.45f, y * tileYOffset);
-        //                makeButton(x * tileXOffset + 0.2f, y * tileYOffset + 0.4f);
-        //                makeButton(x * tileXOffset + 0.2f, y * tileYOffset - 0.4f);
+                    if (bottomX == xCoord && bottomY == yCoord)
+                    {
+                        PowLineButtons[j].gameObject.SetActive(true);
+                    }
 
-        //                /*GameObject obj = Instantiate(prefab);
-        //                obj.transform.position = new Vector2(x * tileXOffset + 0.45f, y * tileYOffset);
+                    if (topX == xCoord && ((yCoord-topY) >= 0) && ((yCoord-topY) <= 0.2f))
+                    {
+                        
+                        PowLineButtons[j].gameObject.SetActive(true);
+                    }
 
-        //                GameObject obj1 = Instantiate(prefab);
-        //                obj1.transform.position = new Vector2(x * tileXOffset + 0.2f, y * tileYOffset + 0.4f);
-        //                obj1.transform.rotation = new Quaternion(1.65f, 1.0f, 0.0f, 0.0f);
+                    if (botLeftX == xCoord && botLeftY == yCoord)
+                    {
+                        PowLineButtons[j].gameObject.SetActive(true);
+                    }
 
-        //                GameObject obj2 = Instantiate(prefab);
-        //                obj2.transform.position = new Vector2(x * tileXOffset + 0.2f, y * tileYOffset - 0.4f);
-        //                obj2.transform.rotation = new Quaternion(0.5f, 1.0f, 0.0f, 0.0f);*/
+                    if (botRightX == xCoord && botRightY == yCoord)
+                    {
+                        PowLineButtons[j].gameObject.SetActive(true);
+                    }
+
+                }
+            }
+        }
+
+        for (int i = 0; i < NaturalPlants.Count; i++)
+        {
+            turn = (int)NaturalPlants[i][2];
+
+            //makeButton(coalPlants[i][0]-0.25f, coalPlants[i][1] + 0.25f, new Quaternion(0.0f, 0.0f, 0.0f, 0.0f));
+            for (int j = 0; j < allPowLineSpots.Count; j++)
+            {
+                float xCoord = (float)allPowLineSpots[j][0];
+                float yCoord = (float)allPowLineSpots[j][1];
+                if (turn == (int)scoreMan.turn)
+                {
+                    float topLeftX = NaturalPlants[i][0] - 0.25f;
+                    float topLeftY = NaturalPlants[i][1] + 0.25f;
+                    float topRightX = NaturalPlants[i][0] + 0.25f;
+                    float topRightY = NaturalPlants[i][1] + 0.25f;
+                    float bottomX = NaturalPlants[i][0];
+                    float bottomY = NaturalPlants[i][1] - 0.75f;
+                    float topX = NaturalPlants[i][0];
+                    float topY = NaturalPlants[i][1] + 0.75f;
+                    float botLeftX = NaturalPlants[i][0] - 0.25f;
+                    float botLeftY = NaturalPlants[i][1] - 0.25f;
+                    float botRightX = NaturalPlants[i][0] + 0.25f;
+                    float botRightY = NaturalPlants[i][1] - 0.25f;
+                    /*if (i == 0)
+                    {
+                        Debug.Log("plant x " + coalPlants[i][0]);
+                        Debug.Log("plant y " + coalPlants[i][1]);
+                        Debug.Log("top left x " + topLeftX);
+                        Debug.Log("top left y " + topLeftY);
+                        Debug.Log("x coord " + xCoord);
+                        Debug.Log("y coord " + yCoord);
+                    }*/
+                    if (topLeftX == xCoord && topLeftY == yCoord)
+                    {
+                        PowLineButtons[j].gameObject.SetActive(true);
+                    }
+
+                    if (topRightX == xCoord && topRightY == yCoord)
+                    {
+                        PowLineButtons[j].gameObject.SetActive(true);
+                    }
+
+                    if (bottomX == xCoord && bottomY == yCoord)
+                    {
+                        PowLineButtons[j].gameObject.SetActive(true);
+                    }
+
+                    if (topX == xCoord && ((yCoord - topY) >= 0) && ((yCoord - topY) <= 0.2f))
+                    {
+
+                        PowLineButtons[j].gameObject.SetActive(true);
+                    }
+
+                    if (botLeftX == xCoord && botLeftY == yCoord)
+                    {
+                        PowLineButtons[j].gameObject.SetActive(true);
+                    }
+
+                    if (botRightX == xCoord && botRightY == yCoord)
+                    {
+                        PowLineButtons[j].gameObject.SetActive(true);
+                    }
+
+                }
+            }
+        }
+
+        for (int i = 0; i < NuclearPlants.Count; i++)
+        {
+            turn = (int)NuclearPlants[i][2];
+
+            //makeButton(coalPlants[i][0]-0.25f, coalPlants[i][1] + 0.25f, new Quaternion(0.0f, 0.0f, 0.0f, 0.0f));
+            for (int j = 0; j < allPowLineSpots.Count; j++)
+            {
+                float xCoord = (float)allPowLineSpots[j][0];
+                float yCoord = (float)allPowLineSpots[j][1];
+                if (turn == (int)scoreMan.turn)
+                {
+                    float topLeftX = NuclearPlants[i][0] - 0.25f;
+                    float topLeftY = NuclearPlants[i][1] + 0.25f;
+                    float topRightX = NuclearPlants[i][0] + 0.25f;
+                    float topRightY = NuclearPlants[i][1] + 0.25f;
+                    float bottomX = NuclearPlants[i][0];
+                    float bottomY = NuclearPlants[i][1] - 0.75f;
+                    float topX = NuclearPlants[i][0];
+                    float topY = NuclearPlants[i][1] + 0.75f;
+                    float botLeftX = NuclearPlants[i][0] - 0.25f;
+                    float botLeftY = NuclearPlants[i][1] - 0.25f;
+                    float botRightX = NuclearPlants[i][0] + 0.25f;
+                    float botRightY = NuclearPlants[i][1] - 0.25f;
+                    /*if (i == 0)
+                    {
+                        Debug.Log("plant x " + coalPlants[i][0]);
+                        Debug.Log("plant y " + coalPlants[i][1]);
+                        Debug.Log("top left x " + topLeftX);
+                        Debug.Log("top left y " + topLeftY);
+                        Debug.Log("x coord " + xCoord);
+                        Debug.Log("y coord " + yCoord);
+                    }*/
+                    if (topLeftX == xCoord && topLeftY == yCoord)
+                    {
+                        PowLineButtons[j].gameObject.SetActive(true);
+                    }
+
+                    if (topRightX == xCoord && topRightY == yCoord)
+                    {
+                        PowLineButtons[j].gameObject.SetActive(true);
+                    }
+
+                    if (bottomX == xCoord && bottomY == yCoord)
+                    {
+                        PowLineButtons[j].gameObject.SetActive(true);
+                    }
+
+                    if (topX == xCoord && ((yCoord - topY) >= 0) && ((yCoord - topY) <= 0.2f))
+                    {
+
+                        PowLineButtons[j].gameObject.SetActive(true);
+                    }
+
+                    if (botLeftX == xCoord && botLeftY == yCoord)
+                    {
+                        PowLineButtons[j].gameObject.SetActive(true);
+                    }
+
+                    if (botRightX == xCoord && botRightY == yCoord)
+                    {
+                        PowLineButtons[j].gameObject.SetActive(true);
+                    }
+
+                }
+            }
+        }
 
 
 
-        //            }
-        //            if ((y == 2 || y == 6) && x > 0 && x < 9)
-        //            {
-        //                makeButton(x * tileXOffset + 0.45f, y * tileYOffset);
-        //                makeButton(x * tileXOffset + 0.2f, y * tileYOffset + 0.4f);
-        //                makeButton(x * tileXOffset + 0.2f, y * tileYOffset - 0.4f);
-        //                /*GameObject obj = Instantiate(prefab);
-        //                obj.transform.position = new Vector2(x * tileXOffset + 0.45f, y * tileYOffset);
-
-        //                GameObject obj1 = Instantiate(prefab);
-        //                obj1.transform.position = new Vector2(x * tileXOffset + 0.2f, y * tileYOffset + 0.4f);
-        //                obj1.transform.rotation = new Quaternion(1.65f, 1.0f, 0.0f, 0.0f);
-
-        //                GameObject obj2 = Instantiate(prefab);
-        //                obj2.transform.position = new Vector2(x * tileXOffset + 0.2f, y * tileYOffset - 0.4f);
-        //                obj2.transform.rotation = new Quaternion(0.5f, 1.0f, 0.0f, 0.0f);*/
-
-        //            }
-        //            if (y == 4)
-        //            {
-        //                makeButton(x * tileXOffset + 0.45f, y * tileYOffset);
-        //                makeButton(x * tileXOffset + 0.2f, y * tileYOffset + 0.4f);
-        //                makeButton(x * tileXOffset + 0.2f, y * tileYOffset - 0.4f);
-        //                /*GameObject obj = Instantiate(prefab);
-        //                obj.transform.position = new Vector2(x * tileXOffset + 0.45f, y * tileYOffset);
-
-        //                GameObject obj1 = Instantiate(prefab);
-        //                obj1.transform.position = new Vector2(x * tileXOffset + 0.2f, y * tileYOffset + 0.4f);
-        //                obj1.transform.rotation = new Quaternion(1.65f, 1.0f, 0.0f, 0.0f);
-
-        //                GameObject obj2 = Instantiate(prefab);
-        //                obj2.transform.position = new Vector2(x * tileXOffset + 0.2f, y * tileYOffset - 0.4f);
-        //                obj2.transform.rotation = new Quaternion(0.5f, 1.0f, 0.0f, 0.0f);*/
-
-        //            }
-
-        //        }
-        //        else
-        //        {
-        //            if ((y == 1 || y == 7) && x > 0 & x < 8)
-        //            {
-        //                makeButton(x * tileXOffset + 0.45f + 0.45f, y * tileYOffset);
-        //                makeButton(x * tileXOffset + 0.2f + 0.45f, y * tileYOffset + 0.4f);
-        //                makeButton(x * tileXOffset + 0.2f + 0.45f, y * tileYOffset - 0.4f);
-
-        //                /*GameObject obj = Instantiate(prefab);
-        //                obj.transform.position = new Vector2(x * tileXOffset + 0.45f + 0.45f, y * tileYOffset);
-
-        //                GameObject obj1 = Instantiate(prefab);
-        //                obj1.transform.position = new Vector2(x * tileXOffset + 0.2f + 0.45f, y * tileYOffset + 0.4f);
-        //                obj1.transform.rotation = new Quaternion(1.65f, 1.0f, 0.0f, 0.0f);
-
-        //                GameObject obj2 = Instantiate(prefab);
-        //                obj2.transform.position = new Vector2(x * tileXOffset + 0.2f + 0.45f, y * tileYOffset - 0.4f);
-        //                obj2.transform.rotation = new Quaternion(0.5f, 1.0f, 0.0f, 0.0f);*/
-
-        //            }
-        //            if ((y == 3 || y == 5) && x < 9)
-        //            {
-        //                makeButton(x * tileXOffset + 0.45f + 0.45f, y * tileYOffset);
-        //                makeButton(x * tileXOffset + 0.2f + 0.45f, y * tileYOffset + 0.4f);
-        //                makeButton(x * tileXOffset + 0.2f + 0.45f, y * tileYOffset - 0.4f);
-        //                /* GameObject obj = Instantiate(prefab);
-        //                 obj.transform.position = new Vector2(x * tileXOffset + 0.45f + 0.45f, y * tileYOffset);
-
-        //                 GameObject obj1 = Instantiate(prefab);
-        //                 obj1.transform.position = new Vector2(x * tileXOffset + 0.2f + 0.45f, y * tileYOffset + 0.4f);
-        //                 obj1.transform.rotation = new Quaternion(1.65f, 1.0f, 0.0f, 0.0f);
-
-        //                 GameObject obj2 = Instantiate(prefab);
-        //                 obj2.transform.position = new Vector2(x * tileXOffset + 0.2f + 0.45f, y * tileYOffset - 0.4f);
-        //                 obj2.transform.rotation = new Quaternion(0.5f, 1.0f, 0.0f, 0.0f);*/
-
-        //            }
-        //        }
-
-        //    }
-        //}
 
     }
 

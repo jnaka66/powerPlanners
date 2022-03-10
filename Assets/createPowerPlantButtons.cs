@@ -14,10 +14,10 @@ public class createPowerPlantButtons : MonoBehaviour
     public GameObject player4PowerPlant;
     public ScoreManager scoreMan;
     //format for each entry is <x,y,playerNum>
-    public List<Vector3> builtCoal;
-    public List<Vector3> builtNatural;
-    public List<Vector3> builtNuclear;
-    public List<Vector3> builtSolar;
+    public List<Vector3> builtCoal = new List<Vector3>();
+    public List<Vector3> builtNatural = new List<Vector3>();
+    public List<Vector3> builtNuclear = new List<Vector3>();
+    public List<Vector3> builtSolar = new List<Vector3>();
     public string plantType;
 
     //private List<Vector2> built;

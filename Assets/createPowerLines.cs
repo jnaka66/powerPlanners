@@ -37,6 +37,11 @@ public class createPowerLines : MonoBehaviour
     List<Vector3> NaturalPlants = new List<Vector3>();
     List<Vector3> NuclearPlants = new List<Vector3>();
     List<Vector3> SolarPlants = new List<Vector3>();
+
+    List<object[]> P1Lines = new List<object[]>();
+    List<object[]> P2Lines = new List<object[]>();
+    List<object[]> P3Lines = new List<object[]>();
+    List<object[]> P4Lines = new List<object[]>();
     // void Start()
     // {
     //     createButtons();

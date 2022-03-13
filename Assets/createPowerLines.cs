@@ -252,7 +252,7 @@ public class createPowerLines : MonoBehaviour
                         PowLineButtons[j].gameObject.SetActive(true);
                     }
 
-                    if (bottomX == xCoord && bottomY == yCoord)
+                    if (bottomX == xCoord && ((yCoord - bottomY) >= 0) && ((yCoord - bottomY) <= 0.2f))
                     {
                         PowLineButtons[j].gameObject.SetActive(true);
                     }

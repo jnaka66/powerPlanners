@@ -50,8 +50,6 @@ public class ScoreManager : MonoBehaviour
     int turnCount = 0;
     public const int defaultEarnings = 50;
 
-    public const int defaultEarnings = 50;
-
 
     void Awake()
     {

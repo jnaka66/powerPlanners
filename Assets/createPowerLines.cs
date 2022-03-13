@@ -302,6 +302,7 @@ public class createPowerLines : MonoBehaviour
         {
             Debug.Log("Not enough money");
         }
+
         // tempButton.gameObject.SetActive(false);
         deleteButtons();
         buildSelected = false;

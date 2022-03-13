@@ -50,6 +50,9 @@ public class ScoreManager : MonoBehaviour
     int turnCount = 0;
     public const int defaultEarnings = 50;
 
+    public const int defaultEarnings = 50;
+
+
     void Awake()
     {
         if (instance == null)
@@ -167,6 +170,7 @@ public class ScoreManager : MonoBehaviour
                 //Debug.Log("P1");
                 break;
         }
+
         playerList[(int)turn].money += defaultEarnings;
         turnCount++;
         Debug.Log("TurnCount= "+turnCount);
@@ -220,6 +224,7 @@ public class ScoreManager : MonoBehaviour
             currentStyle = new GUIStyle(GUI.skin.box);
         }
     }
+
     private Texture2D MakeTex(int width, int height, Color col)
     {
         Color[] pix = new Color[width * height];

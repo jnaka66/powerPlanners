@@ -129,13 +129,16 @@ public class HexTileMapGenerator : MonoBehaviour
             float x = buildAt[0];
             float y = buildAt[1];
             GameObject TempGo = Instantiate(city);
+            TempGo.AddComponent<BoxCollider>();
             TempGo.transform.position = new Vector2(x * tileXOffset,y * tileYOffset/2 -.5f);
             var ren = TempGo.GetComponent<SpriteRenderer>();
-            TempGo.AddComponent<BoxCollider>();
             TempGo.AddComponent<onHoverScript>();
-            var hover = TempGo.GetComponent<onHoverScript>();
-            hover.location = new Vector2(x,y);
+            var hover = TempGo.GetComponent<onHoverScript>();//add the hover script to the city
+            hover.location = new Vector2(x,y);//pass the location
+            hover.objType = "Town";//and type
+            hover.demand = Random.Range(50,125);//set the town's demand
             ren.enabled = true;
+            hover.parent = TempGo;
         }
         /*
         List<int> xCoordRandomList = new List<int>();

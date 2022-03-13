@@ -48,6 +48,7 @@ public class ScoreManager : MonoBehaviour
     public Turn turn;
     int temp = 0;
     int turnCount = 0;
+    public const int defaultEarnings = 50;
 
     public const int defaultEarnings = 50;
 

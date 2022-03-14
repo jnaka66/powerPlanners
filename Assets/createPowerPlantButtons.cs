@@ -73,9 +73,11 @@ public class createPowerPlantButtons : MonoBehaviour
 
         
         for(int i =0; i < buttonNames.Count; i++) {
-            buttontest = GameObject.Find(buttonNames[i]);
-            if(buttontest != null){
-                buttontest.gameObject.SetActive(false);//I tried implementing Destroy() but wasnt working for some reason
+            while(GameObject.Find(buttonNames[i]) != null){
+                buttontest = GameObject.Find(buttonNames[i]);
+                if(buttontest != null){
+                    buttontest.gameObject.SetActive(false);//I tried implementing Destroy() but wasnt working for some reason
+                }
             }
             
         }
@@ -97,10 +99,10 @@ public class createPowerPlantButtons : MonoBehaviour
             natty = GameObject.Find("upgradeNaturalButton");
             nuke = GameObject.Find("upgradeNuclearButton");
         }
-        solar.gameObject.SetActive(false);
-        coal.gameObject.SetActive(false);
-        natty.gameObject.SetActive(false);
-        nuke.gameObject.SetActive(false);
+        if(solar != null) solar.gameObject.SetActive(false);
+        if(coal != null)coal.gameObject.SetActive(false);
+        if(natty != null)natty.gameObject.SetActive(false);
+        if(nuke != null)nuke.gameObject.SetActive(false);
 
         numOfButtons = 0;
     }
@@ -285,7 +287,7 @@ public class createPowerPlantButtons : MonoBehaviour
         TempGo.name = plantType+"Plant"+(playerTurn+1)+" "+x+","+y;
         TempGo.transform.position = new Vector2(x * tileXOffset,y * tileYOffset/2 -.5f);
         var ren = TempGo.GetComponent<SpriteRenderer>();
-        ren.sortingOrder = 2;
+        ren.sortingOrder = 1;
         ren.enabled = true;
         if(upgradeOrBuild == "Build"){
             ScoreManager.instance.AddPoint();

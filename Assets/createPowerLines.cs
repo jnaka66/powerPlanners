@@ -1116,8 +1116,8 @@ public class createPowerLines : MonoBehaviour
         {
             mapGen.updateBuilt(x,y);
             makePowerLine((int)scoreMan.turn, x, y, rotation);
-            Debug.Log("x val " + x);
-            Debug.Log("y val " + y);
+            //Debug.Log("x val " + x);
+            //Debug.Log("y val " + y);
         }
         else
         {

@@ -15,6 +15,8 @@ public class HexTileMapGenerator : MonoBehaviour
     public List<Vector3> buildNuclear = new List<Vector3>();
     public List<Vector3> buildSolar = new List<Vector3>();
 
+    // int[] locationsBuilt = new bool[170];
+
     int width = 10;
     int height = 9;
 
@@ -153,12 +155,21 @@ public class HexTileMapGenerator : MonoBehaviour
             ren.enabled = true;
         }*/
     }
-    void makeTown() {
+    async void makeTown() {
         var a = new System.Random();
         int MyNumber = 0;
         MyNumber = a.Next(0, buildCoords.Count);
-        //Debug.Log(MyNumber);
         Vector2 buildAt = buildCoords[MyNumber];
+        bool foundTown = built.Contains(buildAt);
+        // Debug.Log("exterior: "+foundTown);
+        //LOOP TO PREVENT TOWNS FROM SPAWNING ON EACH OTHER
+        while(foundTown) {
+            // Debug.Log("interior: "+foundTown);
+            MyNumber = a.Next(0, buildCoords.Count);
+            buildAt = buildCoords[MyNumber];
+            foundTown = built.Contains(buildAt);
+            // Debug.Log("interiorFIXED: "+foundTown);
+        }
         built.Add(buildAt);
         float x = buildAt[0];
         float y = buildAt[1];

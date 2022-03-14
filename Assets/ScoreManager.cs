@@ -179,6 +179,7 @@ public class ScoreManager : MonoBehaviour
         }
         if(turnCount % 11 == 1) {
             Debug.Log("Time for a new town!");
+            // HexTileMapGenerator.makeTown();
         }
     }
 

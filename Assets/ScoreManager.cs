@@ -50,9 +50,23 @@ public class ScoreManager : MonoBehaviour
     int turnCount = 0;
     public const int defaultEarnings = 50;
 
+    //build class
+    public HexTileMapGenerator mapGen0;
+    public ScoreManager scoreMan0;
+    //format for each entry is <x,y,playerNum>
+    public List<Vector3> builtCoal0;
+    public List<Vector3> builtNatural0;
+    public List<Vector3> builtNuclear0;
+    public List<Vector3> builtSolar0;
 
     void Awake()
     {
+        mapGen0 = GameObject.FindObjectOfType<HexTileMapGenerator>();
+        scoreMan0 = GameObject.FindObjectOfType<ScoreManager>();
+        builtCoal0=mapGen0.buildCoal;
+        builtSolar0=mapGen0.buildSolar;
+        builtNuclear0=mapGen0.buildNuclear;
+        builtNatural0=mapGen0.buildNatural;
         if (instance == null)
         {
             instance = this;
@@ -177,9 +191,9 @@ public class ScoreManager : MonoBehaviour
             // dice1.roll();
             roll();
         }
-        if(turnCount % 11 == 1) {
+        if(turnCount % 11 == 1 && turnCount>1) {
             Debug.Log("Time for a new town!");
-            // HexTileMapGenerator.makeTown();
+            mapGen0.makeTown();
         }
     }
 

@@ -155,7 +155,7 @@ public class HexTileMapGenerator : MonoBehaviour
             ren.enabled = true;
         }*/
     }
-    async void makeTown() {
+    public void makeTown() {
         var a = new System.Random();
         int MyNumber = 0;
         MyNumber = a.Next(0, buildCoords.Count);

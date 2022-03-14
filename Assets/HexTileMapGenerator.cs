@@ -15,6 +15,8 @@ public class HexTileMapGenerator : MonoBehaviour
     public List<Vector3> buildNuclear = new List<Vector3>();
     public List<Vector3> buildSolar = new List<Vector3>();
 
+    // int[] locationsBuilt = new bool[170];
+
     int width = 10;
     int height = 9;
 
@@ -120,25 +122,9 @@ public class HexTileMapGenerator : MonoBehaviour
                 
             }
         }
-        //now make random cities
+        //now make random towns
         for (int i = 0; i < 6; i++){//6 cities x
-            MyNumber = a.Next(0, buildCoords.Count);
-            //Debug.Log(MyNumber);
-            Vector2 buildAt = buildCoords[MyNumber];
-            built.Add(buildAt);
-            float x = buildAt[0];
-            float y = buildAt[1];
-            GameObject TempGo = Instantiate(city);
-            TempGo.AddComponent<BoxCollider>();
-            TempGo.transform.position = new Vector2(x * tileXOffset,y * tileYOffset/2 -.5f);
-            var ren = TempGo.GetComponent<SpriteRenderer>();
-            TempGo.AddComponent<onHoverScript>();
-            var hover = TempGo.GetComponent<onHoverScript>();//add the hover script to the city
-            hover.location = new Vector2(x,y);//pass the location
-            hover.objType = "Town";//and type
-            hover.demand = Random.Range(50,125);//set the town's demand
-            ren.enabled = true;
-            hover.parent = TempGo;
+            makeTown();
         }
         /*
         List<int> xCoordRandomList = new List<int>();
@@ -168,6 +154,37 @@ public class HexTileMapGenerator : MonoBehaviour
             var ren = TempGo.GetComponent<SpriteRenderer>();
             ren.enabled = true;
         }*/
+    }
+    public void makeTown() {
+        var a = new System.Random();
+        int MyNumber = 0;
+        MyNumber = a.Next(0, buildCoords.Count);
+        Vector2 buildAt = buildCoords[MyNumber];
+        bool foundTown = built.Contains(buildAt);
+        // Debug.Log("exterior: "+foundTown);
+        //LOOP TO PREVENT TOWNS FROM SPAWNING ON EACH OTHER
+        while(foundTown) {
+            // Debug.Log("interior: "+foundTown);
+            MyNumber = a.Next(0, buildCoords.Count);
+            buildAt = buildCoords[MyNumber];
+            foundTown = built.Contains(buildAt);
+            // Debug.Log("interiorFIXED: "+foundTown);
+        }
+        built.Add(buildAt);
+        float x = buildAt[0];
+        float y = buildAt[1];
+        GameObject TempGo = Instantiate(city);
+        TempGo.AddComponent<BoxCollider>();
+        TempGo.transform.position = new Vector2(x * tileXOffset,y * tileYOffset/2 -.5f);
+        var ren = TempGo.GetComponent<SpriteRenderer>();
+        TempGo.AddComponent<onHoverScript>();
+        var hover = TempGo.GetComponent<onHoverScript>();//add the hover script to the city
+        hover.location = new Vector2(x,y);//pass the location
+        hover.objType = "Town";//and type
+        hover.demand = Random.Range(50,125);//set the town's demand
+        // hover.delivered = 69; TODO: make this increase when demand is met
+        ren.enabled = true;
+        hover.parent = TempGo;
     }
     void SetTileInfo(GameObject go, int x, int y)
     {

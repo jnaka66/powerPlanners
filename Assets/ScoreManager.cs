@@ -50,9 +50,23 @@ public class ScoreManager : MonoBehaviour
     int turnCount = 0;
     public const int defaultEarnings = 50;
 
+    //build class
+    public HexTileMapGenerator mapGen0;
+    public ScoreManager scoreMan0;
+    //format for each entry is <x,y,playerNum>
+    public List<Vector3> builtCoal0;
+    public List<Vector3> builtNatural0;
+    public List<Vector3> builtNuclear0;
+    public List<Vector3> builtSolar0;
 
     void Awake()
     {
+        mapGen0 = GameObject.FindObjectOfType<HexTileMapGenerator>();
+        scoreMan0 = GameObject.FindObjectOfType<ScoreManager>();
+        builtCoal0=mapGen0.buildCoal;
+        builtSolar0=mapGen0.buildSolar;
+        builtNuclear0=mapGen0.buildNuclear;
+        builtNatural0=mapGen0.buildNatural;
         if (instance == null)
         {
             instance = this;
@@ -177,6 +191,22 @@ public class ScoreManager : MonoBehaviour
             // dice1.roll();
             roll();
         }
+        if(turnCount % 11 == 1 && turnCount>1) {
+            Debug.Log("Time for a new town!");
+            mapGen0.makeTown();
+        }
+        // GameObject TempGo = Instantiate(city);
+        // // TempGo.AddComponent<BoxCollider>();
+        // // TempGo.transform.position = new Vector2(x * tileXOffset,y * tileYOffset/2 -.5f);
+        // // var ren = TempGo.GetComponent<SpriteRenderer>();
+        // TempGo.AddComponent<onHoverScript>();
+        // var hover = TempGo.GetComponent<onHoverScript>();//add the hover script to the city
+        // hover.location = new Vector2(x,y);//pass the location
+        // hover.objType = "Town";//and type
+        // hover.demand = Random.Range(50,125);//set the town's demand
+        // if (hover.delivered > 150) {
+        //     Debug.Log("Time to make this a city!");
+        // }
     }
 
     void OnGUI()
@@ -315,9 +345,10 @@ public class ScoreManager : MonoBehaviour
                 break;
         }
         // Show final dice value in Console
-        Debug.Log("Dice1= "+finalSide1);
-        Debug.Log("Dice2= "+finalSide2);
-        Debug.Log("Total= "+totalRoll);
-        Debug.Log("Event= "+eventRoll);
+        
+        // Debug.Log("Dice1= "+finalSide1);
+        // Debug.Log("Dice2= "+finalSide2);
+        // Debug.Log("Total= "+totalRoll);
+        // Debug.Log("Event= "+eventRoll);
     }
 }

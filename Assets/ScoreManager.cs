@@ -177,6 +177,9 @@ public class ScoreManager : MonoBehaviour
             // dice1.roll();
             roll();
         }
+        if(turnCount % 11 == 1) {
+            Debug.Log("Time for a new town!");
+        }
     }
 
     void OnGUI()
@@ -315,9 +318,10 @@ public class ScoreManager : MonoBehaviour
                 break;
         }
         // Show final dice value in Console
-        Debug.Log("Dice1= "+finalSide1);
-        Debug.Log("Dice2= "+finalSide2);
-        Debug.Log("Total= "+totalRoll);
-        Debug.Log("Event= "+eventRoll);
+        
+        // Debug.Log("Dice1= "+finalSide1);
+        // Debug.Log("Dice2= "+finalSide2);
+        // Debug.Log("Total= "+totalRoll);
+        // Debug.Log("Event= "+eventRoll);
     }
 }

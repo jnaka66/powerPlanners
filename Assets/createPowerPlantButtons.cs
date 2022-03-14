@@ -14,10 +14,10 @@ public class createPowerPlantButtons : MonoBehaviour
     public GameObject player4PowerPlant;
     public ScoreManager scoreMan;
     //format for each entry is <x,y,playerNum>
-    public List<Vector3> builtCoal;
-    public List<Vector3> builtNatural;
-    public List<Vector3> builtNuclear;
-    public List<Vector3> builtSolar;
+    public List<Vector3> builtCoal = new List<Vector3>();
+    public List<Vector3> builtNatural = new List<Vector3>();
+    public List<Vector3> builtNuclear = new List<Vector3>();
+    public List<Vector3> builtSolar = new List<Vector3>();
     public string plantType;
 
     //private List<Vector2> built;
@@ -193,6 +193,8 @@ public class createPowerPlantButtons : MonoBehaviour
         {
             mapGen.updateBuilt(x,y);
             makePowerPlant((int)scoreMan.turn,x,y,ownedType);
+            //Debug.Log("x val " + x);
+            //Debug.Log("y val " + y);
         }
         else
         {
@@ -262,6 +264,7 @@ public class createPowerPlantButtons : MonoBehaviour
         TempGo.name = plantType+"Plant"+(playerTurn+1)+" "+x+","+y;
         TempGo.transform.position = new Vector2(x * tileXOffset,y * tileYOffset/2 -.5f);
         var ren = TempGo.GetComponent<SpriteRenderer>();
+        ren.sortingOrder = 2;
         ren.enabled = true;
         ScoreManager.instance.AddPoint();
 

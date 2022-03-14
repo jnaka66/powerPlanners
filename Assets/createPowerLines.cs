@@ -38,10 +38,10 @@ public class createPowerLines : MonoBehaviour
     List<Vector3> NuclearPlants = new List<Vector3>();
     List<Vector3> SolarPlants = new List<Vector3>();
 
-    List<object[]> P1Lines = new List<object[]>();
-    List<object[]> P2Lines = new List<object[]>();
-    List<object[]> P3Lines = new List<object[]>();
-    List<object[]> P4Lines = new List<object[]>();
+    List<Vector2> P1Lines = new List<Vector2>();
+    List<Vector2> P2Lines = new List<Vector2>();
+    List<Vector2> P3Lines = new List<Vector2>();
+    List<Vector2> P4Lines = new List<Vector2>();
     // void Start()
     // {
     //     createButtons();
@@ -85,6 +85,7 @@ public class createPowerLines : MonoBehaviour
             buttontest.gameObject.SetActive(false);
         }
     }
+
     void generatePositions()
     {
         for (int y = 0; y < height * 2; y++)
@@ -242,35 +243,79 @@ public class createPowerLines : MonoBehaviour
                         Debug.Log("x coord " + xCoord);
                         Debug.Log("y coord " + yCoord);
                     }*/
+
                     if (topLeftX == xCoord && topLeftY == yCoord)
                     {
-                        PowLineButtons[j].gameObject.SetActive(true);
+                        if(P1Lines.Contains(new Vector2(xCoord,yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        {
+                            PowLineButtons[j].gameObject.SetActive(false);
+                        }
+                        else
+                        {
+                            PowLineButtons[j].gameObject.SetActive(true);
+                        }
+                        
                     }
 
                     if (topRightX == xCoord && topRightY == yCoord)
                     {
-                        PowLineButtons[j].gameObject.SetActive(true);
+                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        {
+                            PowLineButtons[j].gameObject.SetActive(false);
+                        }
+                        else
+                        {
+                            PowLineButtons[j].gameObject.SetActive(true);
+                        }
                     }
 
-                    if (bottomX == xCoord && ((yCoord - bottomY) >= 0) && ((yCoord - bottomY) <= 0.2f))
+                    if (bottomX == xCoord && (Mathf.Abs(yCoord - bottomY) >= 0) && (Mathf.Abs(yCoord - bottomY) <= 0.2f))
                     {
-                        PowLineButtons[j].gameObject.SetActive(true);
+                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        {
+                            PowLineButtons[j].gameObject.SetActive(false);
+                        }
+                        else
+                        {
+                            PowLineButtons[j].gameObject.SetActive(true);
+                        }
                     }
 
                     if (topX == xCoord && ((yCoord - topY) >= 0) && ((yCoord - topY) <= 0.2f))
                     {
 
-                        PowLineButtons[j].gameObject.SetActive(true);
+                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        {
+                            PowLineButtons[j].gameObject.SetActive(false);
+                        }
+                        else
+                        {
+                            PowLineButtons[j].gameObject.SetActive(true);
+                        }
                     }
 
                     if (botLeftX == xCoord && botLeftY == yCoord)
                     {
-                        PowLineButtons[j].gameObject.SetActive(true);
+                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        {
+                            PowLineButtons[j].gameObject.SetActive(false);
+                        }
+                        else
+                        {
+                            PowLineButtons[j].gameObject.SetActive(true);
+                        }
                     }
 
                     if (botRightX == xCoord && botRightY == yCoord)
                     {
-                        PowLineButtons[j].gameObject.SetActive(true);
+                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        {
+                            PowLineButtons[j].gameObject.SetActive(false);
+                        }
+                        else
+                        {
+                            PowLineButtons[j].gameObject.SetActive(true);
+                        }
                     }
 
                 }
@@ -300,7 +345,7 @@ public class createPowerLines : MonoBehaviour
                     float botLeftY = SolarPlants[i][1] - 0.25f;
                     float botRightX = SolarPlants[i][0] + 0.25f;
                     float botRightY = SolarPlants[i][1] - 0.25f;
-                    if (i == 0)
+                    /*if (i == 0)
                     {
                         Debug.Log("plant x " + SolarPlants[i][0]);
                         Debug.Log("plant y " + SolarPlants[i][1]);
@@ -308,36 +353,82 @@ public class createPowerLines : MonoBehaviour
                         Debug.Log("top  y " + topY);
                         //Debug.Log("x coord " + xCoord);
                         //Debug.Log("y coord " + yCoord);
-                    }
+                    }*/
+
+
+
                     if (topLeftX == xCoord && topLeftY == yCoord)
                     {
-                        PowLineButtons[j].gameObject.SetActive(true);
+                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        {
+                            PowLineButtons[j].gameObject.SetActive(false);
+                        }
+                        else
+                        {
+                            PowLineButtons[j].gameObject.SetActive(true);
+                        }
+
                     }
 
                     if (topRightX == xCoord && topRightY == yCoord)
                     {
-                        PowLineButtons[j].gameObject.SetActive(true);
-                    }
-
-                    if (bottomX == xCoord && ((yCoord - bottomY) >= 0) && ((yCoord - bottomY) <= 0.2f))
+                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
                         {
-                        PowLineButtons[j].gameObject.SetActive(true);
+                            PowLineButtons[j].gameObject.SetActive(false);
+                        }
+                        else
+                        {
+                            PowLineButtons[j].gameObject.SetActive(true);
+                        }
                     }
 
-                    if (topX == xCoord && ((yCoord-topY) >= 0) && ((yCoord-topY) <= 0.2f))
+                    if (bottomX == xCoord && (Mathf.Abs(yCoord - bottomY) >= 0) && (Mathf.Abs(yCoord - bottomY) <= 0.2f))
                     {
-                        
-                        PowLineButtons[j].gameObject.SetActive(true);
+                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        {
+                            PowLineButtons[j].gameObject.SetActive(false);
+                        }
+                        else
+                        {
+                            PowLineButtons[j].gameObject.SetActive(true);
+                        }
+                    }
+
+                    if (topX == xCoord && ((yCoord - topY) >= 0) && ((yCoord - topY) <= 0.2f))
+                    {
+
+                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        {
+                            PowLineButtons[j].gameObject.SetActive(false);
+                        }
+                        else
+                        {
+                            PowLineButtons[j].gameObject.SetActive(true);
+                        }
                     }
 
                     if (botLeftX == xCoord && botLeftY == yCoord)
                     {
-                        PowLineButtons[j].gameObject.SetActive(true);
+                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        {
+                            PowLineButtons[j].gameObject.SetActive(false);
+                        }
+                        else
+                        {
+                            PowLineButtons[j].gameObject.SetActive(true);
+                        }
                     }
 
                     if (botRightX == xCoord && botRightY == yCoord)
                     {
-                        PowLineButtons[j].gameObject.SetActive(true);
+                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        {
+                            PowLineButtons[j].gameObject.SetActive(false);
+                        }
+                        else
+                        {
+                            PowLineButtons[j].gameObject.SetActive(true);
+                        }
                     }
 
                 }
@@ -376,35 +467,79 @@ public class createPowerLines : MonoBehaviour
                         Debug.Log("x coord " + xCoord);
                         Debug.Log("y coord " + yCoord);
                     }*/
+
                     if (topLeftX == xCoord && topLeftY == yCoord)
                     {
-                        PowLineButtons[j].gameObject.SetActive(true);
+                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        {
+                            PowLineButtons[j].gameObject.SetActive(false);
+                        }
+                        else
+                        {
+                            PowLineButtons[j].gameObject.SetActive(true);
+                        }
+
                     }
 
                     if (topRightX == xCoord && topRightY == yCoord)
                     {
-                        PowLineButtons[j].gameObject.SetActive(true);
+                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        {
+                            PowLineButtons[j].gameObject.SetActive(false);
+                        }
+                        else
+                        {
+                            PowLineButtons[j].gameObject.SetActive(true);
+                        }
                     }
 
-                    if (bottomX == xCoord && ((yCoord - bottomY) >= 0) && ((yCoord - bottomY) <= 0.2f))
+                    if (bottomX == xCoord && (Mathf.Abs(yCoord - bottomY) >= 0) && (Mathf.Abs(yCoord - bottomY) <= 0.2f))
                     {
-                        PowLineButtons[j].gameObject.SetActive(true);
+                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        {
+                            PowLineButtons[j].gameObject.SetActive(false);
+                        }
+                        else
+                        {
+                            PowLineButtons[j].gameObject.SetActive(true);
+                        }
                     }
 
                     if (topX == xCoord && ((yCoord - topY) >= 0) && ((yCoord - topY) <= 0.2f))
                     {
 
-                        PowLineButtons[j].gameObject.SetActive(true);
+                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        {
+                            PowLineButtons[j].gameObject.SetActive(false);
+                        }
+                        else
+                        {
+                            PowLineButtons[j].gameObject.SetActive(true);
+                        }
                     }
 
                     if (botLeftX == xCoord && botLeftY == yCoord)
                     {
-                        PowLineButtons[j].gameObject.SetActive(true);
+                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        {
+                            PowLineButtons[j].gameObject.SetActive(false);
+                        }
+                        else
+                        {
+                            PowLineButtons[j].gameObject.SetActive(true);
+                        }
                     }
 
                     if (botRightX == xCoord && botRightY == yCoord)
                     {
-                        PowLineButtons[j].gameObject.SetActive(true);
+                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        {
+                            PowLineButtons[j].gameObject.SetActive(false);
+                        }
+                        else
+                        {
+                            PowLineButtons[j].gameObject.SetActive(true);
+                        }
                     }
 
                 }
@@ -443,46 +578,526 @@ public class createPowerLines : MonoBehaviour
                         Debug.Log("x coord " + xCoord);
                         Debug.Log("y coord " + yCoord);
                     }*/
+
                     if (topLeftX == xCoord && topLeftY == yCoord)
                     {
-                        PowLineButtons[j].gameObject.SetActive(true);
+                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        {
+                            PowLineButtons[j].gameObject.SetActive(false);
+                        }
+                        else
+                        {
+                            PowLineButtons[j].gameObject.SetActive(true);
+                        }
+
                     }
 
                     if (topRightX == xCoord && topRightY == yCoord)
                     {
-                        PowLineButtons[j].gameObject.SetActive(true);
+                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        {
+                            PowLineButtons[j].gameObject.SetActive(false);
+                        }
+                        else
+                        {
+                            PowLineButtons[j].gameObject.SetActive(true);
+                        }
                     }
 
-                    if (bottomX == xCoord && ((yCoord - bottomY) >= 0) && ((yCoord - bottomY) <= 0.2f))
+                    if (bottomX == xCoord && (Mathf.Abs(yCoord - bottomY) >= 0) && (Mathf.Abs(yCoord - bottomY) <= 0.2f))
                     {
-                        PowLineButtons[j].gameObject.SetActive(true);
+                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        {
+                            PowLineButtons[j].gameObject.SetActive(false);
+                        }
+                        else
+                        {
+                            PowLineButtons[j].gameObject.SetActive(true);
+                        }
                     }
 
                     if (topX == xCoord && ((yCoord - topY) >= 0) && ((yCoord - topY) <= 0.2f))
                     {
 
-                        PowLineButtons[j].gameObject.SetActive(true);
+                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        {
+                            PowLineButtons[j].gameObject.SetActive(false);
+                        }
+                        else
+                        {
+                            PowLineButtons[j].gameObject.SetActive(true);
+                        }
                     }
 
                     if (botLeftX == xCoord && botLeftY == yCoord)
                     {
-                        PowLineButtons[j].gameObject.SetActive(true);
+                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        {
+                            PowLineButtons[j].gameObject.SetActive(false);
+                        }
+                        else
+                        {
+                            PowLineButtons[j].gameObject.SetActive(true);
+                        }
                     }
 
                     if (botRightX == xCoord && botRightY == yCoord)
                     {
-                        PowLineButtons[j].gameObject.SetActive(true);
+                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        {
+                            PowLineButtons[j].gameObject.SetActive(false);
+                        }
+                        else
+                        {
+                            PowLineButtons[j].gameObject.SetActive(true);
+                        }
                     }
 
                 }
             }
         }
-
-
-
-
+        createLinesOffOtherLines();
+        /*for (int i = 0; i < PowLineButtons.Count; i++)
+        {
+            PowLineButtons[i].gameObject.SetActive(true);
+        }*/
     }
+    void createLinesOffOtherLines()
+    {
+        int playerturn = (int)scoreMan.turn;
 
+        if(playerturn == 0)
+        {
+            
+            for (int i = 0; i < P1Lines.Count; i++)
+            {
+                for (int j = 0; j < allPowLineSpots.Count; j++)
+                {
+                    float xCoord = (float)allPowLineSpots[j][0];
+                    float yCoord = (float)allPowLineSpots[j][1];
+
+                    float topX = (float)P1Lines[i][0] + 0.25f;
+                    float topY = (float)P1Lines[i][1] + 1.0f;
+
+                    float bot1X = (float)P1Lines[i][0] - 0.25f;
+                    float bot1Y = (float)P1Lines[i][1] - 1.0f;
+
+                    float topL1X = (float)P1Lines[i][0] - 0.5f;
+                    float topL1Y = (float)P1Lines[i][1];
+
+                    float topRX = (float)P1Lines[i][0] + 0.5f;
+                    float topRY = (float)P1Lines[i][1];
+
+                    float topL2X = (float)P1Lines[i][0] - 0.25f;
+                    float topL2Y = (float)P1Lines[i][1] + 1.0f;
+
+                    float bot2X = (float)P1Lines[i][0] + 0.25f;
+                    float bot2Y = (float)P1Lines[i][1] - 1.0f;
+
+                    if (topX == xCoord && ((yCoord - topY) >= 0) && ((yCoord - topY) <= 0.2f))
+                    {
+                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        {
+                            PowLineButtons[j].gameObject.SetActive(false);
+                        }
+                        else
+                        {
+                            PowLineButtons[j].gameObject.SetActive(true);
+                        }
+
+                    }
+
+                    if (topL1X == xCoord && ((yCoord - topL1Y) >= 0) && ((yCoord - topL1Y) <= 0.2f))
+                    {
+                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        {
+                            PowLineButtons[j].gameObject.SetActive(false);
+                        }
+                        else
+                        {
+                            PowLineButtons[j].gameObject.SetActive(true);
+                        }
+
+                    }
+
+
+                    if (topRX == xCoord && ((yCoord - topRY) >= 0) && ((yCoord - topRY) <= 0.2f))
+                    {
+                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        {
+                            PowLineButtons[j].gameObject.SetActive(false);
+                        }
+                        else
+                        {
+                            PowLineButtons[j].gameObject.SetActive(true);
+                        }
+                    }
+
+                    if (bot1X == xCoord && ((yCoord - bot1Y) >= 0) && ((yCoord - bot1Y) <= 0.2f))
+                    {
+                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        {
+                            PowLineButtons[j].gameObject.SetActive(false);
+                        }
+                        else
+                        {
+                            PowLineButtons[j].gameObject.SetActive(true);
+                        }
+                    }
+
+                    if (bot2X == xCoord && ((yCoord - bot2Y) >= 0) && ((yCoord - bot2Y) <= 0.2f))
+                    {
+                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        {
+                            PowLineButtons[j].gameObject.SetActive(false);
+                        }
+                        else
+                        {
+                            PowLineButtons[j].gameObject.SetActive(true);
+                        }
+                    }
+
+
+                    if (topL2X == xCoord && ((yCoord - topL2Y) >= 0) && ((yCoord - topL2Y) <= 0.2f))
+                    {
+                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        {
+                            PowLineButtons[j].gameObject.SetActive(false);
+                        }
+                        else
+                        {
+                            PowLineButtons[j].gameObject.SetActive(true);
+                        }
+
+                    }
+                }
+            }
+        }
+
+        if (playerturn == 1)
+        {
+
+            for (int i = 0; i < P2Lines.Count; i++)
+            {
+                for (int j = 0; j < allPowLineSpots.Count; j++)
+                {
+                    float xCoord = (float)allPowLineSpots[j][0];
+                    float yCoord = (float)allPowLineSpots[j][1];
+
+                    float topX = (float)P2Lines[i][0] + 0.25f;
+                    float topY = (float)P2Lines[i][1] + 1.0f;
+
+                    float bot1X = (float)P2Lines[i][0] - 0.25f;
+                    float bot1Y = (float)P2Lines[i][1] - 1.0f;
+
+                    float topL1X = (float)P2Lines[i][0] - 0.5f;
+                    float topL1Y = (float)P2Lines[i][1];
+
+                    float topRX = (float)P2Lines[i][0] + 0.5f;
+                    float topRY = (float)P2Lines[i][1];
+
+                    float topL2X = (float)P2Lines[i][0] - 0.25f;
+                    float topL2Y = (float)P2Lines[i][1] + 1.0f;
+
+                    float bot2X = (float)P2Lines[i][0] + 0.25f;
+                    float bot2Y = (float)P2Lines[i][1] - 1.0f;
+
+                    if (topX == xCoord && ((yCoord - topY) >= 0) && ((yCoord - topY) <= 0.2f))
+                    {
+                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        {
+                            PowLineButtons[j].gameObject.SetActive(false);
+                        }
+                        else
+                        {
+                            PowLineButtons[j].gameObject.SetActive(true);
+                        }
+
+                    }
+
+                    if (topL1X == xCoord && ((yCoord - topL1Y) >= 0) && ((yCoord - topL1Y) <= 0.2f))
+                    {
+                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        {
+                            PowLineButtons[j].gameObject.SetActive(false);
+                        }
+                        else
+                        {
+                            PowLineButtons[j].gameObject.SetActive(true);
+                        }
+
+                    }
+
+
+                    if (topRX == xCoord && ((yCoord - topRY) >= 0) && ((yCoord - topRY) <= 0.2f))
+                    {
+                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        {
+                            PowLineButtons[j].gameObject.SetActive(false);
+                        }
+                        else
+                        {
+                            PowLineButtons[j].gameObject.SetActive(true);
+                        }
+                    }
+
+                    if (bot1X == xCoord && ((yCoord - bot1Y) >= 0) && ((yCoord - bot1Y) <= 0.2f))
+                    {
+                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        {
+                            PowLineButtons[j].gameObject.SetActive(false);
+                        }
+                        else
+                        {
+                            PowLineButtons[j].gameObject.SetActive(true);
+                        }
+                    }
+
+                    if (bot2X == xCoord && ((yCoord - bot2Y) >= 0) && ((yCoord - bot2Y) <= 0.2f))
+                    {
+                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        {
+                            PowLineButtons[j].gameObject.SetActive(false);
+                        }
+                        else
+                        {
+                            PowLineButtons[j].gameObject.SetActive(true);
+                        }
+                    }
+
+
+                    if (topL2X == xCoord && ((yCoord - topL2Y) >= 0) && ((yCoord - topL2Y) <= 0.2f))
+                    {
+                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        {
+                            PowLineButtons[j].gameObject.SetActive(false);
+                        }
+                        else
+                        {
+                            PowLineButtons[j].gameObject.SetActive(true);
+                        }
+
+                    }
+                }
+            }
+        }
+
+        if (playerturn == 2)
+        {
+
+            for (int i = 0; i < P3Lines.Count; i++)
+            {
+                for (int j = 0; j < allPowLineSpots.Count; j++)
+                {
+                    float xCoord = (float)allPowLineSpots[j][0];
+                    float yCoord = (float)allPowLineSpots[j][1];
+
+                    float topX = (float)P3Lines[i][0] + 0.25f;
+                    float topY = (float)P3Lines[i][1] + 1.0f;
+
+                    float bot1X = (float)P3Lines[i][0] - 0.25f;
+                    float bot1Y = (float)P3Lines[i][1] - 1.0f;
+
+                    float topL1X = (float)P3Lines[i][0] - 0.5f;
+                    float topL1Y = (float)P3Lines[i][1];
+
+                    float topRX = (float)P3Lines[i][0] + 0.5f;
+                    float topRY = (float)P3Lines[i][1];
+
+                    float topL2X = (float)P3Lines[i][0] - 0.25f;
+                    float topL2Y = (float)P3Lines[i][1] + 1.0f;
+
+                    float bot2X = (float)P3Lines[i][0] + 0.25f;
+                    float bot2Y = (float)P3Lines[i][1] - 1.0f;
+
+                    if (topX == xCoord && ((yCoord - topY) >= 0) && ((yCoord - topY) <= 0.2f))
+                    {
+                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        {
+                            PowLineButtons[j].gameObject.SetActive(false);
+                        }
+                        else
+                        {
+                            PowLineButtons[j].gameObject.SetActive(true);
+                        }
+
+                    }
+
+                    if (topL1X == xCoord && ((yCoord - topL1Y) >= 0) && ((yCoord - topL1Y) <= 0.2f))
+                    {
+                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        {
+                            PowLineButtons[j].gameObject.SetActive(false);
+                        }
+                        else
+                        {
+                            PowLineButtons[j].gameObject.SetActive(true);
+                        }
+
+                    }
+
+
+                    if (topRX == xCoord && ((yCoord - topRY) >= 0) && ((yCoord - topRY) <= 0.2f))
+                    {
+                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        {
+                            PowLineButtons[j].gameObject.SetActive(false);
+                        }
+                        else
+                        {
+                            PowLineButtons[j].gameObject.SetActive(true);
+                        }
+                    }
+
+                    if (bot1X == xCoord && ((yCoord - bot1Y) >= 0) && ((yCoord - bot1Y) <= 0.2f))
+                    {
+                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        {
+                            PowLineButtons[j].gameObject.SetActive(false);
+                        }
+                        else
+                        {
+                            PowLineButtons[j].gameObject.SetActive(true);
+                        }
+                    }
+
+                    if (bot2X == xCoord && ((yCoord - bot2Y) >= 0) && ((yCoord - bot2Y) <= 0.2f))
+                    {
+                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        {
+                            PowLineButtons[j].gameObject.SetActive(false);
+                        }
+                        else
+                        {
+                            PowLineButtons[j].gameObject.SetActive(true);
+                        }
+                    }
+
+
+                    if (topL2X == xCoord && ((yCoord - topL2Y) >= 0) && ((yCoord - topL2Y) <= 0.2f))
+                    {
+                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        {
+                            PowLineButtons[j].gameObject.SetActive(false);
+                        }
+                        else
+                        {
+                            PowLineButtons[j].gameObject.SetActive(true);
+                        }
+
+                    }
+                }
+            }
+        }
+
+        if (playerturn == 3)
+        {
+
+            for (int i = 0; i < P4Lines.Count; i++)
+            {
+                for (int j = 0; j < allPowLineSpots.Count; j++)
+                {
+                    float xCoord = (float)allPowLineSpots[j][0];
+                    float yCoord = (float)allPowLineSpots[j][1];
+
+                    float topX = (float)P4Lines[i][0] + 0.25f;
+                    float topY = (float)P4Lines[i][1] + 1.0f;
+
+                    float bot1X = (float)P4Lines[i][0] - 0.25f;
+                    float bot1Y = (float)P4Lines[i][1] - 1.0f;
+
+                    float topL1X = (float)P4Lines[i][0] - 0.5f;
+                    float topL1Y = (float)P4Lines[i][1];
+
+                    float topRX = (float)P4Lines[i][0] + 0.5f;
+                    float topRY = (float)P4Lines[i][1];
+
+                    float topL2X = (float)P4Lines[i][0] - 0.25f;
+                    float topL2Y = (float)P4Lines[i][1] + 1.0f;
+
+                    float bot2X = (float)P4Lines[i][0] + 0.25f;
+                    float bot2Y = (float)P4Lines[i][1] - 1.0f;
+
+                    if (topX == xCoord && ((yCoord - topY) >= 0) && ((yCoord - topY) <= 0.2f))
+                    {
+                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        {
+                            PowLineButtons[j].gameObject.SetActive(false);
+                        }
+                        else
+                        {
+                            PowLineButtons[j].gameObject.SetActive(true);
+                        }
+
+                    }
+
+                    if (topL1X == xCoord && ((yCoord - topL1Y) >= 0) && ((yCoord - topL1Y) <= 0.2f))
+                    {
+                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        {
+                            PowLineButtons[j].gameObject.SetActive(false);
+                        }
+                        else
+                        {
+                            PowLineButtons[j].gameObject.SetActive(true);
+                        }
+
+                    }
+
+
+                    if (topRX == xCoord && ((yCoord - topRY) >= 0) && ((yCoord - topRY) <= 0.2f))
+                    {
+                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        {
+                            PowLineButtons[j].gameObject.SetActive(false);
+                        }
+                        else
+                        {
+                            PowLineButtons[j].gameObject.SetActive(true);
+                        }
+                    }
+
+                    if (bot1X == xCoord && ((yCoord - bot1Y) >= 0) && ((yCoord - bot1Y) <= 0.2f))
+                    {
+                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        {
+                            PowLineButtons[j].gameObject.SetActive(false);
+                        }
+                        else
+                        {
+                            PowLineButtons[j].gameObject.SetActive(true);
+                        }
+                    }
+
+                    if (bot2X == xCoord && ((yCoord - bot2Y) >= 0) && ((yCoord - bot2Y) <= 0.2f))
+                    {
+                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        {
+                            PowLineButtons[j].gameObject.SetActive(false);
+                        }
+                        else
+                        {
+                            PowLineButtons[j].gameObject.SetActive(true);
+                        }
+                    }
+
+
+                    if (topL2X == xCoord && ((yCoord - topL2Y) >= 0) && ((yCoord - topL2Y) <= 0.2f))
+                    {
+                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        {
+                            PowLineButtons[j].gameObject.SetActive(false);
+                        }
+                        else
+                        {
+                            PowLineButtons[j].gameObject.SetActive(true);
+                        }
+
+                    }
+                }
+            }
+        }
+    }
     void generateInactiveButtons()
     {
         for (int i = 0; i < allPowLineSpots.Count; i++)
@@ -499,6 +1114,7 @@ public class createPowerLines : MonoBehaviour
 
         if (scoreMan.buildLine())
         {
+            mapGen.updateBuilt(x,y);
             makePowerLine((int)scoreMan.turn, x, y, rotation);
             Debug.Log("x val " + x);
             Debug.Log("y val " + y);
@@ -544,25 +1160,46 @@ public class createPowerLines : MonoBehaviour
         var ren = TempGo.GetComponent<SpriteRenderer>();
         ren.enabled = true;
 
+        if (playerTurn == 0)
+        {
+            P1Lines.Add(new Vector2(x,y));
+        }
+        if (playerTurn == 1)
+        { 
+            P2Lines.Add(new Vector2(x, y));
+        }
+        if (playerTurn == 2)
+        {
+            P3Lines.Add(new Vector2(x, y));
+        }
+        if (playerTurn == 3)
+        {
+            P4Lines.Add(new Vector2(x, y));
+        }
     }
     void makeButton(float x, float y, Quaternion rotation)//this makes buttons to build factories on all of the hex above it
     {
-        //make bottom button
-        GameObject goButton = (GameObject)Instantiate(prefabButton);
-        goButton.transform.SetParent(ParentPanel, false);
-        goButton.transform.localScale = new Vector3(1, 1, 1);
+        if (!mapGen.getBuilt().Contains(new Vector2(x, y)))
+        {
+            //make bottom button
+            GameObject goButton = (GameObject)Instantiate(prefabButton);
+            goButton.transform.SetParent(ParentPanel, false);
+            goButton.transform.localScale = new Vector3(1, 1, 1);
 
-        Button tempButton = goButton.GetComponent<Button>();
-        tempButton.gameObject.SetActive(false);
-        string location = (bottomLeftX + x * tileXOffset).ToString() + "," + (bottomLeftY + y * tileYOffset).ToString();
+            Button tempButton = goButton.GetComponent<Button>();
+            tempButton.gameObject.SetActive(false);
+            string location = (bottomLeftX + x * tileXOffset).ToString() + "," + (bottomLeftY + y * tileYOffset).ToString();
 
-        tempButton.onClick.AddListener(() => ButtonClicked(tempButton, location, x, y, rotation));
+            tempButton.onClick.AddListener(() => ButtonClicked(tempButton, location, x, y, rotation));
 
-        RectTransform rectTransform = goButton.GetComponent<RectTransform>();
-        Vector2 anchoredPos = new Vector2(bottomLeftX + x * canvasTileXOffset, bottomLeftY + y * canvasTileYOffset);
-        rectTransform.anchoredPosition = anchoredPos;
+            RectTransform rectTransform = goButton.GetComponent<RectTransform>();
+            Vector2 anchoredPos = new Vector2(bottomLeftX + x * canvasTileXOffset, bottomLeftY + y * canvasTileYOffset);
+            rectTransform.anchoredPosition = anchoredPos;
 
-        PowLineButtons.Add(tempButton);
-        numOfButtons++;
+            PowLineButtons.Add(tempButton);
+            
+            //numOfButtons++;
+        }
+
     }
 }

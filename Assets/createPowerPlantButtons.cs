@@ -193,6 +193,8 @@ public class createPowerPlantButtons : MonoBehaviour
         {
             mapGen.updateBuilt(x,y);
             makePowerPlant((int)scoreMan.turn,x,y,ownedType);
+            //Debug.Log("x val " + x);
+            //Debug.Log("y val " + y);
         }
         else
         {

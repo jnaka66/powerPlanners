@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 5997183}
   - component: {fileID: 5997185}
   - component: {fileID: 5997184}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -383,7 +383,7 @@ GameObject:
   - component: {fileID: 211362282}
   - component: {fileID: 211362281}
   - component: {fileID: 211362280}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -432,7 +432,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 0.61960787}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -573,7 +573,7 @@ GameObject:
   - component: {fileID: 334419472}
   - component: {fileID: 334419471}
   - component: {fileID: 334419470}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: buildNaturalButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -735,7 +735,7 @@ GameObject:
   - component: {fileID: 353181455}
   - component: {fileID: 353181454}
   - component: {fileID: 353181453}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: upgradeNaturalButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -895,7 +895,7 @@ GameObject:
   - component: {fileID: 354615984}
   - component: {fileID: 354615986}
   - component: {fileID: 354615985}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1060,7 +1060,7 @@ GameObject:
   - component: {fileID: 440912126}
   - component: {fileID: 440912125}
   - component: {fileID: 440912124}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: LineButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1349,7 +1349,7 @@ GameObject:
   - component: {fileID: 534851272}
   - component: {fileID: 534851274}
   - component: {fileID: 534851273}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1515,7 +1515,7 @@ GameObject:
   - component: {fileID: 587844303}
   - component: {fileID: 587844302}
   - component: {fileID: 587844305}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: buildCoalButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1759,7 +1759,7 @@ GameObject:
   - component: {fileID: 646326756}
   - component: {fileID: 646326758}
   - component: {fileID: 646326757}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1923,7 +1923,7 @@ GameObject:
   - component: {fileID: 818618181}
   - component: {fileID: 818618183}
   - component: {fileID: 818618182}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2005,7 +2005,7 @@ GameObject:
   - component: {fileID: 904483961}
   - component: {fileID: 904483960}
   - component: {fileID: 904483963}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: endTurnButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2156,7 +2156,7 @@ GameObject:
   - component: {fileID: 909167696}
   - component: {fileID: 909167695}
   - component: {fileID: 909167694}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: buildNuclearButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2402,7 +2402,7 @@ GameObject:
   - component: {fileID: 934416409}
   - component: {fileID: 934416408}
   - component: {fileID: 934416407}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: upgradeNuclearButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2564,7 +2564,7 @@ GameObject:
   - component: {fileID: 1048304058}
   - component: {fileID: 1048304057}
   - component: {fileID: 1048304056}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: upgradePowerPlantButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2714,7 +2714,7 @@ GameObject:
   - component: {fileID: 1061444548}
   - component: {fileID: 1061444550}
   - component: {fileID: 1061444549}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2857,7 +2857,7 @@ GameObject:
   - component: {fileID: 1120730731}
   - component: {fileID: 1120730730}
   - component: {fileID: 1120730729}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: upgradeCoalButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3103,7 +3103,7 @@ GameObject:
   - component: {fileID: 1238402571}
   - component: {fileID: 1238402570}
   - component: {fileID: 1238402569}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: buildSolarButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3265,7 +3265,7 @@ GameObject:
   - component: {fileID: 1238774965}
   - component: {fileID: 1238774964}
   - component: {fileID: 1238774967}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: buildPowerLineButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3755,7 +3755,7 @@ GameObject:
   - component: {fileID: 1458429294}
   - component: {fileID: 1458429296}
   - component: {fileID: 1458429295}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3919,7 +3919,7 @@ GameObject:
   - component: {fileID: 1475711618}
   - component: {fileID: 1475711620}
   - component: {fileID: 1475711619}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4001,7 +4001,7 @@ GameObject:
   - component: {fileID: 1503246883}
   - component: {fileID: 1503246882}
   - component: {fileID: 1503246885}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: buildPowerPlantButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4153,7 +4153,7 @@ GameObject:
   - component: {fileID: 1522632394}
   - component: {fileID: 1522632393}
   - component: {fileID: 1522632392}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: upgradeSolarButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4360,7 +4360,7 @@ GameObject:
   - component: {fileID: 1545626424}
   - component: {fileID: 1545626426}
   - component: {fileID: 1545626425}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4524,7 +4524,7 @@ GameObject:
   - component: {fileID: 1727431077}
   - component: {fileID: 1727431079}
   - component: {fileID: 1727431078}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4688,7 +4688,7 @@ GameObject:
   - component: {fileID: 1787299480}
   - component: {fileID: 1787299482}
   - component: {fileID: 1787299481}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4768,7 +4768,7 @@ GameObject:
   - component: {fileID: 1823428810}
   - component: {fileID: 1823428812}
   - component: {fileID: 1823428811}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4848,7 +4848,7 @@ GameObject:
   - component: {fileID: 1871634229}
   - component: {fileID: 1871634231}
   - component: {fileID: 1871634230}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5013,7 +5013,7 @@ GameObject:
   - component: {fileID: 1934052882}
   - component: {fileID: 1934052881}
   - component: {fileID: 1934052880}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5079,7 +5079,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!224 &1934052883
 RectTransform:
@@ -5129,7 +5129,7 @@ GameObject:
   - component: {fileID: 2011237957}
   - component: {fileID: 2011237956}
   - component: {fileID: 2011237959}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: backButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5442,7 +5442,7 @@ GameObject:
   - component: {fileID: 2048130684}
   - component: {fileID: 2048130686}
   - component: {fileID: 2048130685}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5808,7 +5808,7 @@ GameObject:
   - component: {fileID: 2111050706}
   - component: {fileID: 2111050708}
   - component: {fileID: 2111050707}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}

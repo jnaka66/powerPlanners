@@ -266,6 +266,7 @@ public class createPowerPlantButtons : MonoBehaviour
         TempGo.name = plantType+"Plant"+(playerTurn+1)+" "+x+","+y;
         TempGo.transform.position = new Vector2(x * tileXOffset,y * tileYOffset/2 -.5f);
         var ren = TempGo.GetComponent<SpriteRenderer>();
+        ren.sortingOrder = 2;
         ren.enabled = true;
         ScoreManager.instance.AddPoint();
     }

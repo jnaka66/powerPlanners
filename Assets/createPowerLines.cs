@@ -1137,6 +1137,7 @@ public class createPowerLines : MonoBehaviour
     void makePowerLine(int playerTurn, float x, float y, Quaternion rotation)
     {
         GameObject powLine = new GameObject();
+
         if (playerTurn == 0)
         {
             powLine = player1PowerLine;
@@ -1157,7 +1158,9 @@ public class createPowerLines : MonoBehaviour
 
         TempGo.transform.position = new Vector2(x * tileXOffset, y * tileYOffset / 2 - .5f);
         TempGo.transform.rotation = rotation;
+
         var ren = TempGo.GetComponent<SpriteRenderer>();
+        ren.sortingOrder = 1;
         ren.enabled = true;
 
         if (playerTurn == 0)

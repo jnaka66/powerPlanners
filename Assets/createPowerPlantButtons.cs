@@ -32,7 +32,8 @@ public class createPowerPlantButtons : MonoBehaviour
     float tileXOffset = .89f;
     float tileYOffset = .77f;
     int numOfButtons = 0;
-
+    List<string> buttonNames = new List<string>();
+    List<GameObject> allButtons = new List<GameObject>();
 
     
 
@@ -63,16 +64,22 @@ public class createPowerPlantButtons : MonoBehaviour
     }
 
     public void deleteButtons() {
+        /*
         while(GameObject.Find("Button(Clone)") != null){
             buttontest = GameObject.Find("Button(Clone)");
+            //GameObject.Destroy(buttontest); this crashed the whole editor dont try it
             buttontest.gameObject.SetActive(false);
+        }*/
+
+        
+        for(int i =0; i < buttonNames.Count; i++) {
+            buttontest = GameObject.Find(buttonNames[i]);
+            if(buttontest != null){
+                buttontest.gameObject.SetActive(false);//I tried implementing Destroy() but wasnt working for some reason
+            }
+            
         }
-        /*
-        for(int i =0; i < numOfButtons; i++) {
-            buttontest = GameObject.Find("Button(Clone)");
-            buttontest.gameObject.SetActive(false);//I tried implementing Destroy() but wasnt working for some reason
-        }
-        */
+        
         GameObject coal;
         GameObject solar;
         GameObject natty;  
@@ -299,17 +306,67 @@ public class createPowerPlantButtons : MonoBehaviour
         //plantType is the type trying to build
 
         //allow owned locations
+
         bool owned = !(determineOwned(x,y)=="");
         int costButton = determineCost(determineOwned(x,y),plantType);
+        
         if(upgradeOrBuild == "Upgrade"){
             if(owned){
+                if(buttonNames.Contains("plantButton_" +x+"_"+y)){
+                    int idx = buttonNames.IndexOf("plantButton_" +x+"_"+y);
+                    allButtons[idx].SetActive(true);
+                }
+                else{
+                    GameObject goButton = (GameObject)Instantiate(prefabButton);
+                    goButton.name = "plantButton_" +x+"_"+y;
+                    goButton.transform.SetParent(ParentPanel, false);
+                    goButton.transform.localScale = new Vector3(1, 1, 1);
+
+                    Button tempButton = goButton.GetComponent<Button>();
+                    tempButton.name = "plantButton_" +x+"_"+y;
+                    buttonNames.Add("plantButton_" +x+"_"+y);
+                    allButtons.Add(goButton);
+                    tempButton.gameObject.SetActive(true);
+                    string location = (bottomLeftX + x * tileXOffset).ToString() + "," + (bottomLeftY + y * tileYOffset).ToString();
+
+                    tempButton.onClick.AddListener(() => ButtonClicked(tempButton, location, x, y));
+
+                    RectTransform rectTransform = goButton.GetComponent<RectTransform>();
+                    Vector2 anchoredPos = new Vector2(bottomLeftX + x * canvasTileXOffset, bottomLeftY + y * canvasTileYOffset);
+                    rectTransform.anchoredPosition = anchoredPos;
+
+                    //hover section
+                    goButton.AddComponent<BoxCollider>();
+                    goButton.AddComponent<showCostHover>();
+                    var hover = goButton.GetComponent<showCostHover>();
+                    hover.location = new Vector2(x,y);//pass the location
+                    hover.objType = plantType;//and type
+                    hover.parent = goButton;
+
+                    
+                    hover.cost = costButton;
+                }
+                
+            }
+        }
+        
+        else if (!mapGen.getBuilt().Contains(new Vector2(x, y)))
+        {
+            if(buttonNames.Contains("plantButton_" +x+"_"+y)){
+                    int idx = buttonNames.IndexOf("plantButton_" +x+"_"+y);
+                    allButtons[idx].SetActive(true);
+                }
+            else{
                 GameObject goButton = (GameObject)Instantiate(prefabButton);
-                //goButton.name = "upgradeButton_" +x+"_"+y;
+                goButton.name = "plantButton_" +x+"_"+y;
                 goButton.transform.SetParent(ParentPanel, false);
                 goButton.transform.localScale = new Vector3(1, 1, 1);
 
                 Button tempButton = goButton.GetComponent<Button>();
-                //tempButton.name = "upgradeButton_" +x+"_"+y;
+                tempButton.name = "plantButton_" +x+"_"+y;
+                string name = "plantButton_" +x+"_"+y;
+                buttonNames.Add(name);
+                allButtons.Add(goButton);
                 tempButton.gameObject.SetActive(true);
                 string location = (bottomLeftX + x * tileXOffset).ToString() + "," + (bottomLeftY + y * tileYOffset).ToString();
 
@@ -318,46 +375,15 @@ public class createPowerPlantButtons : MonoBehaviour
                 RectTransform rectTransform = goButton.GetComponent<RectTransform>();
                 Vector2 anchoredPos = new Vector2(bottomLeftX + x * canvasTileXOffset, bottomLeftY + y * canvasTileYOffset);
                 rectTransform.anchoredPosition = anchoredPos;
-
-                //hover section
+                //hover 
                 goButton.AddComponent<BoxCollider>();
                 goButton.AddComponent<showCostHover>();
                 var hover = goButton.GetComponent<showCostHover>();
                 hover.location = new Vector2(x,y);//pass the location
                 hover.objType = plantType;//and type
                 hover.parent = goButton;
-
-                
                 hover.cost = costButton;
             }
-        }
-        
-        else if (!mapGen.getBuilt().Contains(new Vector2(x, y)))
-        {
-            
-            GameObject goButton = (GameObject)Instantiate(prefabButton);
-            //goButton.name = "buildButton_" +x+"_"+y;
-            goButton.transform.SetParent(ParentPanel, false);
-            goButton.transform.localScale = new Vector3(1, 1, 1);
-
-            Button tempButton = goButton.GetComponent<Button>();
-            //tempButton.name = "buildButton_" +x+"_"+y;
-            tempButton.gameObject.SetActive(true);
-            string location = (bottomLeftX + x * tileXOffset).ToString() + "," + (bottomLeftY + y * tileYOffset).ToString();
-
-            tempButton.onClick.AddListener(() => ButtonClicked(tempButton, location, x, y));
-
-            RectTransform rectTransform = goButton.GetComponent<RectTransform>();
-            Vector2 anchoredPos = new Vector2(bottomLeftX + x * canvasTileXOffset, bottomLeftY + y * canvasTileYOffset);
-            rectTransform.anchoredPosition = anchoredPos;
-            //hover 
-            goButton.AddComponent<BoxCollider>();
-            goButton.AddComponent<showCostHover>();
-            var hover = goButton.GetComponent<showCostHover>();
-            hover.location = new Vector2(x,y);//pass the location
-            hover.objType = plantType;//and type
-            hover.parent = goButton;
-            hover.cost = costButton;
         }
 
     }

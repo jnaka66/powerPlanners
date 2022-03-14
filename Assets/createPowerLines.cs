@@ -141,13 +141,13 @@ public class createPowerLines : MonoBehaviour
                     allPowLineSpots.Add(new object[] { (float)x - 0.25f, (float)y + 0.25f, new Quaternion(1.65f, 1.0f, 0.0f, 0.0f) });//bot left
                     allPowLineSpots.Add(new object[] { (float)x - 0.25f, (float)y + 2.25f, new Quaternion(0.5f, 1.0f, 0.0f, 0.0f) });//top left
                     allPowLineSpots.Add(new object[] { (float)x + .5f, (float)y + 1.25f, new Quaternion(0.0f, 0.0f, 0.0f, 0.0f) });
-                    allPowLineSpots.Add(new object[] { (float)x, (float)y - 0.6f, new Quaternion(0.0f, 0.0f, 0.0f, 0.0f) });
+                    allPowLineSpots.Add(new object[] { (float)x, (float)y - 0.75f, new Quaternion(0.0f, 0.0f, 0.0f, 0.0f) });
                     if (x == 1)//special case on left side
                     {
                         allPowLineSpots.Add(new object[] { (float)x - 1.5f, (float)y + 1.25f, new Quaternion(0.0f, 1.0f, 0.0f, 0.0f) });
                         allPowLineSpots.Add(new object[] { (float)x - 0.75f, (float)y + 4.2f, new Quaternion(0.5f, 1.0f, 0.0f, 0.0f) });
-                        //makeButton(x, y - 0.6f);
-                        allPowLineSpots.Add(new object[] { (float)x - 1.0f, (float)y - 0.6f, new Quaternion(0.0f, 1.0f, 0.0f, 0.0f) });
+                        //makeButton(x, y - 0.75f);
+                        allPowLineSpots.Add(new object[] { (float)x - 1.0f, (float)y - 0.75f, new Quaternion(0.0f, 1.0f, 0.0f, 0.0f) });
                     }
 
 
@@ -159,18 +159,18 @@ public class createPowerLines : MonoBehaviour
                     allPowLineSpots.Add(new object[] { (float)x - 0.25f, (float)y + 0.25f, new Quaternion(1.65f, 1.0f, 0.0f, 0.0f) });//bot left
                     allPowLineSpots.Add(new object[] { (float)x - 0.25f, (float)y + 2.25f, new Quaternion(0.5f, 1.0f, 0.0f, 0.0f) });//top left
                     allPowLineSpots.Add(new object[] { (float)x + .5f, (float)y + 1.25f, new Quaternion(0.0f, 0.0f, 0.0f, 0.0f) });
-                    allPowLineSpots.Add(new object[] { (float)x, (float)y - 0.6f, new Quaternion(0.0f, 0.0f, 0.0f, 0.0f) });
+                    allPowLineSpots.Add(new object[] { (float)x, (float)y - 0.75f, new Quaternion(0.0f, 0.0f, 0.0f, 0.0f) });
 
                     if (x == 1)
                     {
-                        allPowLineSpots.Add(new object[] { (float)x - 1.0f, (float)y - 0.6f, new Quaternion(0.0f, 1.0f, 0.0f, 0.0f) });
+                        allPowLineSpots.Add(new object[] { (float)x - 1.0f, (float)y - 0.75f, new Quaternion(0.0f, 1.0f, 0.0f, 0.0f) });
                         allPowLineSpots.Add(new object[] { (float)x - 0.5f, (float)y + 1.25f, new Quaternion(0.0f, 1.0f, 0.0f, 0.0f) });
                     }
 
                     if (x == width - 2)
                     {
-                        allPowLineSpots.Add(new object[] { (float)x + 1.0f, (float)y - 0.6f, new Quaternion(0.0f, 1.0f, 0.0f, 0.0f) });
-                        allPowLineSpots.Add(new object[] { (float)x - 1.0f, (float)y - 0.6f, new Quaternion(0.0f, 1.0f, 0.0f, 0.0f) });
+                        allPowLineSpots.Add(new object[] { (float)x + 1.0f, (float)y - 0.75f, new Quaternion(0.0f, 1.0f, 0.0f, 0.0f) });
+                        allPowLineSpots.Add(new object[] { (float)x - 1.0f, (float)y - 0.75f, new Quaternion(0.0f, 1.0f, 0.0f, 0.0f) });
                         allPowLineSpots.Add(new object[] { (float)x + 0.75f, (float)y + 0.25f, new Quaternion(1.65f, 1.0f, 0.0f, 0.0f) });
                     }
 
@@ -183,13 +183,13 @@ public class createPowerLines : MonoBehaviour
                     allPowLineSpots.Add(new object[] { (float)x - 0.25f, (float)y + 0.25f, new Quaternion(1.65f, 1.0f, 0.0f, 0.0f) });//bot left
                     allPowLineSpots.Add(new object[] { (float)x - 0.25f, (float)y + 2.25f, new Quaternion(0.5f, 1.0f, 0.0f, 0.0f) });//top left
                     allPowLineSpots.Add(new object[] { (float)x + .5f, (float)y + 1.25f, new Quaternion(0.0f, 0.0f, 0.0f, 0.0f) });
-                    allPowLineSpots.Add(new object[] { (float)x + 1.0f, (float)y - 0.6f, new Quaternion(0.0f, 0.0f, 0.0f, 0.0f) });
+                    allPowLineSpots.Add(new object[] { (float)x + 1.0f, (float)y - 0.75f, new Quaternion(0.0f, 0.0f, 0.0f, 0.0f) });
                     if (x == 2)//special case on left side
                     {
                         allPowLineSpots.Add(new object[] { (float)x - 0.5f, (float)y + 1.25f, new Quaternion(0.0f, 1.0f, 0.0f, 0.0f) });
                         allPowLineSpots.Add(new object[] { (float)x - 0.75f, (float)y + 0.25f, new Quaternion(1.65f, 1.0f, 0.0f, 0.0f) });
-                        allPowLineSpots.Add(new object[] { (float)x, (float)y - 0.6f, new Quaternion(0.0f, 1.0f, 0.0f, 0.0f) });
-                        allPowLineSpots.Add(new object[] { (float)x - 1.0f, (float)y - 0.6f, new Quaternion(0.0f, 1.0f, 0.0f, 0.0f) });
+                        allPowLineSpots.Add(new object[] { (float)x, (float)y - 0.75f, new Quaternion(0.0f, 1.0f, 0.0f, 0.0f) });
+                        allPowLineSpots.Add(new object[] { (float)x - 1.0f, (float)y - 0.75f, new Quaternion(0.0f, 1.0f, 0.0f, 0.0f) });
                     }
 
                     if (x == width - 3)
@@ -694,7 +694,7 @@ public class createPowerLines : MonoBehaviour
                     float bot2X = (float)P1Lines[i][0] + 0.25f;
                     float bot2Y = (float)P1Lines[i][1] - 1.0f;
 
-                    if (topX == xCoord && ((yCoord - topY) >= 0) && ((yCoord - topY) <= 0.2f))
+                    if (topX == xCoord && ((yCoord - topY) >= 0) && (Mathf.Abs(yCoord - topY) <= 0.2f))
                     {
                         if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
                         {
@@ -707,7 +707,7 @@ public class createPowerLines : MonoBehaviour
 
                     }
 
-                    if (topL1X == xCoord && ((yCoord - topL1Y) >= 0) && ((yCoord - topL1Y) <= 0.2f))
+                    if (topL1X == xCoord && (Mathf.Abs(yCoord - topL1Y) >= 0) && (Mathf.Abs(yCoord - topL1Y) <= 0.2f))
                     {
                         if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
                         {
@@ -721,7 +721,7 @@ public class createPowerLines : MonoBehaviour
                     }
 
 
-                    if (topRX == xCoord && ((yCoord - topRY) >= 0) && ((yCoord - topRY) <= 0.2f))
+                    if (topRX == xCoord && (Mathf.Abs(yCoord - topRY) >= 0) && (Mathf.Abs(yCoord - topRY) <= 0.2f))
                     {
                         if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
                         {
@@ -733,7 +733,7 @@ public class createPowerLines : MonoBehaviour
                         }
                     }
 
-                    if (bot1X == xCoord && ((yCoord - bot1Y) >= 0) && ((yCoord - bot1Y) <= 0.2f))
+                    if (bot1X == xCoord && (Mathf.Abs(yCoord - bot1Y) >= 0) && (Mathf.Abs(yCoord - bot1Y) <= 0.2f))
                     {
                         if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
                         {
@@ -745,7 +745,7 @@ public class createPowerLines : MonoBehaviour
                         }
                     }
 
-                    if (bot2X == xCoord && ((yCoord - bot2Y) >= 0) && ((yCoord - bot2Y) <= 0.2f))
+                    if (bot2X == xCoord && (Mathf.Abs(yCoord - bot2Y) >= 0) && (Mathf.Abs(yCoord - bot2Y) <= 0.2f))
                     {
                         if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
                         {
@@ -758,7 +758,7 @@ public class createPowerLines : MonoBehaviour
                     }
 
 
-                    if (topL2X == xCoord && ((yCoord - topL2Y) >= 0) && ((yCoord - topL2Y) <= 0.2f))
+                    if (topL2X == xCoord && (Mathf.Abs(yCoord - topL2Y) >= 0) && (Mathf.Abs(yCoord - topL2Y) <= 0.2f))
                     {
                         if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
                         {
@@ -802,7 +802,7 @@ public class createPowerLines : MonoBehaviour
                     float bot2X = (float)P2Lines[i][0] + 0.25f;
                     float bot2Y = (float)P2Lines[i][1] - 1.0f;
 
-                    if (topX == xCoord && ((yCoord - topY) >= 0) && ((yCoord - topY) <= 0.2f))
+                    if (topX == xCoord && (Mathf.Abs(yCoord - topY) >= 0) && (Mathf.Abs(yCoord - topY) <= 0.2f))
                     {
                         if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
                         {
@@ -815,7 +815,7 @@ public class createPowerLines : MonoBehaviour
 
                     }
 
-                    if (topL1X == xCoord && ((yCoord - topL1Y) >= 0) && ((yCoord - topL1Y) <= 0.2f))
+                    if (topL1X == xCoord && (Mathf.Abs(yCoord - topL1Y) >= 0) && (Mathf.Abs(yCoord - topL1Y) <= 0.2f))
                     {
                         if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
                         {
@@ -829,7 +829,7 @@ public class createPowerLines : MonoBehaviour
                     }
 
 
-                    if (topRX == xCoord && ((yCoord - topRY) >= 0) && ((yCoord - topRY) <= 0.2f))
+                    if (topRX == xCoord && (Mathf.Abs(yCoord - topRY) >= 0) && (Mathf.Abs(yCoord - topRY) <= 0.2f))
                     {
                         if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
                         {
@@ -841,7 +841,7 @@ public class createPowerLines : MonoBehaviour
                         }
                     }
 
-                    if (bot1X == xCoord && ((yCoord - bot1Y) >= 0) && ((yCoord - bot1Y) <= 0.2f))
+                    if (bot1X == xCoord && ((yCoord - bot1Y) >= 0) && (Mathf.Abs(yCoord - bot1Y) <= 0.2f))
                     {
                         if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
                         {
@@ -853,7 +853,7 @@ public class createPowerLines : MonoBehaviour
                         }
                     }
 
-                    if (bot2X == xCoord && ((yCoord - bot2Y) >= 0) && ((yCoord - bot2Y) <= 0.2f))
+                    if (bot2X == xCoord && (Mathf.Abs(yCoord - bot2Y) >= 0) && (Mathf.Abs(yCoord - bot2Y) <= 0.2f))
                     {
                         if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
                         {
@@ -866,7 +866,7 @@ public class createPowerLines : MonoBehaviour
                     }
 
 
-                    if (topL2X == xCoord && ((yCoord - topL2Y) >= 0) && ((yCoord - topL2Y) <= 0.2f))
+                    if (topL2X == xCoord && (Mathf.Abs(yCoord - topL2Y) >= 0) && (Mathf.Abs(yCoord - topL2Y) <= 0.2f))
                     {
                         if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
                         {
@@ -910,7 +910,7 @@ public class createPowerLines : MonoBehaviour
                     float bot2X = (float)P3Lines[i][0] + 0.25f;
                     float bot2Y = (float)P3Lines[i][1] - 1.0f;
 
-                    if (topX == xCoord && ((yCoord - topY) >= 0) && ((yCoord - topY) <= 0.2f))
+                    if (topX == xCoord && (Mathf.Abs(yCoord - topY) >= 0) && (Mathf.Abs(yCoord - topY) <= 0.2f))
                     {
                         if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
                         {
@@ -923,7 +923,7 @@ public class createPowerLines : MonoBehaviour
 
                     }
 
-                    if (topL1X == xCoord && ((yCoord - topL1Y) >= 0) && ((yCoord - topL1Y) <= 0.2f))
+                    if (topL1X == xCoord && (Mathf.Abs(yCoord - topL1Y) >= 0) && (Mathf.Abs(yCoord - topL1Y) <= 0.2f))
                     {
                         if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
                         {
@@ -937,7 +937,7 @@ public class createPowerLines : MonoBehaviour
                     }
 
 
-                    if (topRX == xCoord && ((yCoord - topRY) >= 0) && ((yCoord - topRY) <= 0.2f))
+                    if (topRX == xCoord && (Mathf.Abs(yCoord - topRY) >= 0) && (Mathf.Abs(yCoord - topRY) <= 0.2f))
                     {
                         if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
                         {
@@ -949,7 +949,7 @@ public class createPowerLines : MonoBehaviour
                         }
                     }
 
-                    if (bot1X == xCoord && ((yCoord - bot1Y) >= 0) && ((yCoord - bot1Y) <= 0.2f))
+                    if (bot1X == xCoord && (Mathf.Abs(yCoord - bot1Y) >= 0) && (Mathf.Abs(yCoord - bot1Y) <= 0.2f))
                     {
                         if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
                         {
@@ -961,7 +961,7 @@ public class createPowerLines : MonoBehaviour
                         }
                     }
 
-                    if (bot2X == xCoord && ((yCoord - bot2Y) >= 0) && ((yCoord - bot2Y) <= 0.2f))
+                    if (bot2X == xCoord && (Mathf.Abs(yCoord - bot2Y) >= 0) && (Mathf.Abs(yCoord - bot2Y) <= 0.2f))
                     {
                         if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
                         {
@@ -974,7 +974,7 @@ public class createPowerLines : MonoBehaviour
                     }
 
 
-                    if (topL2X == xCoord && ((yCoord - topL2Y) >= 0) && ((yCoord - topL2Y) <= 0.2f))
+                    if (topL2X == xCoord && (Mathf.Abs(yCoord - topL2Y) >= 0) && (Mathf.Abs(yCoord - topL2Y) <= 0.2f))
                     {
                         if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
                         {
@@ -1018,7 +1018,7 @@ public class createPowerLines : MonoBehaviour
                     float bot2X = (float)P4Lines[i][0] + 0.25f;
                     float bot2Y = (float)P4Lines[i][1] - 1.0f;
 
-                    if (topX == xCoord && ((yCoord - topY) >= 0) && ((yCoord - topY) <= 0.2f))
+                    if (topX == xCoord && (Mathf.Abs(yCoord - topY) >= 0) && (Mathf.Abs(yCoord - topY) <= 0.2f))
                     {
                         if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
                         {
@@ -1031,7 +1031,7 @@ public class createPowerLines : MonoBehaviour
 
                     }
 
-                    if (topL1X == xCoord && ((yCoord - topL1Y) >= 0) && ((yCoord - topL1Y) <= 0.2f))
+                    if (topL1X == xCoord && (Mathf.Abs(yCoord - topL1Y) >= 0) && ((yCoord - topL1Y) <= 0.2f))
                     {
                         if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
                         {
@@ -1045,7 +1045,7 @@ public class createPowerLines : MonoBehaviour
                     }
 
 
-                    if (topRX == xCoord && ((yCoord - topRY) >= 0) && ((yCoord - topRY) <= 0.2f))
+                    if (topRX == xCoord && (Mathf.Abs(yCoord - topRY) >= 0) && (Mathf.Abs(yCoord - topRY) <= 0.2f))
                     {
                         if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
                         {
@@ -1057,7 +1057,7 @@ public class createPowerLines : MonoBehaviour
                         }
                     }
 
-                    if (bot1X == xCoord && ((yCoord - bot1Y) >= 0) && ((yCoord - bot1Y) <= 0.2f))
+                    if (bot1X == xCoord && (Mathf.Abs(yCoord - bot1Y) >= 0) && (Mathf.Abs(yCoord - bot1Y) <= 0.2f))
                     {
                         if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
                         {
@@ -1069,7 +1069,7 @@ public class createPowerLines : MonoBehaviour
                         }
                     }
 
-                    if (bot2X == xCoord && ((yCoord - bot2Y) >= 0) && ((yCoord - bot2Y) <= 0.2f))
+                    if (bot2X == xCoord && (Mathf.Abs(yCoord - bot2Y) >= 0) && (Mathf.Abs(yCoord - bot2Y) <= 0.2f))
                     {
                         if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
                         {
@@ -1082,7 +1082,7 @@ public class createPowerLines : MonoBehaviour
                     }
 
 
-                    if (topL2X == xCoord && ((yCoord - topL2Y) >= 0) && ((yCoord - topL2Y) <= 0.2f))
+                    if (topL2X == xCoord && (Mathf.Abs(yCoord - topL2Y) >= 0) && (Mathf.Abs(yCoord - topL2Y) <= 0.2f))
                     {
                         if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
                         {

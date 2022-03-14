@@ -19,6 +19,7 @@ public class createPowerPlantButtons : MonoBehaviour
     public List<Vector3> builtNuclear = new List<Vector3>();
     public List<Vector3> builtSolar = new List<Vector3>();
     public string plantType;
+    public string upgradeOrBuild;
 
     //private List<Vector2> built;
     int width = 10;
@@ -72,20 +73,32 @@ public class createPowerPlantButtons : MonoBehaviour
             buttontest.gameObject.SetActive(false);//I tried implementing Destroy() but wasnt working for some reason
         }
         */
-        GameObject solar = GameObject.Find("buildSolarButton");
-        GameObject coal = GameObject.Find("buildCoalButton");
-        GameObject natty = GameObject.Find("buildNaturalButton");
-        GameObject nuke = GameObject.Find("buildNuclearButton");
+        GameObject coal;
+        GameObject solar;
+        GameObject natty;  
+        GameObject nuke; 
+
+        if(upgradeOrBuild == "Build"){
+            solar = GameObject.Find("buildSolarButton");
+            coal = GameObject.Find("buildCoalButton");
+            natty = GameObject.Find("buildNaturalButton");
+            nuke = GameObject.Find("buildNuclearButton");
+        }
+        else{
+            solar = GameObject.Find("upgradeSolarButton");
+            coal = GameObject.Find("upgradeCoalButton");
+            natty = GameObject.Find("upgradeNaturalButton");
+            nuke = GameObject.Find("upgradeNuclearButton");
+        }
         solar.gameObject.SetActive(false);
         coal.gameObject.SetActive(false);
         natty.gameObject.SetActive(false);
-
         nuke.gameObject.SetActive(false);
 
         numOfButtons = 0;
     }
 
-    void createButtons()//this calls makeButton on all of the bottoms of the hexagons
+    void createButtons()
     {
         for (int y = 0; y < height *2; y++)
         {
@@ -189,7 +202,8 @@ public class createPowerPlantButtons : MonoBehaviour
         //Debug.Log("turn= ", (int)scoreMan.turn);
         //built.Add(new Vector2(x, y));
         string ownedType = determineOwned(x,y);
-        if(scoreMan.buildPlant(plantType))
+        int c= determineCost(determineOwned(x,y),plantType);
+        if(scoreMan.buildPlant(plantType,c))
         {
             mapGen.updateBuilt(x,y);
             makePowerPlant((int)scoreMan.turn,x,y,ownedType);
@@ -266,8 +280,9 @@ public class createPowerPlantButtons : MonoBehaviour
         var ren = TempGo.GetComponent<SpriteRenderer>();
         ren.sortingOrder = 2;
         ren.enabled = true;
-        ScoreManager.instance.AddPoint();
-
+        if(upgradeOrBuild == "Build"){
+            ScoreManager.instance.AddPoint();
+        }
         //hovering section
         TempGo.AddComponent<BoxCollider>();
         TempGo.AddComponent<onHoverScript>();
@@ -278,18 +293,55 @@ public class createPowerPlantButtons : MonoBehaviour
     }
 
 
-    void makeButton(float x, float y)//this makes buttons to build factories on all of the hex above it
+    void makeButton(float x, float y)
     {
+        //determine owned returns the type if owned, "" if unowned
+        //plantType is the type trying to build
+
         //allow owned locations
         bool owned = !(determineOwned(x,y)=="");
+        int costButton = determineCost(determineOwned(x,y),plantType);
+        if(upgradeOrBuild == "Upgrade"){
+            if(owned){
+                GameObject goButton = (GameObject)Instantiate(prefabButton);
+                //goButton.name = "upgradeButton_" +x+"_"+y;
+                goButton.transform.SetParent(ParentPanel, false);
+                goButton.transform.localScale = new Vector3(1, 1, 1);
+
+                Button tempButton = goButton.GetComponent<Button>();
+                //tempButton.name = "upgradeButton_" +x+"_"+y;
+                tempButton.gameObject.SetActive(true);
+                string location = (bottomLeftX + x * tileXOffset).ToString() + "," + (bottomLeftY + y * tileYOffset).ToString();
+
+                tempButton.onClick.AddListener(() => ButtonClicked(tempButton, location, x, y));
+
+                RectTransform rectTransform = goButton.GetComponent<RectTransform>();
+                Vector2 anchoredPos = new Vector2(bottomLeftX + x * canvasTileXOffset, bottomLeftY + y * canvasTileYOffset);
+                rectTransform.anchoredPosition = anchoredPos;
+
+                //hover section
+                goButton.AddComponent<BoxCollider>();
+                goButton.AddComponent<showCostHover>();
+                var hover = goButton.GetComponent<showCostHover>();
+                hover.location = new Vector2(x,y);//pass the location
+                hover.objType = plantType;//and type
+                hover.parent = goButton;
+
+                
+                hover.cost = costButton;
+            }
+        }
         
-        if (!mapGen.getBuilt().Contains(new Vector2(x, y)) || owned)
+        else if (!mapGen.getBuilt().Contains(new Vector2(x, y)))
         {
+            
             GameObject goButton = (GameObject)Instantiate(prefabButton);
+            //goButton.name = "buildButton_" +x+"_"+y;
             goButton.transform.SetParent(ParentPanel, false);
             goButton.transform.localScale = new Vector3(1, 1, 1);
 
             Button tempButton = goButton.GetComponent<Button>();
+            //tempButton.name = "buildButton_" +x+"_"+y;
             tempButton.gameObject.SetActive(true);
             string location = (bottomLeftX + x * tileXOffset).ToString() + "," + (bottomLeftY + y * tileYOffset).ToString();
 
@@ -298,10 +350,56 @@ public class createPowerPlantButtons : MonoBehaviour
             RectTransform rectTransform = goButton.GetComponent<RectTransform>();
             Vector2 anchoredPos = new Vector2(bottomLeftX + x * canvasTileXOffset, bottomLeftY + y * canvasTileYOffset);
             rectTransform.anchoredPosition = anchoredPos;
-
-            //numOfButtons++;
+            //hover 
+            goButton.AddComponent<BoxCollider>();
+            goButton.AddComponent<showCostHover>();
+            var hover = goButton.GetComponent<showCostHover>();
+            hover.location = new Vector2(x,y);//pass the location
+            hover.objType = plantType;//and type
+            hover.parent = goButton;
+            hover.cost = costButton;
         }
 
+    }
+    int determineCost(string ownedType,string buildType){
+        int coalCost = 50;
+        int solarCost = 100;
+        int naturalCost = 150;
+        int nuclearCost=200;
+        //build plant
+        if(ownedType==""){
+            if(buildType=="coal") return coalCost;
+            if(buildType=="solar") return solarCost;
+            if(buildType=="natural") return naturalCost;
+            if(buildType=="nuclear") return nuclearCost;
+        }
+        //upgrades
+        if(ownedType=="coal"){
+            if(buildType=="coal") return coalCost-coalCost;
+            if(buildType=="solar") return solarCost-coalCost;
+            if(buildType=="natural") return naturalCost-coalCost;
+            if(buildType=="nuclear") return nuclearCost-coalCost;
+        }
+        if(ownedType=="solar"){
+            if(buildType=="coal") return coalCost-solarCost;
+            if(buildType=="solar") return solarCost-solarCost;
+            if(buildType=="natural") return naturalCost-solarCost;
+            if(buildType=="nuclear") return nuclearCost-solarCost;
+        }
+        if(ownedType=="natural"){
+            if(buildType=="coal") return coalCost-naturalCost;
+            if(buildType=="solar") return solarCost-naturalCost;
+            if(buildType=="natural") return naturalCost-naturalCost;
+            if(buildType=="nuclear") return nuclearCost-naturalCost;
+        }
+        if(ownedType=="nuclear"){
+            if(buildType=="coal") return coalCost-nuclearCost;
+            if(buildType=="solar") return solarCost-nuclearCost;
+            if(buildType=="natural") return naturalCost-nuclearCost;
+            if(buildType=="nuclear") return nuclearCost-nuclearCost;
+        }
+        
+        return 69;
     }
     //dont look below here
     string determineOwned(float x, float y){

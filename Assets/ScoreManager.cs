@@ -103,26 +103,26 @@ public class ScoreManager : MonoBehaviour
         playerList[(int)turn].VP += 1;
     }
 
-    public bool buildPlant(string plantType)
+    public bool buildPlant(string plantType,int cost)
     {
-        if (plantType == "coal" && playerList[(int)turn].money >= 50)
+        if (plantType == "coal" && playerList[(int)turn].money >= cost)
         {
-            playerList[(int)turn].money -= 50;
+            playerList[(int)turn].money -= cost;
             return true;
         }
-        if (plantType == "natural" && playerList[(int)turn].money >= 150)
+        if (plantType == "natural" && playerList[(int)turn].money >= cost)
         {
-            playerList[(int)turn].money -= 150;
+            playerList[(int)turn].money -= cost;
             return true;
         }
-        if (plantType == "nuclear" && playerList[(int)turn].money >= 200)
+        if (plantType == "nuclear" && playerList[(int)turn].money >= cost)
         {
-            playerList[(int)turn].money -= 200;
+            playerList[(int)turn].money -= cost;
             return true;
         }
-        if (plantType == "solar" && playerList[(int)turn].money >= 100)
+        if (plantType == "solar" && playerList[(int)turn].money >= cost)
         {
-            playerList[(int)turn].money -= 100;
+            playerList[(int)turn].money -= cost;
             return true;
         }
         return false;

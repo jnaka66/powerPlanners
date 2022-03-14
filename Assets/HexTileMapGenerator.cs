@@ -182,6 +182,7 @@ public class HexTileMapGenerator : MonoBehaviour
         hover.location = new Vector2(x,y);//pass the location
         hover.objType = "Town";//and type
         hover.demand = Random.Range(50,125);//set the town's demand
+        // hover.delivered = 69; TODO: make this increase when demand is met
         ren.enabled = true;
         hover.parent = TempGo;
     }

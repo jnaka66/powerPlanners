@@ -383,7 +383,7 @@ GameObject:
   - component: {fileID: 151167967}
   - component: {fileID: 151167966}
   - component: {fileID: 151167965}
-  - component: {fileID: 151167964}
+  - component: {fileID: 151167968}
   m_Layer: 0
   m_Name: upgradePowerLineButton
   m_TagString: Untagged
@@ -412,31 +412,6 @@ RectTransform:
   m_AnchoredPosition: {x: -480, y: -170}
   m_SizeDelta: {x: 180, y: 37.3}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &151167964
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 151167962}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d08ba49812300b4499d78bdffa4016a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefabButton: {fileID: 440912122}
-  ParentPanel: {fileID: 1934052883}
-  scoreMan: {fileID: 0}
-  mapGen: {fileID: 0}
-  player1PowerLine: {fileID: 7756400926701201729, guid: fc35f70e19d16254db0e54abc4b20a37, type: 3}
-  player2PowerLine: {fileID: 7756400926701201729, guid: 6cad1b9a4c57bb24d9226e0aa2d29158, type: 3}
-  player3PowerLine: {fileID: 7756400926701201729, guid: 1559af4199703c74a8e3f27463362777, type: 3}
-  player4PowerLine: {fileID: 7756400926701201729, guid: 46f5f5a3d7b638b4c97e0e6c512cb9ee, type: 3}
-  Coal: {fileID: 587844300}
-  Natural: {fileID: 334419468}
-  Solar: {fileID: 1238402567}
-  Nuclear: {fileID: 909167692}
-  buttontest: {fileID: 0}
 --- !u!114 &151167965
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -481,8 +456,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 151167964}
-        m_TargetAssemblyTypeName: createPowerLines, Assembly-CSharp
+      - m_Target: {fileID: 151167968}
+        m_TargetAssemblyTypeName: upgradeTransmissionLine, Assembly-CSharp
         m_MethodName: spawnButtons
         m_Mode: 1
         m_Arguments:
@@ -531,6 +506,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 151167962}
   m_CullTransparentMesh: 1
+--- !u!114 &151167968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 151167962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d58da5c723cd63342bba99c741e0330b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerLines: {fileID: 0}
+  P1Lines: []
+  P2Lines: []
+  P3Lines: []
+  P4Lines: []
+  PowLineButtons: []
+  scoreMan: {fileID: 0}
 --- !u!1 &211362278
 GameObject:
   m_ObjectHideFlags: 0
@@ -3571,6 +3565,11 @@ MonoBehaviour:
   Natural: {fileID: 334419468}
   Solar: {fileID: 1238402567}
   Nuclear: {fileID: 909167692}
+  PowLineButtons: []
+  P1Lines: []
+  P2Lines: []
+  P3Lines: []
+  P4Lines: []
   buttontest: {fileID: 0}
 --- !u!1 &1249248723
 GameObject:

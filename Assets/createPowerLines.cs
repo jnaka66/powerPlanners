@@ -31,17 +31,17 @@ public class createPowerLines : MonoBehaviour
     float tileYOffset = .77f;
     int numOfButtons = 0;
     
-    List<object[]> allPowLineSpots = new List<object[]>();
-    List<Button> PowLineButtons = new List<Button>();
+    public List<object[]> allPowLineSpots = new List<object[]>();
+    public List<Button> PowLineButtons = new List<Button>();
     List<Vector3> coalPlants = new List<Vector3>();
     List<Vector3> NaturalPlants = new List<Vector3>();
     List<Vector3> NuclearPlants = new List<Vector3>();
     List<Vector3> SolarPlants = new List<Vector3>();
 
-    List<Vector2> P1Lines = new List<Vector2>();
-    List<Vector2> P2Lines = new List<Vector2>();
-    List<Vector2> P3Lines = new List<Vector2>();
-    List<Vector2> P4Lines = new List<Vector2>();
+    public List<Vector2> P1Lines = new List<Vector2>();
+    public List<Vector2> P2Lines = new List<Vector2>();
+    public List<Vector2> P3Lines = new List<Vector2>();
+    public List<Vector2> P4Lines = new List<Vector2>();
     // void Start()
     // {
     //     createButtons();

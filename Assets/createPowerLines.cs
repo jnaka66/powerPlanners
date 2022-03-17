@@ -95,106 +95,105 @@ public class createPowerLines : MonoBehaviour
 
                 if (y == 0 && x < width - 2 && x > 1)
                 {
-                    allPowLineSpots.Add(new object[] { (float)x + 0.25f, (float)y + 0.25f, new Quaternion(0.5f, 1.0f, 0.0f, 0.0f) });//bottom
-                    allPowLineSpots.Add(new object[] { (float)x + 0.25f, (float)y + 2.25f, new Quaternion(1.65f, 1.0f, 0.0f, 0.0f) });//top
-                    allPowLineSpots.Add(new object[] { (float)x - 0.25f, (float)y + 0.25f, new Quaternion(1.65f, 1.0f, 0.0f, 0.0f) });//bot left
-                    allPowLineSpots.Add(new object[] { (float)x - 0.25f, (float)y + 2.25f, new Quaternion(0.5f, 1.0f, 0.0f, 0.0f) });//top left
-                    allPowLineSpots.Add(new object[] { (float)x + .5f, (float)y + 1.25f, new Quaternion(0.0f, 0.0f, 0.0f, 0.0f) });
+                    allPowLineSpots.Add(new object[] { (float)x + 0.25f, (float)y + 0.25f, new Quaternion(0.5f, 1.0f, 0.0f, 0.0f) , new int[] { 0, 0, 0, 0 }, 0});//bottom
+                    allPowLineSpots.Add(new object[] { (float)x + 0.25f, (float)y + 2.25f, new Quaternion(1.65f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });//top
+                    allPowLineSpots.Add(new object[] { (float)x - 0.25f, (float)y + 0.25f, new Quaternion(1.65f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });//bot left
+                    allPowLineSpots.Add(new object[] { (float)x - 0.25f, (float)y + 2.25f, new Quaternion(0.5f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });//top left
+                    allPowLineSpots.Add(new object[] { (float)x + .5f, (float)y + 1.25f, new Quaternion(0.0f, 0.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });
                     if (x == 2)//special case on left side
                     {
-                        allPowLineSpots.Add(new object[] { (float)x - 0.5f, (float)y + 1.2f, new Quaternion(0.0f, 1.0f, 0.0f, 0.0f) });
-                        allPowLineSpots.Add(new object[] { (float)x - 0.75f, (float)y + 2.25f, new Quaternion(1.65f, 1.0f, 0.0f, 0.0f) });
+                        allPowLineSpots.Add(new object[] { (float)x - 0.5f, (float)y + 1.2f, new Quaternion(0.0f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });
+                        allPowLineSpots.Add(new object[] { (float)x - 0.75f, (float)y + 2.25f, new Quaternion(1.65f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });
                     }
                     if (x == width - 3)//special case on right side
                     {
 
-                        allPowLineSpots.Add(new object[] { (float)x + 0.75f, (float)y + 2.25f, new Quaternion(0.5f, 1.0f, 0.0f, 0.0f) });
-                        allPowLineSpots.Add(new object[] { (float)x + 1, (float)y + 3.25f, new Quaternion(0.0f, 1.0f, 0.0f, 0.0f) });
+                        allPowLineSpots.Add(new object[] { (float)x + 0.75f, (float)y + 2.25f, new Quaternion(0.5f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });
+                        allPowLineSpots.Add(new object[] { (float)x + 1, (float)y + 3.25f, new Quaternion(0.0f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });
                     }
 
                 }
 
                 if (y == 4 && x < width - 1 && x > 0)
                 {
-                    allPowLineSpots.Add(new object[] { (float)x + 0.25f, (float)y + 0.25f, new Quaternion(0.5f, 1.0f, 0.0f, 0.0f) });//bottom
-                    allPowLineSpots.Add(new object[] { (float)x + 0.25f, (float)y + 2.25f, new Quaternion(1.65f, 1.0f, 0.0f, 0.0f) });//top
-                    allPowLineSpots.Add(new object[] { (float)x - 0.25f, (float)y + 0.25f, new Quaternion(1.65f, 1.0f, 0.0f, 0.0f) });//bot left
-                    allPowLineSpots.Add(new object[] { (float)x - 0.25f, (float)y + 2.25f, new Quaternion(0.5f, 1.0f, 0.0f, 0.0f) });//top left
-                    allPowLineSpots.Add(new object[] { (float)x + .5f, (float)y + 1.25f, new Quaternion(0.0f, 0.0f, 0.0f, 0.0f) });
-                    allPowLineSpots.Add(new object[] { (float)x, (float)y - 0.75f, new Quaternion(0.0f, 0.0f, 0.0f, 0.0f) });
+                    allPowLineSpots.Add(new object[] { (float)x + 0.25f, (float)y + 0.25f, new Quaternion(0.5f, 1.0f, 0.0f, 0.0f), new int[] {0,0,0,0},0 });//bottom
+                    allPowLineSpots.Add(new object[] { (float)x + 0.25f, (float)y + 2.25f, new Quaternion(1.65f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });//top
+                    allPowLineSpots.Add(new object[] { (float)x - 0.25f, (float)y + 0.25f, new Quaternion(1.65f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });//bot left
+                    allPowLineSpots.Add(new object[] { (float)x - 0.25f, (float)y + 2.25f, new Quaternion(0.5f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });//top left
+                    allPowLineSpots.Add(new object[] { (float)x + .5f, (float)y + 1.25f, new Quaternion(0.0f, 0.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });
+                    allPowLineSpots.Add(new object[] { (float)x, (float)y - 0.75f, new Quaternion(0.0f, 0.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });
                     if (x == 1)//special case on left side
                     {
-                        allPowLineSpots.Add(new object[] { (float)x - 0.75f, (float)y + 2.25f, new Quaternion(1.65f, 1.0f, 0.0f, 0.0f) });
-                        allPowLineSpots.Add(new object[] { (float)x - 0.5f, (float)y + 1.25f, new Quaternion(0.0f, 1.0f, 0.0f, 0.0f) });
+                        allPowLineSpots.Add(new object[] { (float)x - 0.75f, (float)y + 2.25f, new Quaternion(1.65f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });
+                        allPowLineSpots.Add(new object[] { (float)x - 0.5f, (float)y + 1.25f, new Quaternion(0.0f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });
                     }
                     if (x == width - 2)//special case on right side
                     {
-                        allPowLineSpots.Add(new object[] { (float)x + 0.75f, (float)y + 2.25f, new Quaternion(0.5f, 1.0f, 0.0f, 0.0f) });
+                        allPowLineSpots.Add(new object[] { (float)x + 0.75f, (float)y + 2.25f, new Quaternion(0.5f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });
 
                     }
 
                 }
                 if (y == 8)
                 {
-                    allPowLineSpots.Add(new object[] { (float)x + 0.25f, (float)y + 0.25f, new Quaternion(0.5f, 1.0f, 0.0f, 0.0f) });//bottom
-                    allPowLineSpots.Add(new object[] { (float)x + 0.25f, (float)y + 2.25f, new Quaternion(1.65f, 1.0f, 0.0f, 0.0f) });//top
-                    allPowLineSpots.Add(new object[] { (float)x - 0.25f, (float)y + 0.25f, new Quaternion(1.65f, 1.0f, 0.0f, 0.0f) });//bot left
-                    allPowLineSpots.Add(new object[] { (float)x - 0.25f, (float)y + 2.25f, new Quaternion(0.5f, 1.0f, 0.0f, 0.0f) });//top left
-                    allPowLineSpots.Add(new object[] { (float)x + .5f, (float)y + 1.25f, new Quaternion(0.0f, 0.0f, 0.0f, 0.0f) });
-                    allPowLineSpots.Add(new object[] { (float)x, (float)y - 0.75f, new Quaternion(0.0f, 0.0f, 0.0f, 0.0f) });
+                    allPowLineSpots.Add(new object[] { (float)x + 0.25f, (float)y + 0.25f, new Quaternion(0.5f, 1.0f, 0.0f, 0.0f) , new int[] { 0, 0, 0, 0 }, 0});//bottom
+                    allPowLineSpots.Add(new object[] { (float)x + 0.25f, (float)y + 2.25f, new Quaternion(1.65f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });//top
+                    allPowLineSpots.Add(new object[] { (float)x - 0.25f, (float)y + 0.25f, new Quaternion(1.65f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });//bot left
+                    allPowLineSpots.Add(new object[] { (float)x - 0.25f, (float)y + 2.25f, new Quaternion(0.5f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });//top left
+                    allPowLineSpots.Add(new object[] { (float)x + .5f, (float)y + 1.25f, new Quaternion(0.0f, 0.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });
+                    allPowLineSpots.Add(new object[] { (float)x, (float)y - 0.75f, new Quaternion(0.0f, 0.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });
                     if (x == 1)//special case on left side
                     {
-                        allPowLineSpots.Add(new object[] { (float)x - 1.5f, (float)y + 1.25f, new Quaternion(0.0f, 1.0f, 0.0f, 0.0f) });
-                        allPowLineSpots.Add(new object[] { (float)x - 0.75f, (float)y + 4.2f, new Quaternion(0.5f, 1.0f, 0.0f, 0.0f) });
-                        //makeButton(x, y - 0.75f);
-                        allPowLineSpots.Add(new object[] { (float)x - 1.0f, (float)y - 0.75f, new Quaternion(0.0f, 1.0f, 0.0f, 0.0f) });
+                        allPowLineSpots.Add(new object[] { (float)x - 1.5f, (float)y + 1.25f, new Quaternion(0.0f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });
+                        allPowLineSpots.Add(new object[] { (float)x - 0.75f, (float)y + 4.2f, new Quaternion(0.5f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });
+                        allPowLineSpots.Add(new object[] { (float)x - 1.0f, (float)y - 0.75f, new Quaternion(0.0f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });
                     }
 
 
                 }
                 if (y == 12 && x < width - 1 && x > 0)
                 {
-                    allPowLineSpots.Add(new object[] { (float)x + 0.25f, (float)y + 0.25f, new Quaternion(0.5f, 1.0f, 0.0f, 0.0f) });//bottom
-                    allPowLineSpots.Add(new object[] { (float)x + 0.25f, (float)y + 2.25f, new Quaternion(1.65f, 1.0f, 0.0f, 0.0f) });//top
-                    allPowLineSpots.Add(new object[] { (float)x - 0.25f, (float)y + 0.25f, new Quaternion(1.65f, 1.0f, 0.0f, 0.0f) });//bot left
-                    allPowLineSpots.Add(new object[] { (float)x - 0.25f, (float)y + 2.25f, new Quaternion(0.5f, 1.0f, 0.0f, 0.0f) });//top left
-                    allPowLineSpots.Add(new object[] { (float)x + .5f, (float)y + 1.25f, new Quaternion(0.0f, 0.0f, 0.0f, 0.0f) });
-                    allPowLineSpots.Add(new object[] { (float)x, (float)y - 0.75f, new Quaternion(0.0f, 0.0f, 0.0f, 0.0f) });
+                    allPowLineSpots.Add(new object[] { (float)x + 0.25f, (float)y + 0.25f, new Quaternion(0.5f, 1.0f, 0.0f, 0.0f) , new int[] { 0, 0, 0, 0 }, 0});//bottom
+                    allPowLineSpots.Add(new object[] { (float)x + 0.25f, (float)y + 2.25f, new Quaternion(1.65f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });//top
+                    allPowLineSpots.Add(new object[] { (float)x - 0.25f, (float)y + 0.25f, new Quaternion(1.65f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });//bot left
+                    allPowLineSpots.Add(new object[] { (float)x - 0.25f, (float)y + 2.25f, new Quaternion(0.5f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });//top left
+                    allPowLineSpots.Add(new object[] { (float)x + .5f, (float)y + 1.25f, new Quaternion(0.0f, 0.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });
+                    allPowLineSpots.Add(new object[] { (float)x, (float)y - 0.75f, new Quaternion(0.0f, 0.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });
 
                     if (x == 1)
                     {
-                        allPowLineSpots.Add(new object[] { (float)x - 1.0f, (float)y - 0.75f, new Quaternion(0.0f, 1.0f, 0.0f, 0.0f) });
-                        allPowLineSpots.Add(new object[] { (float)x - 0.5f, (float)y + 1.25f, new Quaternion(0.0f, 1.0f, 0.0f, 0.0f) });
+                        allPowLineSpots.Add(new object[] { (float)x - 1.0f, (float)y - 0.75f, new Quaternion(0.0f, 1.0f, 0.0f, 0.0f) , new int[] { 0, 0, 0, 0 }, 0});
+                        allPowLineSpots.Add(new object[] { (float)x - 0.5f, (float)y + 1.25f, new Quaternion(0.0f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });
                     }
 
                     if (x == width - 2)
                     {
-                        allPowLineSpots.Add(new object[] { (float)x + 1.0f, (float)y - 0.75f, new Quaternion(0.0f, 1.0f, 0.0f, 0.0f) });
-                        allPowLineSpots.Add(new object[] { (float)x - 1.0f, (float)y - 0.75f, new Quaternion(0.0f, 1.0f, 0.0f, 0.0f) });
-                        allPowLineSpots.Add(new object[] { (float)x + 0.75f, (float)y + 0.25f, new Quaternion(1.65f, 1.0f, 0.0f, 0.0f) });
+                        allPowLineSpots.Add(new object[] { (float)x + 1.0f, (float)y - 0.75f, new Quaternion(0.0f, 1.0f, 0.0f, 0.0f) , new int[] { 0, 0, 0, 0 }, 0});
+                        allPowLineSpots.Add(new object[] { (float)x - 1.0f, (float)y - 0.75f, new Quaternion(0.0f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });
+                        allPowLineSpots.Add(new object[] { (float)x + 0.75f, (float)y + 0.25f, new Quaternion(1.65f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });
                     }
 
                 }
 
                 if (y == 16 && x < width - 2 && x > 1)
                 {
-                    allPowLineSpots.Add(new object[] { (float)x + 0.25f, (float)y + 0.25f, new Quaternion(0.5f, 1.0f, 0.0f, 0.0f) });//bottom
-                    allPowLineSpots.Add(new object[] { (float)x + 0.25f, (float)y + 2.25f, new Quaternion(1.65f, 1.0f, 0.0f, 0.0f) });//top
-                    allPowLineSpots.Add(new object[] { (float)x - 0.25f, (float)y + 0.25f, new Quaternion(1.65f, 1.0f, 0.0f, 0.0f) });//bot left
-                    allPowLineSpots.Add(new object[] { (float)x - 0.25f, (float)y + 2.25f, new Quaternion(0.5f, 1.0f, 0.0f, 0.0f) });//top left
-                    allPowLineSpots.Add(new object[] { (float)x + .5f, (float)y + 1.25f, new Quaternion(0.0f, 0.0f, 0.0f, 0.0f) });
-                    allPowLineSpots.Add(new object[] { (float)x + 1.0f, (float)y - 0.75f, new Quaternion(0.0f, 0.0f, 0.0f, 0.0f) });
+                    allPowLineSpots.Add(new object[] { (float)x + 0.25f, (float)y + 0.25f, new Quaternion(0.5f, 1.0f, 0.0f, 0.0f) , new int[] { 0, 0, 0, 0 }, 0});//bottom
+                    allPowLineSpots.Add(new object[] { (float)x + 0.25f, (float)y + 2.25f, new Quaternion(1.65f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });//top
+                    allPowLineSpots.Add(new object[] { (float)x - 0.25f, (float)y + 0.25f, new Quaternion(1.65f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });//bot left
+                    allPowLineSpots.Add(new object[] { (float)x - 0.25f, (float)y + 2.25f, new Quaternion(0.5f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });//top left
+                    allPowLineSpots.Add(new object[] { (float)x + .5f, (float)y + 1.25f, new Quaternion(0.0f, 0.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });
+                    allPowLineSpots.Add(new object[] { (float)x + 1.0f, (float)y - 0.75f, new Quaternion(0.0f, 0.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });
                     if (x == 2)//special case on left side
                     {
-                        allPowLineSpots.Add(new object[] { (float)x - 0.5f, (float)y + 1.25f, new Quaternion(0.0f, 1.0f, 0.0f, 0.0f) });
-                        allPowLineSpots.Add(new object[] { (float)x - 0.75f, (float)y + 0.25f, new Quaternion(1.65f, 1.0f, 0.0f, 0.0f) });
-                        allPowLineSpots.Add(new object[] { (float)x, (float)y - 0.75f, new Quaternion(0.0f, 1.0f, 0.0f, 0.0f) });
-                        allPowLineSpots.Add(new object[] { (float)x - 1.0f, (float)y - 0.75f, new Quaternion(0.0f, 1.0f, 0.0f, 0.0f) });
+                        allPowLineSpots.Add(new object[] { (float)x - 0.5f, (float)y + 1.25f, new Quaternion(0.0f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });
+                        allPowLineSpots.Add(new object[] { (float)x - 0.75f, (float)y + 0.25f, new Quaternion(1.65f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });
+                        allPowLineSpots.Add(new object[] { (float)x, (float)y - 0.75f, new Quaternion(0.0f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });
+                        allPowLineSpots.Add(new object[] { (float)x - 1.0f, (float)y - 0.75f, new Quaternion(0.0f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });
                     }
 
                     if (x == width - 3)
                     {
-                        allPowLineSpots.Add(new object[] { (float)x + 0.75f, (float)y + 0.25f, new Quaternion(1.65f, 1.0f, 0.0f, 0.0f) });
+                        allPowLineSpots.Add(new object[] { (float)x + 0.75f, (float)y + 0.25f, new Quaternion(1.65f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });
                     }
 
 
@@ -202,6 +201,74 @@ public class createPowerLines : MonoBehaviour
 
             }
         }
+    }
+
+    bool checkLegalLinePlacement(int turn, float x, float y)
+    {
+        for(int j = 0; j < allPowLineSpots.Count; j++)
+        {
+            float xCoord = (float)allPowLineSpots[j][0];
+            float yCoord = (float)allPowLineSpots[j][1];
+
+            if(x == xCoord && y == yCoord)
+            {
+                if ((int)allPowLineSpots[j][4] < 8)
+                {
+                    int[] playerLines = (int[])allPowLineSpots[j][3];
+                    if (turn == 0)
+                    {
+                        if (playerLines[0] < 4)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                    if (turn == 1)
+                    {
+                        if (playerLines[1] < 4)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                    if (turn == 2)
+                    {
+                        if (playerLines[2] < 4)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                    if (turn == 3)
+                    {
+                        if (playerLines[3] < 4)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+            }
+
+        }
+
+        return false;
     }
     void createButtons()//this calls makeButton on all of the bottoms of the hexagons
     {
@@ -246,7 +313,7 @@ public class createPowerLines : MonoBehaviour
 
                     if (topLeftX == xCoord && topLeftY == yCoord)
                     {
-                        if(P1Lines.Contains(new Vector2(xCoord,yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        if(checkLegalLinePlacement(turn, xCoord, yCoord) == false)
                         {
                             PowLineButtons[j].gameObject.SetActive(false);
                         }
@@ -259,7 +326,7 @@ public class createPowerLines : MonoBehaviour
 
                     if (topRightX == xCoord && topRightY == yCoord)
                     {
-                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        if (checkLegalLinePlacement(turn, xCoord, yCoord) == false)
                         {
                             PowLineButtons[j].gameObject.SetActive(false);
                         }
@@ -271,7 +338,7 @@ public class createPowerLines : MonoBehaviour
 
                     if (bottomX == xCoord && (Mathf.Abs(yCoord - bottomY) >= 0) && (Mathf.Abs(yCoord - bottomY) <= 0.2f))
                     {
-                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        if (checkLegalLinePlacement(turn, xCoord, yCoord) == false)
                         {
                             PowLineButtons[j].gameObject.SetActive(false);
                         }
@@ -283,8 +350,7 @@ public class createPowerLines : MonoBehaviour
 
                     if (topX == xCoord && ((yCoord - topY) >= 0) && ((yCoord - topY) <= 0.2f))
                     {
-
-                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        if (checkLegalLinePlacement(turn, xCoord, yCoord) == false)
                         {
                             PowLineButtons[j].gameObject.SetActive(false);
                         }
@@ -296,7 +362,7 @@ public class createPowerLines : MonoBehaviour
 
                     if (botLeftX == xCoord && botLeftY == yCoord)
                     {
-                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        if (checkLegalLinePlacement(turn, xCoord, yCoord) == false)
                         {
                             PowLineButtons[j].gameObject.SetActive(false);
                         }
@@ -308,7 +374,7 @@ public class createPowerLines : MonoBehaviour
 
                     if (botRightX == xCoord && botRightY == yCoord)
                     {
-                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        if (checkLegalLinePlacement(turn, xCoord, yCoord) == false)
                         {
                             PowLineButtons[j].gameObject.SetActive(false);
                         }
@@ -359,7 +425,7 @@ public class createPowerLines : MonoBehaviour
 
                     if (topLeftX == xCoord && topLeftY == yCoord)
                     {
-                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        if (checkLegalLinePlacement(turn, xCoord, yCoord) == false)
                         {
                             PowLineButtons[j].gameObject.SetActive(false);
                         }
@@ -372,7 +438,7 @@ public class createPowerLines : MonoBehaviour
 
                     if (topRightX == xCoord && topRightY == yCoord)
                     {
-                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        if (checkLegalLinePlacement(turn, xCoord, yCoord) == false)
                         {
                             PowLineButtons[j].gameObject.SetActive(false);
                         }
@@ -384,7 +450,7 @@ public class createPowerLines : MonoBehaviour
 
                     if (bottomX == xCoord && (Mathf.Abs(yCoord - bottomY) >= 0) && (Mathf.Abs(yCoord - bottomY) <= 0.2f))
                     {
-                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        if (checkLegalLinePlacement(turn, xCoord, yCoord) == false)
                         {
                             PowLineButtons[j].gameObject.SetActive(false);
                         }
@@ -397,7 +463,7 @@ public class createPowerLines : MonoBehaviour
                     if (topX == xCoord && ((yCoord - topY) >= 0) && ((yCoord - topY) <= 0.2f))
                     {
 
-                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        if (checkLegalLinePlacement(turn, xCoord, yCoord) == false)
                         {
                             PowLineButtons[j].gameObject.SetActive(false);
                         }
@@ -409,7 +475,7 @@ public class createPowerLines : MonoBehaviour
 
                     if (botLeftX == xCoord && botLeftY == yCoord)
                     {
-                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        if (checkLegalLinePlacement(turn, xCoord, yCoord) == false)
                         {
                             PowLineButtons[j].gameObject.SetActive(false);
                         }
@@ -421,7 +487,7 @@ public class createPowerLines : MonoBehaviour
 
                     if (botRightX == xCoord && botRightY == yCoord)
                     {
-                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        if (checkLegalLinePlacement(turn, xCoord, yCoord) == false)
                         {
                             PowLineButtons[j].gameObject.SetActive(false);
                         }
@@ -470,7 +536,7 @@ public class createPowerLines : MonoBehaviour
 
                     if (topLeftX == xCoord && topLeftY == yCoord)
                     {
-                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        if (checkLegalLinePlacement(turn, xCoord, yCoord) == false)
                         {
                             PowLineButtons[j].gameObject.SetActive(false);
                         }
@@ -483,7 +549,7 @@ public class createPowerLines : MonoBehaviour
 
                     if (topRightX == xCoord && topRightY == yCoord)
                     {
-                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        if (checkLegalLinePlacement(turn, xCoord, yCoord) == false)
                         {
                             PowLineButtons[j].gameObject.SetActive(false);
                         }
@@ -495,7 +561,7 @@ public class createPowerLines : MonoBehaviour
 
                     if (bottomX == xCoord && (Mathf.Abs(yCoord - bottomY) >= 0) && (Mathf.Abs(yCoord - bottomY) <= 0.2f))
                     {
-                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        if (checkLegalLinePlacement(turn, xCoord, yCoord) == false)
                         {
                             PowLineButtons[j].gameObject.SetActive(false);
                         }
@@ -508,7 +574,7 @@ public class createPowerLines : MonoBehaviour
                     if (topX == xCoord && ((yCoord - topY) >= 0) && ((yCoord - topY) <= 0.2f))
                     {
 
-                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        if (checkLegalLinePlacement(turn, xCoord, yCoord) == false)
                         {
                             PowLineButtons[j].gameObject.SetActive(false);
                         }
@@ -520,7 +586,7 @@ public class createPowerLines : MonoBehaviour
 
                     if (botLeftX == xCoord && botLeftY == yCoord)
                     {
-                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        if (checkLegalLinePlacement(turn, xCoord, yCoord) == false)
                         {
                             PowLineButtons[j].gameObject.SetActive(false);
                         }
@@ -532,7 +598,7 @@ public class createPowerLines : MonoBehaviour
 
                     if (botRightX == xCoord && botRightY == yCoord)
                     {
-                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        if (checkLegalLinePlacement(turn, xCoord, yCoord) == false)
                         {
                             PowLineButtons[j].gameObject.SetActive(false);
                         }
@@ -581,7 +647,7 @@ public class createPowerLines : MonoBehaviour
 
                     if (topLeftX == xCoord && topLeftY == yCoord)
                     {
-                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        if (checkLegalLinePlacement(turn, xCoord, yCoord) == false)
                         {
                             PowLineButtons[j].gameObject.SetActive(false);
                         }
@@ -594,7 +660,7 @@ public class createPowerLines : MonoBehaviour
 
                     if (topRightX == xCoord && topRightY == yCoord)
                     {
-                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        if (checkLegalLinePlacement(turn, xCoord, yCoord) == false)
                         {
                             PowLineButtons[j].gameObject.SetActive(false);
                         }
@@ -606,7 +672,7 @@ public class createPowerLines : MonoBehaviour
 
                     if (bottomX == xCoord && (Mathf.Abs(yCoord - bottomY) >= 0) && (Mathf.Abs(yCoord - bottomY) <= 0.2f))
                     {
-                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        if (checkLegalLinePlacement(turn, xCoord, yCoord) == false)
                         {
                             PowLineButtons[j].gameObject.SetActive(false);
                         }
@@ -619,7 +685,7 @@ public class createPowerLines : MonoBehaviour
                     if (topX == xCoord && ((yCoord - topY) >= 0) && ((yCoord - topY) <= 0.2f))
                     {
 
-                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        if (checkLegalLinePlacement(turn, xCoord, yCoord) == false)
                         {
                             PowLineButtons[j].gameObject.SetActive(false);
                         }
@@ -631,7 +697,7 @@ public class createPowerLines : MonoBehaviour
 
                     if (botLeftX == xCoord && botLeftY == yCoord)
                     {
-                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        if (checkLegalLinePlacement(turn, xCoord, yCoord) == false)
                         {
                             PowLineButtons[j].gameObject.SetActive(false);
                         }
@@ -643,7 +709,7 @@ public class createPowerLines : MonoBehaviour
 
                     if (botRightX == xCoord && botRightY == yCoord)
                     {
-                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        if (checkLegalLinePlacement(turn, xCoord, yCoord) == false)
                         {
                             PowLineButtons[j].gameObject.SetActive(false);
                         }
@@ -696,7 +762,7 @@ public class createPowerLines : MonoBehaviour
 
                     if (topX == xCoord && topY == yCoord)
                     {
-                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        if (checkLegalLinePlacement(playerturn, xCoord, yCoord) == false)
                         {
                             PowLineButtons[j].gameObject.SetActive(false);
                         }
@@ -709,7 +775,7 @@ public class createPowerLines : MonoBehaviour
 
                     if (topL1X == xCoord && topL1Y == yCoord)
                     {
-                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        if (checkLegalLinePlacement(playerturn, xCoord, yCoord) == false)
                         {
                             PowLineButtons[j].gameObject.SetActive(false);
                         }
@@ -723,7 +789,7 @@ public class createPowerLines : MonoBehaviour
 
                     if (topRX == xCoord && topRY == yCoord)
                     {
-                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        if (checkLegalLinePlacement(playerturn, xCoord, yCoord) == false)
                         {
                             PowLineButtons[j].gameObject.SetActive(false);
                         }
@@ -735,7 +801,7 @@ public class createPowerLines : MonoBehaviour
 
                     if (bot1X == xCoord && bot1Y == yCoord)
                     {
-                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        if (checkLegalLinePlacement(playerturn, xCoord, yCoord) == false)
                         {
                             PowLineButtons[j].gameObject.SetActive(false);
                         }
@@ -747,7 +813,7 @@ public class createPowerLines : MonoBehaviour
 
                     if (bot2X == xCoord && bot2Y == yCoord)
                     {
-                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        if (checkLegalLinePlacement(playerturn, xCoord, yCoord) == false)
                         {
                             PowLineButtons[j].gameObject.SetActive(false);
                         }
@@ -760,7 +826,7 @@ public class createPowerLines : MonoBehaviour
 
                     if (topL2X == xCoord && topL2Y == yCoord)
                     {
-                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        if (checkLegalLinePlacement(playerturn, xCoord, yCoord) == false)
                         {
                             PowLineButtons[j].gameObject.SetActive(false);
                         }
@@ -804,7 +870,7 @@ public class createPowerLines : MonoBehaviour
 
                     if (topX == xCoord && topY == yCoord)
                     {
-                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        if (checkLegalLinePlacement(playerturn, xCoord, yCoord) == false)
                         {
                             PowLineButtons[j].gameObject.SetActive(false);
                         }
@@ -817,7 +883,7 @@ public class createPowerLines : MonoBehaviour
 
                     if (topL1X == xCoord && topL1Y == yCoord)
                     {
-                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        if (checkLegalLinePlacement(playerturn, xCoord, yCoord) == false)
                         {
                             PowLineButtons[j].gameObject.SetActive(false);
                         }
@@ -831,7 +897,7 @@ public class createPowerLines : MonoBehaviour
 
                     if (topRX == xCoord && topRY == yCoord)
                     {
-                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        if (checkLegalLinePlacement(playerturn, xCoord, yCoord) == false)
                         {
                             PowLineButtons[j].gameObject.SetActive(false);
                         }
@@ -843,7 +909,7 @@ public class createPowerLines : MonoBehaviour
 
                     if (bot1X == xCoord && bot1Y == yCoord)
                     {
-                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        if (checkLegalLinePlacement(playerturn, xCoord, yCoord) == false)
                         {
                             PowLineButtons[j].gameObject.SetActive(false);
                         }
@@ -855,7 +921,7 @@ public class createPowerLines : MonoBehaviour
 
                     if (bot2X == xCoord && bot2Y == yCoord)
                     {
-                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        if (checkLegalLinePlacement(playerturn, xCoord, yCoord) == false)
                         {
                             PowLineButtons[j].gameObject.SetActive(false);
                         }
@@ -868,7 +934,7 @@ public class createPowerLines : MonoBehaviour
 
                     if (topL2X == xCoord && topL2Y == yCoord)
                     {
-                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        if (checkLegalLinePlacement(playerturn, xCoord, yCoord) == false)
                         {
                             PowLineButtons[j].gameObject.SetActive(false);
                         }
@@ -912,7 +978,7 @@ public class createPowerLines : MonoBehaviour
 
                     if (topX == xCoord && topY == yCoord)
                     {
-                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        if (checkLegalLinePlacement(playerturn, xCoord, yCoord) == false)
                         {
                             PowLineButtons[j].gameObject.SetActive(false);
                         }
@@ -925,7 +991,7 @@ public class createPowerLines : MonoBehaviour
 
                     if (topL1X == xCoord && topL1Y == yCoord)
                     {
-                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        if (checkLegalLinePlacement(playerturn, xCoord, yCoord) == false)
                         {
                             PowLineButtons[j].gameObject.SetActive(false);
                         }
@@ -939,7 +1005,7 @@ public class createPowerLines : MonoBehaviour
 
                     if (topRX == xCoord && topRY == yCoord)
                     {
-                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        if (checkLegalLinePlacement(playerturn, xCoord, yCoord) == false)
                         {
                             PowLineButtons[j].gameObject.SetActive(false);
                         }
@@ -951,7 +1017,7 @@ public class createPowerLines : MonoBehaviour
 
                     if (bot1X == xCoord && bot1Y == yCoord)
                     {
-                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        if (checkLegalLinePlacement(playerturn, xCoord, yCoord) == false)
                         {
                             PowLineButtons[j].gameObject.SetActive(false);
                         }
@@ -963,7 +1029,7 @@ public class createPowerLines : MonoBehaviour
 
                     if (bot2X == xCoord && bot2Y == yCoord)
                     {
-                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        if (checkLegalLinePlacement(playerturn, xCoord, yCoord) == false)
                         {
                             PowLineButtons[j].gameObject.SetActive(false);
                         }
@@ -976,7 +1042,7 @@ public class createPowerLines : MonoBehaviour
 
                     if (topL2X == xCoord && topL2Y == yCoord)
                     {
-                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        if (checkLegalLinePlacement(playerturn, xCoord, yCoord) == false)
                         {
                             PowLineButtons[j].gameObject.SetActive(false);
                         }
@@ -1020,7 +1086,7 @@ public class createPowerLines : MonoBehaviour
 
                     if (topX == xCoord && topY == yCoord)
                     {
-                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        if (checkLegalLinePlacement(playerturn, xCoord, yCoord) == false)
                         {
                             PowLineButtons[j].gameObject.SetActive(false);
                         }
@@ -1033,7 +1099,7 @@ public class createPowerLines : MonoBehaviour
 
                     if (topL1X == xCoord && topL1Y == yCoord)
                     {
-                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        if (checkLegalLinePlacement(playerturn, xCoord, yCoord) == false)
                         {
                             PowLineButtons[j].gameObject.SetActive(false);
                         }
@@ -1047,7 +1113,7 @@ public class createPowerLines : MonoBehaviour
 
                     if (topRX == xCoord && topRY == yCoord)
                     {
-                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        if (checkLegalLinePlacement(playerturn, xCoord, yCoord) == false)
                         {
                             PowLineButtons[j].gameObject.SetActive(false);
                         }
@@ -1059,7 +1125,7 @@ public class createPowerLines : MonoBehaviour
 
                     if (bot1X == xCoord && bot1Y == yCoord)
                     {
-                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        if (checkLegalLinePlacement(playerturn, xCoord, yCoord) == false)
                         {
                             PowLineButtons[j].gameObject.SetActive(false);
                         }
@@ -1071,7 +1137,7 @@ public class createPowerLines : MonoBehaviour
 
                     if (bot2X == xCoord && bot2Y == yCoord)
                     {
-                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        if (checkLegalLinePlacement(playerturn, xCoord, yCoord) == false)
                         {
                             PowLineButtons[j].gameObject.SetActive(false);
                         }
@@ -1084,7 +1150,7 @@ public class createPowerLines : MonoBehaviour
 
                     if (topL2X == xCoord && topL2Y == yCoord)
                     {
-                        if (P1Lines.Contains(new Vector2(xCoord, yCoord)) || P2Lines.Contains(new Vector2(xCoord, yCoord)) || P3Lines.Contains(new Vector2(xCoord, yCoord)) || P4Lines.Contains(new Vector2(xCoord, yCoord)))
+                        if (checkLegalLinePlacement(playerturn, xCoord, yCoord) == false)
                         {
                             PowLineButtons[j].gameObject.SetActive(false);
                         }
@@ -1116,8 +1182,8 @@ public class createPowerLines : MonoBehaviour
         {
             mapGen.updateBuilt(x,y);
             makePowerLine((int)scoreMan.turn, x, y, rotation);
-            Debug.Log("x val " + x);
-            Debug.Log("y val " + y);
+            //Debug.Log("x val " + x);
+            //Debug.Log("y val " + y);
         }
         else
         {
@@ -1133,52 +1199,166 @@ public class createPowerLines : MonoBehaviour
         //ren1.enabled = false;
 
     }
+    bool checkMaxPowerLines(int playerTurn, float x, float y)
+    {
+        for (int i = 0; i < allPowLineSpots.Count; i++)
+        {
+            if (x == (float)allPowLineSpots[i][0] && y == (float)allPowLineSpots[i][1])
+            {
+                if((int)allPowLineSpots[i][4] < 8)
+                {
+                    if(playerTurn == 0)
+                    {
+                        int[] currP1Lines = (int[])allPowLineSpots[i][3];
+                        if ( currP1Lines[playerTurn] < 4)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                    if (playerTurn == 1)
+                    {
+                        int[] currP2Lines = (int[])allPowLineSpots[i][3];
+                        if (currP2Lines[playerTurn] < 4)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                    if (playerTurn == 2)
+                    {
+                        int[] currP3Lines = (int[])allPowLineSpots[i][3];
+                        if (currP3Lines[playerTurn] < 4)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                    if (playerTurn == 3)
+                    {
+                        int[] currP4Lines = (int[])allPowLineSpots[i][3];
+                        if (currP4Lines[playerTurn] < 4)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+        return false;
+    }
 
+    void updateNumPowLines(int playerTurn, float x, float y)
+    {
+        for (int i = 0; i < allPowLineSpots.Count; i++)
+        {
+            if (x == (float)allPowLineSpots[i][0] && y == (float)allPowLineSpots[i][1])
+            {
+                if (playerTurn == 0)
+                {
+                    int[] currP1Lines = (int[])allPowLineSpots[i][3];
+                    currP1Lines[playerTurn] += 1;
+                    allPowLineSpots[i][3] = (int[])currP1Lines.Clone();
+
+                    int[] hmm = (int[])allPowLineSpots[i][3];
+                    Debug.Log("num p1 lines " + hmm[0]);
+                    
+                }
+                if (playerTurn == 1)
+                {
+                    int[] currP2Lines = (int[])allPowLineSpots[i][3];
+                    currP2Lines[playerTurn] += 1;
+                    allPowLineSpots[i][3] = (int[])currP2Lines.Clone();
+                }
+                if (playerTurn == 2)
+                {
+                    int[] currP3Lines = (int[])allPowLineSpots[i][3];
+                    currP3Lines[playerTurn] += 1;
+                    allPowLineSpots[i][3] = (int[])currP3Lines.Clone();
+                }
+                if (playerTurn == 3)
+                {
+                    int[] currP4Lines = (int[])allPowLineSpots[i][3];
+                    currP4Lines[playerTurn] += 1;
+                    allPowLineSpots[i][3] = (int[])currP4Lines.Clone();
+                }
+
+                int temp = (int)allPowLineSpots[i][4];
+                temp += 1;
+                allPowLineSpots[i][4] = temp;
+                Debug.Log("total " + allPowLineSpots[i][4]);
+            }
+        }
+       
+    }
     void makePowerLine(int playerTurn, float x, float y, Quaternion rotation)
     {
         GameObject powLine = new GameObject();
+        bool check = checkMaxPowerLines(playerTurn, x, y);
+        if(check == true)
+        {
+            if (playerTurn == 0)
+            {
+                powLine = player1PowerLine;
+            }
+            if (playerTurn == 1)
+            {
+                powLine = player2PowerLine;
+            }
+            if (playerTurn == 2)
+            {
+                powLine = player3PowerLine;
+            }
+            if (playerTurn == 3)
+            {
+                powLine = player4PowerLine;
+            }
+            GameObject TempGo = Instantiate(powLine);
 
-        if (playerTurn == 0)
-        {
-            powLine = player1PowerLine;
-        }
-        if (playerTurn == 1)
-        {
-            powLine = player2PowerLine;
-        }
-        if (playerTurn == 2)
-        {
-            powLine = player3PowerLine;
-        }
-        if (playerTurn == 3)
-        {
-            powLine = player4PowerLine;
-        }
-        GameObject TempGo = Instantiate(powLine);
+            TempGo.transform.position = new Vector2(x * tileXOffset, y * tileYOffset / 2 - .5f);
+            TempGo.transform.rotation = rotation;
 
-        TempGo.transform.position = new Vector2(x * tileXOffset, y * tileYOffset / 2 - .5f);
-        TempGo.transform.rotation = rotation;
+            var ren = TempGo.GetComponent<SpriteRenderer>();
+            ren.sortingOrder = 1;
+            ren.enabled = true;
 
-        var ren = TempGo.GetComponent<SpriteRenderer>();
-        ren.sortingOrder = 1;
-        ren.enabled = true;
+            if (playerTurn == 0)
+            {
+                P1Lines.Add(new Vector2(x, y));
+            }
+            if (playerTurn == 1)
+            {
+                P2Lines.Add(new Vector2(x, y));
+            }
+            if (playerTurn == 2)
+            {
+                P3Lines.Add(new Vector2(x, y));
+            }
+            if (playerTurn == 3)
+            {
+                P4Lines.Add(new Vector2(x, y));
+            }
 
-        if (playerTurn == 0)
-        {
-            P1Lines.Add(new Vector2(x,y));
+            updateNumPowLines(playerTurn, x, y);
         }
-        if (playerTurn == 1)
-        { 
-            P2Lines.Add(new Vector2(x, y));
-        }
-        if (playerTurn == 2)
-        {
-            P3Lines.Add(new Vector2(x, y));
-        }
-        if (playerTurn == 3)
-        {
-            P4Lines.Add(new Vector2(x, y));
-        }
+
     }
     void makeButton(float x, float y, Quaternion rotation)//this makes buttons to build factories on all of the hex above it
     {

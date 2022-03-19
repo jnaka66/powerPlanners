@@ -14,6 +14,7 @@ public class HexTileMapGenerator : MonoBehaviour
     public List<Vector3> buildNatural = new List<Vector3>();
     public List<Vector3> buildNuclear = new List<Vector3>();
     public List<Vector3> buildSolar = new List<Vector3>();
+    public List<Vector2> builtTowns = new List<Vector2>();
 
     // int[] locationsBuilt = new bool[170];
 
@@ -173,6 +174,7 @@ public class HexTileMapGenerator : MonoBehaviour
         built.Add(buildAt);
         float x = buildAt[0];
         float y = buildAt[1];
+        builtTowns.Add(new Vector2(x, y));
         GameObject TempGo = Instantiate(city);
         TempGo.AddComponent<BoxCollider>();
         TempGo.transform.position = new Vector2(x * tileXOffset,y * tileYOffset/2 -.5f);

@@ -22,6 +22,7 @@ public class ScoreManager : MonoBehaviour
     }
 
     public static ScoreManager instance;
+    public createPowerLines cpl;
 
     //dice stuff
     // Dice dice1;
@@ -52,6 +53,7 @@ public class ScoreManager : MonoBehaviour
 
     //build class
     public HexTileMapGenerator mapGen0;
+    public createPowerLines cpl0;
     public ScoreManager scoreMan0;
     //format for each entry is <x,y,playerNum>
     public List<Vector3> builtCoal0;
@@ -62,6 +64,7 @@ public class ScoreManager : MonoBehaviour
     void Awake()
     {
         mapGen0 = GameObject.FindObjectOfType<HexTileMapGenerator>();
+        cpl0 = GameObject.FindObjectOfType<createPowerLines>();
         scoreMan0 = GameObject.FindObjectOfType<ScoreManager>();
         builtCoal0=mapGen0.buildCoal;
         builtSolar0=mapGen0.buildSolar;
@@ -185,7 +188,7 @@ public class ScoreManager : MonoBehaviour
 
         playerList[(int)turn].money += defaultEarnings;
         turnCount++;
-        Debug.Log("TurnCount= "+turnCount);
+        //Debug.Log("TurnCount= "+turnCount);
         if(turnCount>3){
             // Debug.Log("DiceRoll");
             // dice1.roll();
@@ -344,6 +347,8 @@ public class ScoreManager : MonoBehaviour
                 eventRoll="bruh";
                 break;
         }
+
+        cpl0.wreckLines(totalRoll, eventRoll);
         // Show final dice value in Console
         
         // Debug.Log("Dice1= "+finalSide1);

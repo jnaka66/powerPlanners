@@ -90,7 +90,10 @@ public class createPowerLines : MonoBehaviour
     }
 
     bool buildSelected = false;
-
+   /* private void Update()
+    {
+        Debug.Log("helloooo");
+    }*/
     public void spawnButtons()
     {
         if (!buildSelected)
@@ -1602,6 +1605,7 @@ public class createPowerLines : MonoBehaviour
             }
             //Debug.Log("x val " + x);
             //Debug.Log("y val " + y);
+            Debug.Log(P1Paths.Count);
         }
         else
         {
@@ -2267,6 +2271,8 @@ public class createPowerLines : MonoBehaviour
             storePlayerPowLines(playerTurn, x, y);
             
             updateNumPowLines(playerTurn, x, y);
+
+            
         }
 
     }

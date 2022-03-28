@@ -19,7 +19,7 @@ public class onHoverScript : MonoBehaviour
     public int happiness=0;
     public int delivered=0;
     public GameObject parent;
-
+    public int production = 0;
     void Start(){
         txt = new GameObject("statsText");//the text for the stats
         txt.transform.SetParent(parent.GetComponent<Transform>());
@@ -40,21 +40,25 @@ public class onHoverScript : MonoBehaviour
             txtmsh.text += "\nHappiness: "+happiness;
         }
         if(objType=="coal"){
+            production = 100;
             txtmsh.text = "Coal Plant";
             txtmsh.text += "\nProd: 100MW";
             txtmsh.text += "\nDelivered: "+delivered;
         }
         if(objType=="nuclear"){
+            production = 300;
             txtmsh.text = "Nuclear Plant";
             txtmsh.text += "\nProd: 300MW";
             txtmsh.text += "\nDelivered: "+delivered;
         }
         if(objType=="natural"){
+            production = 150;
             txtmsh.text = "Natural Gas";
             txtmsh.text += "\nProd: 150MW";
             txtmsh.text += "\nDelivered: "+delivered;
         }
         if(objType=="solar"){
+            production = 200;
             txtmsh.text = "Solar Plant";
             txtmsh.text += "\nProd: 200MW";
             txtmsh.text += "\nDelivered: "+delivered;

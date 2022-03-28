@@ -176,6 +176,7 @@ public class HexTileMapGenerator : MonoBehaviour
         float y = buildAt[1];
         builtTowns.Add(new Vector2(x, y));
         GameObject TempGo = Instantiate(city);
+        TempGo.name = "Town " + x + "," + y;
         TempGo.AddComponent<BoxCollider>();
         TempGo.transform.position = new Vector2(x * tileXOffset,y * tileYOffset/2 -.5f);
         var ren = TempGo.GetComponent<SpriteRenderer>();

@@ -1179,6 +1179,13 @@ public class createPowerLines : MonoBehaviour
         {
             P4Lines.Add(new Vector2(x, y));
         }
+        TempGo.AddComponent<BoxCollider>();
+        TempGo.AddComponent<onHoverScript>();
+        var hover = TempGo.GetComponent<onHoverScript>();
+        hover.location = new Vector2(x,y);//pass the location
+        hover.objType = "powerLine";//and type
+        hover.parent = TempGo;
+        hover.rotation = rotation;
     }
     void makeButton(float x, float y, Quaternion rotation)//this makes buttons to build factories on all of the hex above it
     {

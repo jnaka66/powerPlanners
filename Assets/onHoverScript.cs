@@ -19,30 +19,47 @@ public class onHoverScript : MonoBehaviour
     public int happiness=0;
     public int delivered=0;
     public GameObject parent;
-    public List<int> owners;
-    public List<int> tiers;
     public Quaternion rotation;
+    public List<object[]> allPowLineSpots;
 
     void Start(){
         if(objType=="powerLine"){
-            txt = new GameObject("powerLine "+ location[0]+","+location[1]+" "+"statsText");//the text for the stats
+            //get info about spot
             float x = location[0];
             float y = location[1];
+            createPowerLines cpl = GameObject.FindObjectOfType<createPowerLines>();
+            allPowLineSpots = cpl.allPowLineSpots;
+            object[] spot;
+            for(int i=0;i<allPowLineSpots.Count;i++){
+                if((float)allPowLineSpots[i][0]==x && (float)allPowLineSpots[i][1]==y){
+                    spot = allPowLineSpots[i];
+                    Debug.Log(spot[4]);
+                    break;
+                }
+            }
+            txt = new GameObject("powerLine "+ location[0]+","+location[1]+" "+"statsText");//the text for the stats
+            
             Transform Transform = txt.GetComponent<Transform>();
             Vector2 Pos = new Vector2(x * tileXOffset+1,y * tileYOffset/2 -.5f);
-            Transform.position = Pos;
-
+            Vector2 txtPos = Pos+new Vector2(0,0.7f);
+            Transform.position = txtPos;
             //set the text
             txt.AddComponent<TextMesh>();
             var txtmsh = txt.GetComponent<TextMesh>();
-            txtmsh.text = "test";
-            for(int i=0;i<8;i++){
-                
-            }
-
+            txtmsh.richText = true;
+            txtmsh.text =  "<color=#E0E300>1. Player 1-tier 1-50MW\n</color>";
+            /*
+            txtmsh.text += "2. Player 1-tier 1-50MW\n";
+            txtmsh.text += "3. Player 1-tier 1-50MW\n";
+            txtmsh.text += "4. Player 1-tier 1-50MW\n";
+            txtmsh.text += "5. Player 2-tier 2-100MW\n";
+            txtmsh.text += "6. Player 2-tier 1-50MW\n";
+            txtmsh.text += "7. Player 3-tier 1-50MW\n";
+            txtmsh.text += "8.";
             txtmsh.color = Color.red;
-            txtmsh.anchor = TextAnchor.MiddleCenter;
-            Vector2 scale = new Vector2(.05f,.05f);//large fonsize and small scale makes it look much better
+            */
+            txtmsh.anchor = TextAnchor.UpperCenter;
+            Vector2 scale = new Vector2(.017f,.017f);//large fonsize and small scale makes it look much better
             txtmsh.fontSize = 100;
             Transform.localScale = scale;
             gameObject.transform.SetParent(this.transform);

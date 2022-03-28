@@ -14,6 +14,8 @@ public class HexTileMapGenerator : MonoBehaviour
     public List<Vector3> buildNatural = new List<Vector3>();
     public List<Vector3> buildNuclear = new List<Vector3>();
     public List<Vector3> buildSolar = new List<Vector3>();
+
+    public Dictionary<string, List<Vector2>> tiles = new Dictionary<string, List<Vector2>>();
     public List<Vector2> builtTowns = new List<Vector2>();
 
     // int[] locationsBuilt = new bool[170];
@@ -78,26 +80,28 @@ public class HexTileMapGenerator : MonoBehaviour
                         GameObject TempGo = Instantiate(HexTilePrefab);
                         TempGo.transform.position = new Vector2(x * tileXOffset, y * tileYOffset);
                         SetColor(TempGo);
-                        SetTileInfo(TempGo, x, y);
                         SetText(TempGo, x, y,nums);
+                        SetTileInfo(TempGo, x * tileXOffset, y * tileYOffset);
+                        //Debug.Log("tile " + TempGo);
 
-                        
                     }
                     if ((y == 2 || y== 6)&& x > 0 && x < 9)
                     {
                         GameObject TempGo = Instantiate(HexTilePrefab);
                         TempGo.transform.position = new Vector2(x * tileXOffset, y * tileYOffset);
                         SetColor(TempGo);
-                        SetTileInfo(TempGo, x, y);
                         SetText(TempGo, x, y, nums);
+                        SetTileInfo(TempGo, x * tileXOffset, y * tileYOffset);
+                        //Debug.Log("tile " + TempGo);
                     }
                     if (y == 4)
                     {
                         GameObject TempGo = Instantiate(HexTilePrefab);
                         TempGo.transform.position = new Vector2(x * tileXOffset, y * tileYOffset);
                         SetColor(TempGo);
-                        SetTileInfo(TempGo, x, y);
                         SetText(TempGo, x, y, nums);
+                        SetTileInfo(TempGo, x * tileXOffset, y * tileYOffset);
+                        //Debug.Log("tile " + TempGo);
                     }
 
                 }
@@ -108,16 +112,18 @@ public class HexTileMapGenerator : MonoBehaviour
                         GameObject TempGo = Instantiate(HexTilePrefab);
                         TempGo.transform.position = new Vector2(x * tileXOffset+tileXOffset/2, y * tileYOffset);
                         SetColor(TempGo);
-                        SetTileInfo(TempGo, x, y);
                         SetText(TempGo, x, y, nums);
+                        SetTileInfo(TempGo, x * tileXOffset + tileXOffset / 2, y * tileYOffset);
+                        //Debug.Log("tile " + TempGo);
                     }
                     if ((y == 3 || y == 5) && x < 9)
                     {
                         GameObject TempGo = Instantiate(HexTilePrefab);
                         TempGo.transform.position = new Vector2(x * tileXOffset+tileXOffset/2, y * tileYOffset);
                         SetColor(TempGo);
-                        SetTileInfo(TempGo, x, y);
                         SetText(TempGo, x, y, nums);
+                        SetTileInfo(TempGo, x * tileXOffset + tileXOffset / 2, y * tileYOffset);
+                        //Debug.Log("tile " + TempGo);
                     }
                 }
                 
@@ -189,11 +195,44 @@ public class HexTileMapGenerator : MonoBehaviour
         ren.enabled = true;
         hover.parent = TempGo;
     }
-    void SetTileInfo(GameObject go, int x, int y)
+    void SetTileInfo(GameObject go, float x, float y)
     {
         go.transform.parent = transform;
-        go.name = x.ToString() + "," + y.ToString();
-        
+        //go.name = x.ToString() + "," + y.ToString();
+        Color col = go.GetComponent<Renderer>().material.GetColor("_Color");
+        if (col == Color.blue)
+        {
+            go.name = "blue," + go.transform.GetChild(0).gameObject.GetComponent<TextMesh>().text;
+        }
+        else if(col == Color.green)
+        {
+            go.name = "green," + go.transform.GetChild(0).gameObject.GetComponent<TextMesh>().text;
+        }
+        else if (col == Color.gray)
+        {
+            go.name = "gray," + go.transform.GetChild(0).gameObject.GetComponent<TextMesh>().text;
+        }
+        else if (col == Color.yellow)
+        {
+            go.name = "yellow," + go.transform.GetChild(0).gameObject.GetComponent<TextMesh>().text;
+        }
+        else
+        {
+            Debug.Log("Errant color");
+        }
+        //Debug.Log(x.ToString() + ", " + y.ToString());
+        if (tiles.ContainsKey(go.name))
+        {
+            tiles[go.name].Add(new Vector2(x, y));
+        }
+        else
+        {
+            tiles.Add(go.name, new List<Vector2> { new Vector2(x, y) });
+        }
+
+        //Debug.DrawLine(new Vector2(x, y), new Vector2(x + tileXOffset/2, y + tileYOffset/2), Color.white, 30.0f, false);
+        //go.name = go.GetComponent<Renderer>().material.GetColor("_Color") + "," + go.transform.GetChild(0).gameObject.GetComponent<TextMesh>().text;
+
     }
     void SetText(GameObject go, int x, int y, string[] nums)
     {
@@ -263,6 +302,10 @@ public class HexTileMapGenerator : MonoBehaviour
     public void updateBuilt(float x, float y)
     {
         built.Add(new Vector2(x, y));        
+    }
+    public void removeBuilt(float x, float y)
+    {
+        built.Remove(new Vector2(x, y));
     }
     public List<Vector2> getBuilt()
     {
@@ -364,6 +407,20 @@ public class HexTileMapGenerator : MonoBehaviour
                 }
             }
         }
+    }
+
+    public List<Vector2> getTileCoord(int tile)
+    {
+        List<Vector2> affected_tiles = new List<Vector2>();
+        foreach (KeyValuePair<string, List<Vector2>> item in tiles)
+        {
+            if (item.Key.Split(",")[1] == tile.ToString())
+            {
+                //Debug.Log(item.Key + " " + item.Value[0].ToString());
+                affected_tiles.AddRange(item.Value);
+            }
+        }
+        return affected_tiles;
     }
     
 }

@@ -36,7 +36,6 @@ public class createPowerLines : MonoBehaviour
     List<Vector3> NaturalPlants = new List<Vector3>();
     List<Vector3> NuclearPlants = new List<Vector3>();
     List<Vector3> SolarPlants = new List<Vector3>();
-
     List<Vector2> P1Coal = new List<Vector2>();
     List<Vector2> P2Coal = new List<Vector2>();
     List<Vector2> P3Coal = new List<Vector2>();
@@ -69,6 +68,14 @@ public class createPowerLines : MonoBehaviour
     List<Vector2> P2reachedTowns = new List<Vector2>();
     List<Vector2> P3reachedTowns = new List<Vector2>();
     List<Vector2> P4reachedTowns = new List<Vector2>();
+    List<Vector2> P1LinesPos = new List<Vector2>();
+    List<Vector2> P2LinesPos = new List<Vector2>();
+    List<Vector2> P3LinesPos = new List<Vector2>();
+    List<Vector2> P4LinesPos = new List<Vector2>();
+    List<GameObject> P1sprites = new List<GameObject>();
+    List<GameObject> P2sprites = new List<GameObject>();
+    List<GameObject> P3sprites = new List<GameObject>();
+    List<GameObject> P4sprites = new List<GameObject>();
     // void Start()
     // {
     //     createButtons();
@@ -2267,9 +2274,24 @@ public class createPowerLines : MonoBehaviour
             var ren = TempGo.GetComponent<SpriteRenderer>();
             ren.sortingOrder = 1;
             ren.enabled = true;
-
             storePlayerPowLines(playerTurn, x, y);
-            
+            if (playerTurn == 0)
+            {
+                P1LinesPos.Add(new Vector2(x, y));
+            }
+            if (playerTurn == 1)
+            {
+                P2LinesPos.Add(new Vector2(x, y));
+            }
+            if (playerTurn == 2)
+            {
+                P3LinesPos.Add(new Vector2(x, y));
+            }
+            if (playerTurn == 3)
+            {
+                P4LinesPos.Add(new Vector2(x, y));
+            }
+
             updateNumPowLines(playerTurn, x, y);
 
             
@@ -2300,5 +2322,85 @@ public class createPowerLines : MonoBehaviour
             //numOfButtons++;
         }
 
+    }
+
+    public void wreckLines(int roll, string eventRoll)
+    {
+        List<Vector2> tilepos = mapGen.getTileCoord(roll);
+        //int coun = 0;
+        if (eventRoll != "sunny") {
+            foreach (Vector2 pos in tilepos)
+            {
+                for (int i = 0; i < allPowLineSpots.Count; i++)
+                {
+                    if (eventRoll == "cloudy")
+                    {
+                        //Debug.Log("cloudy");
+                    }
+                    else if (Vector2.Distance(pos, new Vector2((float)allPowLineSpots[i][0] * tileXOffset, (float)allPowLineSpots[i][1] * tileYOffset / 2 - .5f)) < 0.58843) // (pos[0] - (float)allPowLineSpots[i][0] < .89f / 2 && pos[1] - (float)allPowLineSpots[i][1] < .77f / 2)
+                    {
+                        int r = Random.Range(0, 100);
+                        bool destroy = false;
+                        if (eventRoll == "severe" && r < 75) //currently set up so that each power line has a chance of staying up in severe weather
+                        {
+                            destroy = true;
+                        }
+                        else if(eventRoll == "moderate" && r < 25)
+                        {
+                            destroy = true;
+                        }
+                        if(destroy){
+                            int index = -1;
+                            if (P1LinesPos.FindIndex(0, P1LinesPos.Count, pos => pos[0] == (float)allPowLineSpots[i][0] && pos[1] == (float)allPowLineSpots[i][1]) > -1)
+                            {
+                                index = P1LinesPos.FindIndex(0, P1LinesPos.Count, pos => pos[0] == (float)allPowLineSpots[i][0] && pos[1] == (float)allPowLineSpots[i][1]);
+                                P1LinesPos.RemoveAt(index);
+                                Destroy(P1sprites[index]);
+                                P1sprites.RemoveAt(index);
+                            }
+                            else if (P2LinesPos.FindIndex(0, P2LinesPos.Count, pos => pos[0] == (float)allPowLineSpots[i][0] && pos[1] == (float)allPowLineSpots[i][1]) > -1)
+                            {
+                                index = P2LinesPos.FindIndex(0, P2LinesPos.Count, pos => pos[0] == (float)allPowLineSpots[i][0] && pos[1] == (float)allPowLineSpots[i][1]);
+                                P2LinesPos.RemoveAt(index);
+                                Destroy(P2sprites[index]);
+                                P2sprites.RemoveAt(index);
+                            }
+                            else if (P3LinesPos.FindIndex(0, P3LinesPos.Count, pos => pos[0] == (float)allPowLineSpots[i][0] && pos[1] == (float)allPowLineSpots[i][1]) > -1)
+                            {
+                                index = P3LinesPos.FindIndex(0, P3LinesPos.Count, pos => pos[0] == (float)allPowLineSpots[i][0] && pos[1] == (float)allPowLineSpots[i][1]);
+                                P3LinesPos.RemoveAt(index);
+                                Destroy(P3sprites[index]);
+                                P3sprites.RemoveAt(index);
+                            }
+                            else if (P4LinesPos.FindIndex(0, P4LinesPos.Count, pos => pos[0] == (float)allPowLineSpots[i][0] && pos[1] == (float)allPowLineSpots[i][1]) > -1)
+                            {
+                                index = P4LinesPos.FindIndex(0, P4LinesPos.Count, pos => pos[0] == (float)allPowLineSpots[i][0] && pos[1] == (float)allPowLineSpots[i][1]);
+                                P4LinesPos.RemoveAt(index);
+                                Destroy(P4sprites[index]);
+                                P4sprites.RemoveAt(index);
+                            }
+                            if (index != -1)
+                            {
+                                mapGen.removeBuilt((float)allPowLineSpots[i][0], (float)allPowLineSpots[i][1]);
+                                int[] playerTurn = (int[])allPowLineSpots[i][3];
+                                playerTurn[(int)scoreMan.turn] -= 1;
+                                allPowLineSpots[i][3] = playerTurn;
+                                allPowLineSpots[i][4] = (int)allPowLineSpots[i][4] - 1;
+                                //Debug.Log("destroy");
+                            }
+                        }
+                        //Debug.Log(allPowLineSpots[i][0].ToString() + " " + allPowLineSpots[i][1].ToString());
+                        //Debug.Log(pos.ToString());
+                        //Debug.Log(Vector2.Distance(pos, new Vector2((float)allPowLineSpots[i][0], (float)allPowLineSpots[i][1])));
+                        //Debug.DrawLine(pos, new Vector2((float)allPowLineSpots[i][0] * tileXOffset, (float)allPowLineSpots[i][1] * tileYOffset / 2 - .5f), Color.white, 30.0f, false);
+                        //coun++;
+                    }
+                    //Debug.DrawLine(new Vector2(0,0), new Vector2((float)allPowLineSpots[i][0]* tileXOffset, (float)allPowLineSpots[i][1] * tileYOffset / 2 - .5f), Color.white, 30.0f, false);
+                    //x* tileXOffset, y *tileYOffset / 2 - .5f
+                }
+                //Debug.Log(coun);
+                //coun = 0;
+            }
+        }
     }
 }

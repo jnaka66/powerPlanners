@@ -319,7 +319,64 @@ public class createPowerLines : MonoBehaviour
         }
         if (playerTurn == 2)
         {
+<<<<<<< Updated upstream
             powLine = player3PowerLine;
+=======
+            if (playerTurn == 0)
+            {
+                powLine = player1PowerLine;
+            }
+            if (playerTurn == 1)
+            {
+                powLine = player2PowerLine;
+            }
+            if (playerTurn == 2)
+            {
+                powLine = player3PowerLine;
+            }
+            if (playerTurn == 3)
+            {
+                powLine = player4PowerLine;
+            }
+
+            GameObject TempGo = Instantiate(powLine);
+            TempGo.name = "PLine"+playerTurn;
+            TempGo.transform.position = new Vector2(x * tileXOffset, y * tileYOffset / 2 - .5f);
+            // GameObject dispLine = new GameObject();
+            // dispLine.name = "test"+playerTurn;
+            TempGo.transform.rotation = rotation;
+
+            var ren = TempGo.GetComponent<SpriteRenderer>();
+            ren.sortingOrder = 1;
+            ren.enabled = true;
+
+            if (playerTurn == 0)
+            {
+                P1Lines.Add(new Vector2(x, y));
+            }
+            if (playerTurn == 1)
+            {
+                P2Lines.Add(new Vector2(x, y));
+            }
+            if (playerTurn == 2)
+            {
+                P3Lines.Add(new Vector2(x, y));
+            }
+            if (playerTurn == 3)
+            {
+                P4Lines.Add(new Vector2(x, y));
+            }
+
+            updateNumPowLines(playerTurn, x, y);
+
+            GameObject dispLine = new GameObject();
+            dispLine.AddComponent<BoxCollider>();
+            dispLine.AddComponent<onHoverScript>();
+            var hover= dispLine.GetComponent<onHoverScript>();
+            hover.location = new Vector2(x,y);//pass the location
+            hover.objType = "powline";//and type
+            hover.parent = dispLine;
+>>>>>>> Stashed changes
         }
         if (playerTurn == 3)
         {

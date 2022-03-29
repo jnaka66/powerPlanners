@@ -53,10 +53,12 @@ public class createPowerLines : MonoBehaviour
     List<Vector2> P3Solar = new List<Vector2>();
     List<Vector2> P4Solar = new List<Vector2>();
 
+
     public List<Quaternion> P1Lines = new List<Quaternion>();
     public List<Quaternion> P2Lines = new List<Quaternion>();
     public List<Quaternion> P3Lines = new List<Quaternion>();
     public List<Quaternion> P4Lines = new List<Quaternion>();
+
     List<Vector2> towns = new List<Vector2>();
 
     List<List<Quaternion>> P1Paths = new List<List<Quaternion>>();
@@ -1693,7 +1695,6 @@ public class createPowerLines : MonoBehaviour
         }
         return false;
     }
-
     void updateNumPowLines(int playerTurn, float x, float y)
     {
         for (int i = 0; i < allPowLineSpots.Count; i++)
@@ -1705,117 +1706,25 @@ public class createPowerLines : MonoBehaviour
                     int[] currP1Lines = (int[])allPowLineSpots[i][3];
                     currP1Lines[playerTurn] += 1;
                     allPowLineSpots[i][3] = (int[])currP1Lines.Clone();
-                    /*
-                    if(((int[])allPowLineSpots[i][3])[0] >1){
-                        GameObject dest1 = GameObject.Find("orangeLine "+x+","+y);
-                        GameObject.Destroy(dest1.GetComponent<BoxCollider>()); 
-
-                        //GameObject.Destroy(dest);
-                        dest1 = GameObject.Find("powerLine "+x+","+y+" statsText");
-                        GameObject.Destroy(dest1);
-                        dest1 = GameObject.Find("powerLine "+x+","+y+" statsBackground");
-                        GameObject.Destroy(dest1);
-                    }
-                    GameObject dest = GameObject.Find("yellowblackpattern "+x+","+y);
-                    if(dest != null){
-                        GameObject.Destroy(dest.GetComponent<BoxCollider>());
-                    }                        
-                    dest = GameObject.Find("whiteLine "+x+","+y);
-                    if(dest != null){
-                        GameObject.Destroy(dest.GetComponent<BoxCollider>());
-                    }       
-                    dest = GameObject.Find("redLine "+x+","+y);
-                    if(dest != null){
-                        GameObject.Destroy(dest.GetComponent<BoxCollider>());
-                    }      
-                    */
+                    
                 }
                 if (playerTurn == 1)
                 {
                     int[] currP2Lines = (int[])allPowLineSpots[i][3];
                     currP2Lines[playerTurn] += 1;
                     allPowLineSpots[i][3] = (int[])currP2Lines.Clone();
-                    /*
-                    if(((int[])allPowLineSpots[i][3])[1] >1){
-                        GameObject dest1 = GameObject.Find("yellowblackpattern "+x+","+y);
-                        GameObject.Destroy(dest1.GetComponent<BoxCollider>());
-                        
-                        dest1 = GameObject.Find("powerLine "+x+","+y+" statsText");
-                        GameObject.Destroy(dest1);
-                        dest1 = GameObject.Find("powerLine "+x+","+y+" statsBackground");
-                        GameObject.Destroy(dest1);
-                    }
-                        GameObject dest = GameObject.Find("orangeLine "+x+","+y);
-                        if(dest != null){
-                            GameObject.Destroy(dest.GetComponent<BoxCollider>());
-                        }                        
-                        dest = GameObject.Find("whiteLine "+x+","+y);
-                        if(dest != null){
-                            GameObject.Destroy(dest.GetComponent<BoxCollider>());
-                        }       
-                        dest = GameObject.Find("redLine "+x+","+y);
-                        if(dest != null){
-                            GameObject.Destroy(dest.GetComponent<BoxCollider>());
-                        }   
-                        */
                 }
                 if (playerTurn == 2)
                 {
                     int[] currP3Lines = (int[])allPowLineSpots[i][3];
                     currP3Lines[playerTurn] += 1;
                     allPowLineSpots[i][3] = (int[])currP3Lines.Clone();
-                    /*
-                    if(((int[])allPowLineSpots[i][3])[2] >1){
-                        GameObject dest1 = GameObject.Find("whiteLine "+x+","+y);
-                        GameObject.Destroy(dest1.GetComponent<BoxCollider>());
-                        
-                        dest1 = GameObject.Find("powerLine "+x+","+y+" statsText");
-                        GameObject.Destroy(dest1);
-                        dest1 = GameObject.Find("powerLine "+x+","+y+" statsBackground");
-                        GameObject.Destroy(dest1);
-                    }
-                        GameObject dest = GameObject.Find("orangeLine "+x+","+y);
-                        if(dest != null){
-                            GameObject.Destroy(dest.GetComponent<BoxCollider>());
-                        }                        
-                        dest = GameObject.Find("yellowblackpattern "+x+","+y);
-                        if(dest != null){
-                            GameObject.Destroy(dest.GetComponent<BoxCollider>());
-                        }       
-                        dest = GameObject.Find("redLine "+x+","+y);
-                        if(dest != null){
-                            GameObject.Destroy(dest.GetComponent<BoxCollider>());
-                        }   
-                        */
                 }
                 if (playerTurn == 3)
                 {
                     int[] currP4Lines = (int[])allPowLineSpots[i][3];
                     currP4Lines[playerTurn] += 1;
                     allPowLineSpots[i][3] = (int[])currP4Lines.Clone();
-                    /*
-                    if(((int[])allPowLineSpots[i][3])[3] >1){
-                        GameObject dest1 = GameObject.Find("redLine "+x+","+y);
-                        GameObject.Destroy(dest1.GetComponent<BoxCollider>());
-                        
-                        dest1 = GameObject.Find("powerLine "+x+","+y+" statsText");
-                        GameObject.Destroy(dest1);
-                        dest1 = GameObject.Find("powerLine "+x+","+y+" statsBackground");
-                        GameObject.Destroy(dest1);
-                    }
-                        GameObject dest = GameObject.Find("yellowblackpattern "+x+","+y);
-                        if(dest != null){
-                            GameObject.Destroy(dest.GetComponent<BoxCollider>());
-                        }                        
-                        dest = GameObject.Find("whiteLine "+x+","+y);
-                        if(dest != null){
-                            GameObject.Destroy(dest.GetComponent<BoxCollider>());
-                        }       
-                        dest = GameObject.Find("orangeLine "+x+","+y);
-                        if(dest != null){
-                            GameObject.Destroy(dest.GetComponent<BoxCollider>());
-                        }   
-                        */
                 }
 
                 int temp = (int)allPowLineSpots[i][4];
@@ -1849,7 +1758,6 @@ public class createPowerLines : MonoBehaviour
 
         float topX = x;
         float topY = y + 0.75f;
-
 
         if (turn == 0)
         {
@@ -2361,6 +2269,7 @@ public class createPowerLines : MonoBehaviour
             updateNumPowLines(playerTurn, x, y);
             GameObject TempGo = Instantiate(powLine);
             TempGo.name = powLine.name +" "+x+","+y;
+
             TempGo.transform.position = new Vector2(x * tileXOffset, y * tileYOffset / 2 - .5f);
             TempGo.transform.rotation = rotation;
 
@@ -2388,6 +2297,7 @@ public class createPowerLines : MonoBehaviour
                 P4LinesPos.Add(new Vector2(x, y));
                 P4sprites.Add(TempGo);
             }
+
             TempGo.AddComponent<BoxCollider>();
             TempGo.AddComponent<onHoverScript>();
             var hover = TempGo.GetComponent<onHoverScript>();
@@ -2395,6 +2305,7 @@ public class createPowerLines : MonoBehaviour
             hover.objType = "powerLine";//and type
             hover.parent = TempGo;
             hover.rotation = rotation;
+
 
             
         }
@@ -2453,6 +2364,7 @@ public class createPowerLines : MonoBehaviour
                         }
                         if(destroy){
                             List<int> playersDestroyed = new List<int>();
+
                             int index = -1;
                             if (P1LinesPos.FindIndex(0, P1LinesPos.Count, pos => pos[0] == (float)allPowLineSpots[i][0] && pos[1] == (float)allPowLineSpots[i][1]) > -1)
                             {
@@ -2516,59 +2428,6 @@ public class createPowerLines : MonoBehaviour
                 }
                 //Debug.Log(coun);
                 //coun = 0;
-            }
-        }
-    }
-    void newHoverAfterDestroy(float x, float y){
-        
-        GameObject act = GameObject.Find("orangeLine "+x+","+y);
-        if(act != null){
-            Debug.Log("new orange hover at"+ x + " "+y);
-            act.AddComponent<BoxCollider>();
-            act.AddComponent<onHoverScript>();
-            var hover = act.GetComponent<onHoverScript>();
-            hover.location = new Vector2(x,y);//pass the location
-            hover.objType = "powerLine";//and type
-            hover.parent = act;
-            
-        }
-        else{
-            act = GameObject.Find("yellowblackpattern "+x+","+y);
-            if(act != null){
-                Debug.Log("new black hover at"+ x + " "+y);
-                act.AddComponent<BoxCollider>();
-                act.AddComponent<onHoverScript>();
-                var hover = act.GetComponent<onHoverScript>();
-                hover.location = new Vector2(x,y);//pass the location
-                hover.objType = "powerLine";//and type
-                hover.parent = act;
-                
-            }
-            else{
-                act = GameObject.Find("whiteLine "+x+","+y);
-                if(act != null){
-                    Debug.Log("new white hover at"+ x + " "+y);
-                    act.AddComponent<BoxCollider>();
-                    act.AddComponent<onHoverScript>();
-                    var hover = act.GetComponent<onHoverScript>();
-                    hover.location = new Vector2(x,y);//pass the location
-                    hover.objType = "powerLine";//and type
-                    hover.parent = act;
-                    
-                }
-                else{
-                    act = GameObject.Find("redLine "+x+","+y);
-                    if(act != null){
-                        Debug.Log("new red hover at"+ x + " "+y);
-                        act.AddComponent<BoxCollider>();
-                        act.AddComponent<onHoverScript>();
-                        var hover = act.GetComponent<onHoverScript>();
-                        hover.location = new Vector2(x,y);//pass the location
-                        hover.objType = "powerLine";//and type
-                        hover.parent = act;
-                        
-                    }
-                }
             }
         }
     }

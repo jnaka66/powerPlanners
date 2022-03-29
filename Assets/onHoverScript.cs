@@ -163,8 +163,7 @@ public class onHoverScript : MonoBehaviour
             renderer.sortingOrder = 3;
             Sprite[] sprit = Resources.LoadAll<Sprite>("Square");
             renderer.sprite = sprit[0];
-            renderer.enabled = false;
-        
+            renderer.enabled = false;   
         
         }
 

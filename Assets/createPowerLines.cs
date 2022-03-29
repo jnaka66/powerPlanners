@@ -2355,10 +2355,14 @@ public class createPowerLines : MonoBehaviour
                         }
                         if(destroy){
                             int index = -1;
+                            int index1 = -1;
                             if (P1LinesPos.FindIndex(0, P1LinesPos.Count, pos => pos[0] == (float)allPowLineSpots[i][0] && pos[1] == (float)allPowLineSpots[i][1]) > -1)
                             {
                                 index = P1LinesPos.FindIndex(0, P1LinesPos.Count, pos => pos[0] == (float)allPowLineSpots[i][0] && pos[1] == (float)allPowLineSpots[i][1]);
+                                index1 = P1Lines.FindIndex(0, P1Lines.Count, pos => pos[0] == (float)allPowLineSpots[i][0] && pos[1] == (float)allPowLineSpots[i][1]);
                                 P1LinesPos.RemoveAt(index);
+                                
+                                P1Lines.RemoveAt(index);
                                 Destroy(P1sprites[index]);
                                 P1sprites.RemoveAt(index);
                             }
@@ -2366,6 +2370,8 @@ public class createPowerLines : MonoBehaviour
                             {
                                 index = P2LinesPos.FindIndex(0, P2LinesPos.Count, pos => pos[0] == (float)allPowLineSpots[i][0] && pos[1] == (float)allPowLineSpots[i][1]);
                                 P2LinesPos.RemoveAt(index);
+                                index1 = P1Lines.FindIndex(0, P2Lines.Count, pos => pos[0] == (float)allPowLineSpots[i][0] && pos[1] == (float)allPowLineSpots[i][1]);
+                                P2Lines.RemoveAt(index);
                                 Destroy(P2sprites[index]);
                                 P2sprites.RemoveAt(index);
                             }
@@ -2373,6 +2379,8 @@ public class createPowerLines : MonoBehaviour
                             {
                                 index = P3LinesPos.FindIndex(0, P3LinesPos.Count, pos => pos[0] == (float)allPowLineSpots[i][0] && pos[1] == (float)allPowLineSpots[i][1]);
                                 P3LinesPos.RemoveAt(index);
+                                index1 = P3Lines.FindIndex(0, P3Lines.Count, pos => pos[0] == (float)allPowLineSpots[i][0] && pos[1] == (float)allPowLineSpots[i][1]);
+                                P3Lines.RemoveAt(index);
                                 Destroy(P3sprites[index]);
                                 P3sprites.RemoveAt(index);
                             }
@@ -2380,6 +2388,8 @@ public class createPowerLines : MonoBehaviour
                             {
                                 index = P4LinesPos.FindIndex(0, P4LinesPos.Count, pos => pos[0] == (float)allPowLineSpots[i][0] && pos[1] == (float)allPowLineSpots[i][1]);
                                 P4LinesPos.RemoveAt(index);
+                                index1 = P4Lines.FindIndex(0, P4Lines.Count, pos => pos[0] == (float)allPowLineSpots[i][0] && pos[1] == (float)allPowLineSpots[i][1]);
+                                P4Lines.RemoveAt(index);
                                 Destroy(P4sprites[index]);
                                 P4sprites.RemoveAt(index);
                             }

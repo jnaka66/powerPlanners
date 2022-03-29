@@ -87,14 +87,14 @@ public class onHoverScript : MonoBehaviour
             gameObject.transform.SetParent(this.transform);
             txt.SetActive(false);
             MeshRenderer ren = txt.GetComponent<MeshRenderer>();
-            ren.sortingOrder = 3;//put on top
+            ren.sortingOrder = 4;//put on top
             GameObject background = new GameObject("powerLine "+ location[0]+","+location[1]+" "+"statsBackground");
             Transform = background.GetComponent<Transform>();
             Transform.position = Pos;
             scale = new Vector2(2f,2f);
             Transform.localScale = scale;
             renderer = background.AddComponent<SpriteRenderer>();
-            renderer.sortingOrder = 2;
+            renderer.sortingOrder = 3;
             Sprite[] sprit = Resources.LoadAll<Sprite>("Square");
             renderer.sprite = sprit[0];
             renderer.enabled = false;
@@ -147,7 +147,7 @@ public class onHoverScript : MonoBehaviour
             gameObject.transform.SetParent(this.transform);
             txt.SetActive(false);
             MeshRenderer ren = txt.GetComponent<MeshRenderer>();
-            ren.sortingOrder = 3;//put on top
+            ren.sortingOrder = 4;//put on top
             
             //make the background for the text
             GameObject background = new GameObject("statsBackground");
@@ -157,7 +157,7 @@ public class onHoverScript : MonoBehaviour
             scale = new Vector2(12f,10f);
             Transform.localScale = scale;
             renderer = background.AddComponent<SpriteRenderer>();
-            renderer.sortingOrder = 2;
+            renderer.sortingOrder = 3;
             Sprite[] sprit = Resources.LoadAll<Sprite>("Square");
             renderer.sprite = sprit[0];
             renderer.enabled = false;
@@ -177,8 +177,14 @@ public class onHoverScript : MonoBehaviour
     void OnMouseExit()
     {
         //The mouse is no longer hovering over the GameObject so output this message each frame
-        txt.SetActive(false);
+        if(txt != null){
+            txt.SetActive(false);
+        }
+        
         //background.SetActive(false);
-        renderer.enabled = false;
+        if(renderer != null){
+            renderer.enabled = false;
+        }
+        
     }
 }

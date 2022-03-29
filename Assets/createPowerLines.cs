@@ -1705,6 +1705,15 @@ public class createPowerLines : MonoBehaviour
                     int[] currP1Lines = (int[])allPowLineSpots[i][3];
                     currP1Lines[playerTurn] += 1;
                     allPowLineSpots[i][3] = (int[])currP1Lines.Clone();
+                    if(((int[])allPowLineSpots[i][3])[0] >1){
+                        GameObject dest = GameObject.Find("orangeLine "+x+","+y);
+                        GameObject.Destroy(dest.GetComponent<BoxCollider>());
+                        //GameObject.Destroy(dest);
+                        dest = GameObject.Find("powerLine "+x+","+y+" statsText");
+                        GameObject.Destroy(dest);
+                        dest = GameObject.Find("powerLine "+x+","+y+" statsBackground");
+                        GameObject.Destroy(dest);
+                    }
                     
                 }
                 if (playerTurn == 1)
@@ -1712,18 +1721,42 @@ public class createPowerLines : MonoBehaviour
                     int[] currP2Lines = (int[])allPowLineSpots[i][3];
                     currP2Lines[playerTurn] += 1;
                     allPowLineSpots[i][3] = (int[])currP2Lines.Clone();
+                    if(((int[])allPowLineSpots[i][3])[1] >1){
+                        GameObject dest = GameObject.Find("yellowblackpattern "+x+","+y);
+                        GameObject.Destroy(dest.GetComponent<BoxCollider>());
+                        dest = GameObject.Find("powerLine "+x+","+y+" statsText");
+                        GameObject.Destroy(dest);
+                        dest = GameObject.Find("powerLine "+x+","+y+" statsBackground");
+                        GameObject.Destroy(dest);
+                    }
                 }
                 if (playerTurn == 2)
                 {
                     int[] currP3Lines = (int[])allPowLineSpots[i][3];
                     currP3Lines[playerTurn] += 1;
                     allPowLineSpots[i][3] = (int[])currP3Lines.Clone();
+                    if(((int[])allPowLineSpots[i][3])[2] >1){
+                        GameObject dest = GameObject.Find("whiteLine "+x+","+y);
+                        GameObject.Destroy(dest.GetComponent<BoxCollider>());
+                        dest = GameObject.Find("powerLine "+x+","+y+" statsText");
+                        GameObject.Destroy(dest);
+                        dest = GameObject.Find("powerLine "+x+","+y+" statsBackground");
+                        GameObject.Destroy(dest);
+                    }
                 }
                 if (playerTurn == 3)
                 {
                     int[] currP4Lines = (int[])allPowLineSpots[i][3];
                     currP4Lines[playerTurn] += 1;
                     allPowLineSpots[i][3] = (int[])currP4Lines.Clone();
+                    if(((int[])allPowLineSpots[i][3])[3] >1){
+                        GameObject dest = GameObject.Find("redLine "+x+","+y);
+                        GameObject.Destroy(dest.GetComponent<BoxCollider>());
+                        dest = GameObject.Find("powerLine "+x+","+y+" statsText");
+                        GameObject.Destroy(dest);
+                        dest = GameObject.Find("powerLine "+x+","+y+" statsBackground");
+                        GameObject.Destroy(dest);
+                    }
                 }
 
                 int temp = (int)allPowLineSpots[i][4];
@@ -2266,15 +2299,17 @@ public class createPowerLines : MonoBehaviour
             {
                 powLine = player4PowerLine;
             }
+            updateNumPowLines(playerTurn, x, y);
+            storePlayerPowLines(playerTurn, x, y);
             GameObject TempGo = Instantiate(powLine);
-
+            TempGo.name = powLine.name +" "+x+","+y;
             TempGo.transform.position = new Vector2(x * tileXOffset, y * tileYOffset / 2 - .5f);
             TempGo.transform.rotation = rotation;
 
             var ren = TempGo.GetComponent<SpriteRenderer>();
             ren.sortingOrder = 1;
             ren.enabled = true;
-            storePlayerPowLines(playerTurn, x, y);
+            
             if (playerTurn == 0)
             {
                 P1LinesPos.Add(new Vector2(x, y));
@@ -2292,7 +2327,7 @@ public class createPowerLines : MonoBehaviour
                 P4LinesPos.Add(new Vector2(x, y));
             }
 
-            updateNumPowLines(playerTurn, x, y);
+            
             TempGo.AddComponent<BoxCollider>();
             TempGo.AddComponent<onHoverScript>();
             var hover = TempGo.GetComponent<onHoverScript>();

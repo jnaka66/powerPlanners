@@ -101,7 +101,10 @@ public class onHoverScript : MonoBehaviour
         }
         else{
             txt = new GameObject("statsText");//the text for the stats
-            txt.transform.SetParent(parent.GetComponent<Transform>());
+            if(parent !=null){
+                txt.transform.SetParent(parent.GetComponent<Transform>());
+            }
+            
             //set the position to be close to the original object
             float x = location[0];
             float y = location[1];
@@ -169,9 +172,52 @@ public class onHoverScript : MonoBehaviour
     void OnMouseOver()
     {
         //If your mouse hovers over the GameObject with the script attached, output this message
-        txt.SetActive(true);
+        if(txt != null){
+            txt.SetActive(true);
+        }
+        if(objType=="powerLine"){
+            
+            float x = location[0];
+            float y = location[1];
+            createPowerLines cpl = GameObject.FindObjectOfType<createPowerLines>();
+            allPowLineSpots = cpl.allPowLineSpots;
+            object[] spot;
+            int numLines = 0;
+            int[] playerLines = new int[]{0,0,0,0};
+            var txtmsh = txt.GetComponent<TextMesh>();
+            txtmsh.richText = true;
+            txtmsh.text="";
+            for(int i=0;i<allPowLineSpots.Count;i++){
+                if((float)allPowLineSpots[i][0]==x && (float)allPowLineSpots[i][1]==y){
+                    spot = allPowLineSpots[i];
+                    numLines=(int)spot[4];
+                    playerLines=(int[])spot[3];
+                    //Debug.Log("penis"+spot[4]);
+                    break;
+                }
+            }
+            int lineNum =1;
+            for(int j=0;j<playerLines[0];j++){
+                txtmsh.text +=  "<color=#FF8000>"+lineNum+". Player 1-tier 1-50MW\n</color>";
+                lineNum++;
+            }
+            for(int j=0;j<playerLines[1];j++){
+                txtmsh.text +=  "<color=#000000>"+lineNum+". Player 2-tier 1-50MW\n</color>";
+                lineNum++;
+            }
+            for(int j=0;j<playerLines[2];j++){
+                txtmsh.text +=  "<color=#999999>"+lineNum+". Player 3-tier 1-50MW\n</color>";
+                lineNum++;
+            }
+            for(int j=0;j<playerLines[3];j++){
+                txtmsh.text +=  "<color=#FF0000>"+lineNum+". Player 4-tier 1-50MW\n</color>";
+                lineNum++;
+            }
+        }
         //background.SetActive(true);
-        renderer.enabled = true;
+        if(renderer != null){
+            renderer.enabled = true;
+        }
     }
 
     void OnMouseExit()

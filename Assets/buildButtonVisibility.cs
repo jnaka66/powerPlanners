@@ -24,7 +24,9 @@ public class buildButtonVisibility : MonoBehaviour
             buildSolarButton.SetActive(false);
             buildNaturalButton.SetActive(false);
             buildNuclearButton.SetActive(false);
-        }//penis
+            var butt = buildCoalButton.GetComponent<createPowerPlantButtons>();
+            butt.deleteButtons();
+        }
         else if(!showing){
             buildCoalButton.SetActive(true);
             buildSolarButton.SetActive(true);

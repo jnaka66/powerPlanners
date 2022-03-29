@@ -255,7 +255,6 @@ public class ScoreManager : MonoBehaviour
             currentStyle = new GUIStyle(GUI.skin.box);
         }
     }
-
     private Texture2D MakeTex(int width, int height, Color col)
     {
         Color[] pix = new Color[width * height];

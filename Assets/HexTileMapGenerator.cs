@@ -1,4 +1,3 @@
-
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
@@ -155,7 +154,6 @@ public class HexTileMapGenerator : MonoBehaviour
             int x=xCoordRandomList[i];
             int y=yCoordRandomList[i];
             built.Add(new Vector2(x, y));
-
             GameObject TempGo = Instantiate(city);
             TempGo.transform.position = new Vector2(x * tileXOffset,y * tileYOffset/2 -.5f);
             var ren = TempGo.GetComponent<SpriteRenderer>();

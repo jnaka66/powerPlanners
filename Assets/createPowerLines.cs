@@ -2278,18 +2278,22 @@ public class createPowerLines : MonoBehaviour
             if (playerTurn == 0)
             {
                 P1LinesPos.Add(new Vector2(x, y));
+                P1sprites.Add(TempGo);
             }
             if (playerTurn == 1)
             {
                 P2LinesPos.Add(new Vector2(x, y));
+                P2sprites.Add(TempGo);
             }
             if (playerTurn == 2)
             {
                 P3LinesPos.Add(new Vector2(x, y));
+                P3sprites.Add(TempGo);
             }
             if (playerTurn == 3)
             {
                 P4LinesPos.Add(new Vector2(x, y));
+                P4sprites.Add(TempGo);
             }
 
             updateNumPowLines(playerTurn, x, y);

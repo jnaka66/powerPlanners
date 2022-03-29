@@ -30,13 +30,8 @@ public class onHoverScript : MonoBehaviour
             createPowerLines cpl = GameObject.FindObjectOfType<createPowerLines>();
             allPowLineSpots = cpl.allPowLineSpots;
             object[] spot;
-            for(int i=0;i<allPowLineSpots.Count;i++){
-                if((float)allPowLineSpots[i][0]==x && (float)allPowLineSpots[i][1]==y){
-                    spot = allPowLineSpots[i];
-                    Debug.Log(spot[4]);
-                    break;
-                }
-            }
+            int numLines = 0;
+            int[] playerLines = new int[]{0,0,0,0};
             txt = new GameObject("powerLine "+ location[0]+","+location[1]+" "+"statsText");//the text for the stats
             
             Transform Transform = txt.GetComponent<Transform>();
@@ -47,7 +42,34 @@ public class onHoverScript : MonoBehaviour
             txt.AddComponent<TextMesh>();
             var txtmsh = txt.GetComponent<TextMesh>();
             txtmsh.richText = true;
-            txtmsh.text =  "<color=#E0E300>1. Player 1-tier 1-50MW\n</color>";
+            txtmsh.text="";
+            for(int i=0;i<allPowLineSpots.Count;i++){
+                if((float)allPowLineSpots[i][0]==x && (float)allPowLineSpots[i][1]==y){
+                    spot = allPowLineSpots[i];
+                    numLines=(int)spot[4];
+                    playerLines=(int[])spot[3];
+                    //Debug.Log("penis"+spot[4]);
+                    break;
+                }
+            }
+            int lineNum =1;
+            for(int j=0;j<playerLines[0];j++){
+                txtmsh.text +=  "<color=#FF8000>"+lineNum+". Player 1-tier 1-50MW\n</color>";
+                lineNum++;
+            }
+            for(int j=0;j<playerLines[1];j++){
+                txtmsh.text +=  "<color=#000000>"+lineNum+". Player 2-tier 1-50MW\n</color>";
+                lineNum++;
+            }
+            for(int j=0;j<playerLines[2];j++){
+                txtmsh.text +=  "<color=#999999>"+lineNum+". Player 3-tier 1-50MW\n</color>";
+                lineNum++;
+            }
+            for(int j=0;j<playerLines[3];j++){
+                txtmsh.text +=  "<color=#FF0000>"+lineNum+". Player 4-tier 1-50MW\n</color>";
+                lineNum++;
+            }
+            
             /*
             txtmsh.text += "2. Player 1-tier 1-50MW\n";
             txtmsh.text += "3. Player 1-tier 1-50MW\n";

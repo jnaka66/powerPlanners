@@ -6,10 +6,10 @@ using UnityEngine.UI;
 public class upgradeTransmissionLine : MonoBehaviour
 {
     public createPowerLines powerLines;
-    public List<Vector2> P1Lines = new List<Vector2>();
-    public List<Vector2> P2Lines = new List<Vector2>();
-    public List<Vector2> P3Lines = new List<Vector2>();
-    public List<Vector2> P4Lines = new List<Vector2>();
+    public List<Quaternion> P1Lines = new List<Quaternion>();
+    public List<Quaternion> P2Lines = new List<Quaternion>();
+    public List<Quaternion> P3Lines = new List<Quaternion>();
+    public List<Quaternion> P4Lines = new List<Quaternion>();
     public List<Button> PowLineButtons = new List<Button>();
     public ScoreManager scoreMan;
     public List<object[]> allPowLineSpots = new List<object[]>();

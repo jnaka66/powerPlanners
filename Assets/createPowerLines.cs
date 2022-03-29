@@ -78,11 +78,13 @@ public class createPowerLines : MonoBehaviour
     List<GameObject> P2sprites = new List<GameObject>();
     List<GameObject> P3sprites = new List<GameObject>();
     List<GameObject> P4sprites = new List<GameObject>();
+    bool upgrade = false;
     // void Start()
     // {
     //     createButtons();
     // }
     public GameObject buttontest;
+    upgradeTransmissionLine upgradePowerLines;
 
     void Awake()
     {
@@ -95,7 +97,8 @@ public class createPowerLines : MonoBehaviour
         towns = mapGen.GetComponent<HexTileMapGenerator>().builtTowns;
         generatePositions();
         generateInactiveButtons();
-
+        upgradePowerLines = GameObject.FindObjectOfType<upgradeTransmissionLine>();
+        upgrade = upgradePowerLines.upgrade;
     }
 
     bool buildSelected = false;
@@ -183,105 +186,106 @@ public class createPowerLines : MonoBehaviour
 
                 if (y == 0 && x < width - 2 && x > 1)
                 {
-                    allPowLineSpots.Add(new object[] { (float)x + 0.25f, (float)y + 0.25f, new Quaternion(0.5f, 1.0f, 0.0f, 0.0f) , new int[] { 0, 0, 0, 0 }, 0});//bottom
-                    allPowLineSpots.Add(new object[] { (float)x + 0.25f, (float)y + 2.25f, new Quaternion(1.65f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });//top
-                    allPowLineSpots.Add(new object[] { (float)x - 0.25f, (float)y + 0.25f, new Quaternion(1.65f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });//bot left
-                    allPowLineSpots.Add(new object[] { (float)x - 0.25f, (float)y + 2.25f, new Quaternion(0.5f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });//top left
-                    allPowLineSpots.Add(new object[] { (float)x + .5f, (float)y + 1.25f, new Quaternion(0.0f, 0.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });
+                    //x, y, rotation, number for each player, total num, levels for power lines of each player
+                    allPowLineSpots.Add(new object[] { (float)x + 0.25f, (float)y + 0.25f, new Quaternion(0.5f, 1.0f, 0.0f, 0.0f) , new int[] { 0, 0, 0, 0 }, 0, new List< List<int> >()});//bottom
+                    allPowLineSpots.Add(new object[] { (float)x + 0.25f, (float)y + 2.25f, new Quaternion(1.65f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0, new List< List<int> >() });//top
+                    allPowLineSpots.Add(new object[] { (float)x - 0.25f, (float)y + 0.25f, new Quaternion(1.65f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0, new List< List<int> >() });//bot left
+                    allPowLineSpots.Add(new object[] { (float)x - 0.25f, (float)y + 2.25f, new Quaternion(0.5f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0, new List< List<int> >() });//top left
+                    allPowLineSpots.Add(new object[] { (float)x + .5f, (float)y + 1.25f, new Quaternion(0.0f, 0.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0, new List< List<int> >() });
                     if (x == 2)//special case on left side
                     {
-                        allPowLineSpots.Add(new object[] { (float)x - 0.5f, (float)y + 1.2f, new Quaternion(0.0f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });
-                        allPowLineSpots.Add(new object[] { (float)x - 0.75f, (float)y + 2.25f, new Quaternion(1.65f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });
+                        allPowLineSpots.Add(new object[] { (float)x - 0.5f, (float)y + 1.2f, new Quaternion(0.0f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0, new List< List<int> >() });
+                        allPowLineSpots.Add(new object[] { (float)x - 0.75f, (float)y + 2.25f, new Quaternion(1.65f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0, new List< List<int> >() });
                     }
                     if (x == width - 3)//special case on right side
                     {
 
-                        allPowLineSpots.Add(new object[] { (float)x + 0.75f, (float)y + 2.25f, new Quaternion(0.5f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });
-                        allPowLineSpots.Add(new object[] { (float)x + 1, (float)y + 3.25f, new Quaternion(0.0f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });
+                        allPowLineSpots.Add(new object[] { (float)x + 0.75f, (float)y + 2.25f, new Quaternion(0.5f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0, new List< List<int> >() });
+                        allPowLineSpots.Add(new object[] { (float)x + 1, (float)y + 3.25f, new Quaternion(0.0f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0, new List< List<int> >() });
                     }
 
                 }
 
                 if (y == 4 && x < width - 1 && x > 0)
                 {
-                    allPowLineSpots.Add(new object[] { (float)x + 0.25f, (float)y + 0.25f, new Quaternion(0.5f, 1.0f, 0.0f, 0.0f), new int[] {0,0,0,0},0 });//bottom
-                    allPowLineSpots.Add(new object[] { (float)x + 0.25f, (float)y + 2.25f, new Quaternion(1.65f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });//top
-                    allPowLineSpots.Add(new object[] { (float)x - 0.25f, (float)y + 0.25f, new Quaternion(1.65f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });//bot left
-                    allPowLineSpots.Add(new object[] { (float)x - 0.25f, (float)y + 2.25f, new Quaternion(0.5f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });//top left
-                    allPowLineSpots.Add(new object[] { (float)x + .5f, (float)y + 1.25f, new Quaternion(0.0f, 0.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });
-                    allPowLineSpots.Add(new object[] { (float)x, (float)y - 0.75f, new Quaternion(0.0f, 0.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });
+                    allPowLineSpots.Add(new object[] { (float)x + 0.25f, (float)y + 0.25f, new Quaternion(0.5f, 1.0f, 0.0f, 0.0f), new int[] {0,0,0,0},0, new List< List<int> >() });//bottom
+                    allPowLineSpots.Add(new object[] { (float)x + 0.25f, (float)y + 2.25f, new Quaternion(1.65f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0, new List< List<int> >() });//top
+                    allPowLineSpots.Add(new object[] { (float)x - 0.25f, (float)y + 0.25f, new Quaternion(1.65f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0, new List< List<int> >() });//bot left
+                    allPowLineSpots.Add(new object[] { (float)x - 0.25f, (float)y + 2.25f, new Quaternion(0.5f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0, new List< List<int> >() });//top left
+                    allPowLineSpots.Add(new object[] { (float)x + .5f, (float)y + 1.25f, new Quaternion(0.0f, 0.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0, new List< List<int> >() });
+                    allPowLineSpots.Add(new object[] { (float)x, (float)y - 0.75f, new Quaternion(0.0f, 0.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0, new List< List<int> >() });
                     if (x == 1)//special case on left side
                     {
-                        allPowLineSpots.Add(new object[] { (float)x - 0.75f, (float)y + 2.25f, new Quaternion(1.65f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });
-                        allPowLineSpots.Add(new object[] { (float)x - 0.5f, (float)y + 1.25f, new Quaternion(0.0f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });
+                        allPowLineSpots.Add(new object[] { (float)x - 0.75f, (float)y + 2.25f, new Quaternion(1.65f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0, new List< List<int> >() });
+                        allPowLineSpots.Add(new object[] { (float)x - 0.5f, (float)y + 1.25f, new Quaternion(0.0f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0, new List< List<int> >() });
                     }
                     if (x == width - 2)//special case on right side
                     {
-                        allPowLineSpots.Add(new object[] { (float)x + 0.75f, (float)y + 2.25f, new Quaternion(0.5f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });
+                        allPowLineSpots.Add(new object[] { (float)x + 0.75f, (float)y + 2.25f, new Quaternion(0.5f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0, new List< List<int> >() });
 
                     }
 
                 }
                 if (y == 8)
                 {
-                    allPowLineSpots.Add(new object[] { (float)x + 0.25f, (float)y + 0.25f, new Quaternion(0.5f, 1.0f, 0.0f, 0.0f) , new int[] { 0, 0, 0, 0 }, 0});//bottom
-                    allPowLineSpots.Add(new object[] { (float)x + 0.25f, (float)y + 2.25f, new Quaternion(1.65f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });//top
-                    allPowLineSpots.Add(new object[] { (float)x - 0.25f, (float)y + 0.25f, new Quaternion(1.65f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });//bot left
-                    allPowLineSpots.Add(new object[] { (float)x - 0.25f, (float)y + 2.25f, new Quaternion(0.5f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });//top left
-                    allPowLineSpots.Add(new object[] { (float)x + .5f, (float)y + 1.25f, new Quaternion(0.0f, 0.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });
-                    allPowLineSpots.Add(new object[] { (float)x, (float)y - 0.75f, new Quaternion(0.0f, 0.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });
+                    allPowLineSpots.Add(new object[] { (float)x + 0.25f, (float)y + 0.25f, new Quaternion(0.5f, 1.0f, 0.0f, 0.0f) , new int[] { 0, 0, 0, 0 }, 0, new List< List<int> >()});//bottom
+                    allPowLineSpots.Add(new object[] { (float)x + 0.25f, (float)y + 2.25f, new Quaternion(1.65f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0, new List< List<int> >() });//top
+                    allPowLineSpots.Add(new object[] { (float)x - 0.25f, (float)y + 0.25f, new Quaternion(1.65f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0, new List< List<int> >() });//bot left
+                    allPowLineSpots.Add(new object[] { (float)x - 0.25f, (float)y + 2.25f, new Quaternion(0.5f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0, new List< List<int> >() });//top left
+                    allPowLineSpots.Add(new object[] { (float)x + .5f, (float)y + 1.25f, new Quaternion(0.0f, 0.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0, new List< List<int> >() });
+                    allPowLineSpots.Add(new object[] { (float)x, (float)y - 0.75f, new Quaternion(0.0f, 0.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0, new List< List<int> >() });
                     if (x == 1)//special case on left side
                     {
-                        allPowLineSpots.Add(new object[] { (float)x - 1.5f, (float)y + 1.25f, new Quaternion(0.0f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });
-                        allPowLineSpots.Add(new object[] { (float)x - 0.75f, (float)y + 4.2f, new Quaternion(0.5f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });
-                        allPowLineSpots.Add(new object[] { (float)x - 1.0f, (float)y - 0.75f, new Quaternion(0.0f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });
+                        allPowLineSpots.Add(new object[] { (float)x - 1.5f, (float)y + 1.25f, new Quaternion(0.0f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0, new List< List<int> >() });
+                        allPowLineSpots.Add(new object[] { (float)x - 0.75f, (float)y + 4.2f, new Quaternion(0.5f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0, new List< List<int> >() });
+                        allPowLineSpots.Add(new object[] { (float)x - 1.0f, (float)y - 0.75f, new Quaternion(0.0f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0, new List< List<int> >() });
                     }
 
 
                 }
                 if (y == 12 && x < width - 1 && x > 0)
                 {
-                    allPowLineSpots.Add(new object[] { (float)x + 0.25f, (float)y + 0.25f, new Quaternion(0.5f, 1.0f, 0.0f, 0.0f) , new int[] { 0, 0, 0, 0 }, 0});//bottom
-                    allPowLineSpots.Add(new object[] { (float)x + 0.25f, (float)y + 2.25f, new Quaternion(1.65f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });//top
-                    allPowLineSpots.Add(new object[] { (float)x - 0.25f, (float)y + 0.25f, new Quaternion(1.65f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });//bot left
-                    allPowLineSpots.Add(new object[] { (float)x - 0.25f, (float)y + 2.25f, new Quaternion(0.5f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });//top left
-                    allPowLineSpots.Add(new object[] { (float)x + .5f, (float)y + 1.25f, new Quaternion(0.0f, 0.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });
-                    allPowLineSpots.Add(new object[] { (float)x, (float)y - 0.75f, new Quaternion(0.0f, 0.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });
+                    allPowLineSpots.Add(new object[] { (float)x + 0.25f, (float)y + 0.25f, new Quaternion(0.5f, 1.0f, 0.0f, 0.0f) , new int[] { 0, 0, 0, 0 }, 0, new List< List<int> >()});//bottom
+                    allPowLineSpots.Add(new object[] { (float)x + 0.25f, (float)y + 2.25f, new Quaternion(1.65f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0, new List< List<int> >() });//top
+                    allPowLineSpots.Add(new object[] { (float)x - 0.25f, (float)y + 0.25f, new Quaternion(1.65f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0, new List< List<int> >() });//bot left
+                    allPowLineSpots.Add(new object[] { (float)x - 0.25f, (float)y + 2.25f, new Quaternion(0.5f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0, new List< List<int> >() });//top left
+                    allPowLineSpots.Add(new object[] { (float)x + .5f, (float)y + 1.25f, new Quaternion(0.0f, 0.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0, new List< List<int> >() });
+                    allPowLineSpots.Add(new object[] { (float)x, (float)y - 0.75f, new Quaternion(0.0f, 0.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0, new List< List<int> >() });
 
                     if (x == 1)
                     {
-                        allPowLineSpots.Add(new object[] { (float)x - 1.0f, (float)y - 0.75f, new Quaternion(0.0f, 1.0f, 0.0f, 0.0f) , new int[] { 0, 0, 0, 0 }, 0});
-                        allPowLineSpots.Add(new object[] { (float)x - 0.5f, (float)y + 1.25f, new Quaternion(0.0f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });
+                        allPowLineSpots.Add(new object[] { (float)x - 1.0f, (float)y - 0.75f, new Quaternion(0.0f, 1.0f, 0.0f, 0.0f) , new int[] { 0, 0, 0, 0 }, 0, new List< List<int> >()});
+                        allPowLineSpots.Add(new object[] { (float)x - 0.5f, (float)y + 1.25f, new Quaternion(0.0f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0, new List< List<int> >() });
                     }
 
                     if (x == width - 2)
                     {
-                        allPowLineSpots.Add(new object[] { (float)x + 1.0f, (float)y - 0.75f, new Quaternion(0.0f, 1.0f, 0.0f, 0.0f) , new int[] { 0, 0, 0, 0 }, 0});
-                        allPowLineSpots.Add(new object[] { (float)x - 1.0f, (float)y - 0.75f, new Quaternion(0.0f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });
-                        allPowLineSpots.Add(new object[] { (float)x + 0.75f, (float)y + 0.25f, new Quaternion(1.65f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });
+                        allPowLineSpots.Add(new object[] { (float)x + 1.0f, (float)y - 0.75f, new Quaternion(0.0f, 1.0f, 0.0f, 0.0f) , new int[] { 0, 0, 0, 0 }, 0, new List< List<int> >()});
+                        allPowLineSpots.Add(new object[] { (float)x - 1.0f, (float)y - 0.75f, new Quaternion(0.0f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0, new List< List<int> >() });
+                        allPowLineSpots.Add(new object[] { (float)x + 0.75f, (float)y + 0.25f, new Quaternion(1.65f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0, new List< List<int> >() });
                     }
 
                 }
 
                 if (y == 16 && x < width - 2 && x > 1)
                 {
-                    allPowLineSpots.Add(new object[] { (float)x + 0.25f, (float)y + 0.25f, new Quaternion(0.5f, 1.0f, 0.0f, 0.0f) , new int[] { 0, 0, 0, 0 }, 0});//bottom
-                    allPowLineSpots.Add(new object[] { (float)x + 0.25f, (float)y + 2.25f, new Quaternion(1.65f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });//top
-                    allPowLineSpots.Add(new object[] { (float)x - 0.25f, (float)y + 0.25f, new Quaternion(1.65f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });//bot left
-                    allPowLineSpots.Add(new object[] { (float)x - 0.25f, (float)y + 2.25f, new Quaternion(0.5f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });//top left
-                    allPowLineSpots.Add(new object[] { (float)x + .5f, (float)y + 1.25f, new Quaternion(0.0f, 0.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });
-                    allPowLineSpots.Add(new object[] { (float)x + 1.0f, (float)y - 0.75f, new Quaternion(0.0f, 0.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });
+                    allPowLineSpots.Add(new object[] { (float)x + 0.25f, (float)y + 0.25f, new Quaternion(0.5f, 1.0f, 0.0f, 0.0f) , new int[] { 0, 0, 0, 0 }, 0, new List< List<int> >()});//bottom
+                    allPowLineSpots.Add(new object[] { (float)x + 0.25f, (float)y + 2.25f, new Quaternion(1.65f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0, new List< List<int> >() });//top
+                    allPowLineSpots.Add(new object[] { (float)x - 0.25f, (float)y + 0.25f, new Quaternion(1.65f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0, new List< List<int> >() });//bot left
+                    allPowLineSpots.Add(new object[] { (float)x - 0.25f, (float)y + 2.25f, new Quaternion(0.5f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0, new List< List<int> >() });//top left
+                    allPowLineSpots.Add(new object[] { (float)x + .5f, (float)y + 1.25f, new Quaternion(0.0f, 0.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0, new List< List<int> >() });
+                    allPowLineSpots.Add(new object[] { (float)x + 1.0f, (float)y - 0.75f, new Quaternion(0.0f, 0.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0, new List< List<int> >() });
                     if (x == 2)//special case on left side
                     {
-                        allPowLineSpots.Add(new object[] { (float)x - 0.5f, (float)y + 1.25f, new Quaternion(0.0f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });
-                        allPowLineSpots.Add(new object[] { (float)x - 0.75f, (float)y + 0.25f, new Quaternion(1.65f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });
-                        allPowLineSpots.Add(new object[] { (float)x, (float)y - 0.75f, new Quaternion(0.0f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });
-                        allPowLineSpots.Add(new object[] { (float)x - 1.0f, (float)y - 0.75f, new Quaternion(0.0f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });
+                        allPowLineSpots.Add(new object[] { (float)x - 0.5f, (float)y + 1.25f, new Quaternion(0.0f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0, new List< List<int> >() });
+                        allPowLineSpots.Add(new object[] { (float)x - 0.75f, (float)y + 0.25f, new Quaternion(1.65f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0, new List< List<int> >() });
+                        allPowLineSpots.Add(new object[] { (float)x, (float)y - 0.75f, new Quaternion(0.0f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0, new List< List<int> >() });
+                        allPowLineSpots.Add(new object[] { (float)x - 1.0f, (float)y - 0.75f, new Quaternion(0.0f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0, new List< List<int> >() });
                     }
 
                     if (x == width - 3)
                     {
-                        allPowLineSpots.Add(new object[] { (float)x + 0.75f, (float)y + 0.25f, new Quaternion(1.65f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0 });
+                        allPowLineSpots.Add(new object[] { (float)x + 0.75f, (float)y + 0.25f, new Quaternion(1.65f, 1.0f, 0.0f, 0.0f), new int[] { 0, 0, 0, 0 }, 0, new List< List<int> >() });
                     }
 
 
@@ -1577,44 +1581,94 @@ public class createPowerLines : MonoBehaviour
         
         return temp;
     }
+    void addLevel(int turn, float x, float y,int lineIdx){
+        //GameObject.Find("Button(Clone)"
+        /*string lineName="";
+        if(turn = 0){
+            lineName = "orangeLine";
+        }
+        if(turn = 1){
+            lineName = "yellowblackpattern";
+        }
+        if(turn = 2){
+            lineName = "whiteLine";
+        }
+        if(turn = 3){
+            lineName = "redLIne";
+        }
+        GameObject lineToUpgrade = GameObject.Find(lineName+" "+x+","+y){
+            
+        }*/
+        for(int i=0;i<allPowLineSpots.Count;i++){
+            if((float)allPowLineSpots[i][0]==x && (float)allPowLineSpots[i][1]==y){//get the location
+                //Debug.Log(((List< List<int> >)allPowLineSpots[i][5]).Count);
+                if(((List< List<int> >)allPowLineSpots[i][5]).Count==0){//generate levels if not made yet
+                    List< List<int> > emptyLevels = new List< List<int> >();
+                    //make levels 4x4 since 4 players, max 4 lines
+                    for(int p=0;p<4;p++){
+                        emptyLevels.Add(new List<int>());
+                        for(int q=0;q<4;q++){
+                            emptyLevels[p].Add(0);
+                        }
+                    }
+                    allPowLineSpots[i][5] = emptyLevels;
+                }
+                //object [] spot = allPowLineSpots[i]
+                List< List<int> > levels = (List< List<int> >)allPowLineSpots[i][5];
+                
+                levels[turn][lineIdx]++;
+                allPowLineSpots[i][5] = levels;
+                Debug.Log("Upgraded player " + (turn+1) +" line "+ (lineIdx+1) +" to level "+ (levels[turn][lineIdx]+1));
+                
+
+            }
+        }
+    }
     void ButtonClicked(Button tempButton, string buttonNo, float x, float y, Quaternion rotation)
     {
         //Debug.Log("Button clicked = " + buttonNo);
-
-        if (scoreMan.buildLine())
+        if (scoreMan.buildLine())//checks if player has enough money
         {
             bool check = false;
-            mapGen.updateBuilt(x,y);
-            makePowerLine((int)scoreMan.turn, x, y, rotation);
-            check = checkForTowns((int)scoreMan.turn, x, y);
-
-            if(check == true)
-            {
-                if((int)scoreMan.turn == 0)
-                {
-                    List<Quaternion> temp = determinePath((int)scoreMan.turn, x, y, P1Lines);
-                    P1Paths.Add(temp);
-                }
-                if ((int)scoreMan.turn == 1)
-                {
-                    List<Quaternion> temp = determinePath((int)scoreMan.turn, x, y, P2Lines);
-                    P2Paths.Add(temp);
-                }
-                if ((int)scoreMan.turn == 2)
-                {
-                    List<Quaternion> temp = determinePath((int)scoreMan.turn, x, y, P3Lines);
-                    P3Paths.Add(temp);
-                }
-                if ((int)scoreMan.turn == 3)
-                {
-                    List<Quaternion> temp = determinePath((int)scoreMan.turn, x, y, P4Lines);
-                    P4Paths.Add(temp);
-                }
-
+            upgrade = upgradePowerLines.upgrade;
+            if(upgrade){
+                int lineIdx = 0;
+                addLevel((int)scoreMan.turn, x, y,lineIdx);
+                
             }
+            else{//regular build
+                mapGen.updateBuilt(x,y);
+                makePowerLine((int)scoreMan.turn, x, y, rotation);
+                check = checkForTowns((int)scoreMan.turn, x, y);
+
+                if(check == true)
+                {
+                    if((int)scoreMan.turn == 0)
+                    {
+                        List<Quaternion> temp = determinePath((int)scoreMan.turn, x, y, P1Lines);
+                        P1Paths.Add(temp);
+                    }
+                    if ((int)scoreMan.turn == 1)
+                    {
+                        List<Quaternion> temp = determinePath((int)scoreMan.turn, x, y, P2Lines);
+                        P2Paths.Add(temp);
+                    }
+                    if ((int)scoreMan.turn == 2)
+                    {
+                        List<Quaternion> temp = determinePath((int)scoreMan.turn, x, y, P3Lines);
+                        P3Paths.Add(temp);
+                    }
+                    if ((int)scoreMan.turn == 3)
+                    {
+                        List<Quaternion> temp = determinePath((int)scoreMan.turn, x, y, P4Lines);
+                        P4Paths.Add(temp);
+                    }
+
+                }
             //Debug.Log("x val " + x);
             //Debug.Log("y val " + y);
-            Debug.Log(P1Paths.Count);
+            }
+            
         }
         else
         {
@@ -1624,10 +1678,7 @@ public class createPowerLines : MonoBehaviour
         // tempButton.gameObject.SetActive(false);
         deleteButtons();
         buildSelected = false;
-        // buttontest = GameObject.Find("Button(Clone)");
-        // buttontest.gameObject.SetActive(false);
-        //var ren1 = tempButton.gameObject.GetComponent<Renderer>();
-        //ren1.enabled = false;
+        
 
     }
     bool checkMaxPowerLines(int playerTurn, float x, float y)

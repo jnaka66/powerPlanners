@@ -90,6 +90,7 @@ public class createPowerPlantButtons : MonoBehaviour
             natty = GameObject.Find("upgradeNaturalButton");
             nuke = GameObject.Find("upgradeNuclearButton");
         }
+        
         solar.gameObject.SetActive(false);
         coal.gameObject.SetActive(false);
         natty.gameObject.SetActive(false);

@@ -21,8 +21,10 @@ public class onHoverScript : MonoBehaviour
     public GameObject parent;
     public Quaternion rotation;
     public List<object[]> allPowLineSpots;
+    public ScoreManager scoreMan;
 
     void Start(){
+        scoreMan = GameObject.FindObjectOfType<ScoreManager>();
         if(objType=="powerLine"){
             //get info about spot
             float x = location[0];
@@ -43,18 +45,24 @@ public class onHoverScript : MonoBehaviour
             var txtmsh = txt.GetComponent<TextMesh>();
             txtmsh.richText = true;
             txtmsh.text="";
+            List< List<int> > levels = new List< List<int> >();
             for(int i=0;i<allPowLineSpots.Count;i++){
                 if((float)allPowLineSpots[i][0]==x && (float)allPowLineSpots[i][1]==y){
                     spot = allPowLineSpots[i];
                     numLines=(int)spot[4];
                     playerLines=(int[])spot[3];
+                    levels=(List< List<int> >)spot[5];
                     //Debug.Log("penis"+spot[4]);
                     break;
                 }
             }
             int lineNum =1;
             for(int j=0;j<playerLines[0];j++){
-                txtmsh.text +=  "<color=#FF8000>"+lineNum+". Player 1-tier 1-50MW\n</color>";
+                int tier = 1;
+                if(levels.Count >0){
+                    tier = levels[(int)scoreMan.turn][j]+1;
+                }
+                txtmsh.text +=  "<color=#FF8000>"+lineNum+". Player 1-tier "+tier+"-"+(50*tier)+"MW\n</color>";
                 lineNum++;
             }
             for(int j=0;j<playerLines[1];j++){
@@ -186,18 +194,24 @@ public class onHoverScript : MonoBehaviour
             var txtmsh = txt.GetComponent<TextMesh>();
             txtmsh.richText = true;
             txtmsh.text="";
+            List< List<int> > levels = new List< List<int> >();
             for(int i=0;i<allPowLineSpots.Count;i++){
                 if((float)allPowLineSpots[i][0]==x && (float)allPowLineSpots[i][1]==y){
                     spot = allPowLineSpots[i];
                     numLines=(int)spot[4];
                     playerLines=(int[])spot[3];
+                    levels=(List< List<int> >)spot[5];
                     //Debug.Log("penis"+spot[4]);
                     break;
                 }
             }
             int lineNum =1;
             for(int j=0;j<playerLines[0];j++){
-                txtmsh.text +=  "<color=#FF8000>"+lineNum+". Player 1-tier 1-50MW\n</color>";
+                int tier = 1;
+                if(levels.Count >0){
+                    tier = levels[(int)scoreMan.turn][j]+1;
+                }
+                txtmsh.text +=  "<color=#FF8000>"+lineNum+". Player 1-tier "+tier+"-"+(50*tier)+"MW\n</color>";
                 lineNum++;
             }
             for(int j=0;j<playerLines[1];j++){

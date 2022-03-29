@@ -16,6 +16,7 @@ public class upgradeTransmissionLine : MonoBehaviour
 
 
     bool buildSelected = false;
+    public bool upgrade = false;
 
     void Awake()
     {
@@ -35,11 +36,14 @@ public class upgradeTransmissionLine : MonoBehaviour
         {
             createButtons();
             //Debug.Log("num" + numOfButtons);
+            upgrade = true;
             buildSelected = true;
+            
         }
         else
         {
             deleteButtons();
+            upgrade = false;
             buildSelected = false;
         }
     }
@@ -52,7 +56,7 @@ public class upgradeTransmissionLine : MonoBehaviour
             buttontest.gameObject.SetActive(false);
         }
     }
-    public void createButtons()//this calls makeButton on all of the bottoms of the hexagons
+    public void createButtons()//makes buttons on all owned lines
     {
         if((int)scoreMan.turn==0){
             for(int i=0;i<P1Lines.Count;i++){

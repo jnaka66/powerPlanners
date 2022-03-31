@@ -39,12 +39,12 @@ public class ScoreManager : MonoBehaviour
     float tileXOffset = .89f;
     float tileYOffset = .77f;
 
-    //private GUIStyle currentStyle = null;
-    float boxHeight = 55;
-    float boxWidth = 100;
-    float ogscreenw = 708;
-    float ogscreenh = 342;
-    float scoredist = 120;
+    const float boxHeight = 55;
+    const float boxWidth = 100;
+    const float ogscreenw = 708;
+    const float ogscreenh = 342;
+    const float scoredist = 120;
+    const float ogfont = 12;
     List<Texture2D> colorList;
 
     public List<player> playerList;
@@ -245,7 +245,10 @@ public class ScoreManager : MonoBehaviour
                 GUI.backgroundColor = Color.red;
                 //currentStyle.normal.background = MakeTex(boxWidth, boxHeight, Color.red);
             }
-            GUI.Button(new Rect(i * (scoredist/ogscreenw) * Screen.width, 0, (boxWidth/ogscreenw) * Screen.width, (boxHeight/ogscreenh) * Screen.height), playerList[i].text); //, currentStyle);
+            GUIStyle myButtonStyle = new GUIStyle(GUI.skin.button);
+            myButtonStyle.fontSize = (int)((ogfont/(ogscreenw * ogscreenh)) * (Screen.width * Screen.height));
+            Debug.Log("font size" + (int)((ogfont / (ogscreenw * ogscreenh)) * (Screen.width * Screen.height)));
+            GUI.Button(new Rect(i * (scoredist/ogscreenw) * Screen.width, 0, (boxWidth/ogscreenw) * Screen.width, (boxHeight/ogscreenh) * Screen.height), playerList[i].text, myButtonStyle); //, currentStyle);
             //Debug.Log("screen width = " + Screen.width);
             //Debug.Log("screen height = " + Screen.height);
             GUI.color = Color.white;

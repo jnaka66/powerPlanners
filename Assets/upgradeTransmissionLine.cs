@@ -15,7 +15,7 @@ public class upgradeTransmissionLine : MonoBehaviour
     public List<object[]> allPowLineSpots = new List<object[]>();
 
 
-    bool buildSelected = false;
+    public bool buildSelected = false;
     public bool upgrade = false;
 
     void Awake()

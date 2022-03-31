@@ -123,6 +123,8 @@ public class createPowerLines : MonoBehaviour
 
     public void deleteButtons()
     {
+        upgradePowerLines.upgrade = false;
+        upgradePowerLines.buildSelected = false;
         while (GameObject.Find("LineButton(Clone)") != null)
         {
             buttontest = GameObject.Find("LineButton(Clone)");
@@ -1581,24 +1583,9 @@ public class createPowerLines : MonoBehaviour
         
         return temp;
     }
-    void addLevel(int turn, float x, float y,int lineIdx){
-        //GameObject.Find("Button(Clone)"
-        /*string lineName="";
-        if(turn = 0){
-            lineName = "orangeLine";
-        }
-        if(turn = 1){
-            lineName = "yellowblackpattern";
-        }
-        if(turn = 2){
-            lineName = "whiteLine";
-        }
-        if(turn = 3){
-            lineName = "redLIne";
-        }
-        GameObject lineToUpgrade = GameObject.Find(lineName+" "+x+","+y){
-            
-        }*/
+    // upgrades player turn transmission line lineIdx at location x,y 
+    bool addLevel(int turn, float x, float y,int lineIdx){
+        int maxLevel = 3;
         for(int i=0;i<allPowLineSpots.Count;i++){
             if((float)allPowLineSpots[i][0]==x && (float)allPowLineSpots[i][1]==y){//get the location
                 //Debug.Log(((List< List<int> >)allPowLineSpots[i][5]).Count);
@@ -1613,16 +1600,26 @@ public class createPowerLines : MonoBehaviour
                     }
                     allPowLineSpots[i][5] = emptyLevels;
                 }
-                //object [] spot = allPowLineSpots[i]
-                List< List<int> > levels = (List< List<int> >)allPowLineSpots[i][5];
+                //find which to upgrade, currently just finds lowest index that can upgrade
+                int numPowLines = ((int[])allPowLineSpots[i][3])[turn];
+                for(int t=0;t<numPowLines;t++){
+                    List< List<int> > levels = (List< List<int> >)allPowLineSpots[i][5];
+                    if(levels[turn][t] <2){
+                        levels[turn][t]++;
+                        allPowLineSpots[i][5] = levels;
+                        Debug.Log("Upgraded player " + (turn+1) +" line "+ (t+1) +" to level "+ (levels[turn][t]+1));
+                        return true;
+                    }
+                }
+                Debug.Log("Could not find line to upgrade at location");
                 
-                levels[turn][lineIdx]++;
-                allPowLineSpots[i][5] = levels;
-                Debug.Log("Upgraded player " + (turn+1) +" line "+ (lineIdx+1) +" to level "+ (levels[turn][lineIdx]+1));
+                return false;
+                
                 
 
             }
         }
+        return false;
     }
     void ButtonClicked(Button tempButton, string buttonNo, float x, float y, Quaternion rotation)
     {
@@ -1633,8 +1630,10 @@ public class createPowerLines : MonoBehaviour
             upgrade = upgradePowerLines.upgrade;
             if(upgrade){
                 int lineIdx = 0;
-                addLevel((int)scoreMan.turn, x, y,lineIdx);
-                
+                bool ok = addLevel((int)scoreMan.turn, x, y,lineIdx);
+                if(!ok){
+                    scoreMan.playerList[(int)scoreMan.turn].money += 25;
+                }
             }
             else{//regular build
                 mapGen.updateBuilt(x,y);

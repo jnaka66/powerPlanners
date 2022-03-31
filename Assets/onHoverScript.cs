@@ -209,21 +209,33 @@ public class onHoverScript : MonoBehaviour
             for(int j=0;j<playerLines[0];j++){
                 int tier = 1;
                 if(levels.Count >0){
-                    tier = levels[(int)scoreMan.turn][j]+1;
+                    tier = levels[0][j]+1;
                 }
                 txtmsh.text +=  "<color=#FF8000>"+lineNum+". Player 1-tier "+tier+"-"+(50*tier)+"MW\n</color>";
                 lineNum++;
             }
             for(int j=0;j<playerLines[1];j++){
-                txtmsh.text +=  "<color=#000000>"+lineNum+". Player 2-tier 1-50MW\n</color>";
+                int tier = 1;
+                if(levels.Count >0){
+                    tier = levels[1][j]+1;
+                }
+                txtmsh.text +=  "<color=#000000>"+lineNum+". Player 2-tier "+tier+"-"+(50*tier)+"MW\n</color>";
                 lineNum++;
             }
             for(int j=0;j<playerLines[2];j++){
-                txtmsh.text +=  "<color=#999999>"+lineNum+". Player 3-tier 1-50MW\n</color>";
+                int tier = 1;
+                if(levels.Count >0){
+                    tier = levels[2][j]+1;
+                }
+                txtmsh.text +=  "<color=#999999>"+lineNum+". Player 3-tier "+tier+"-"+(50*tier)+"MW\n</color>";
                 lineNum++;
             }
             for(int j=0;j<playerLines[3];j++){
-                txtmsh.text +=  "<color=#FF0000>"+lineNum+". Player 4-tier 1-50MW\n</color>";
+                int tier = 1;
+                if(levels.Count >0){
+                    tier = levels[3][j]+1;
+                }
+                txtmsh.text +=  "<color=#FF0000>"+lineNum+". Player 4-tier "+tier+"-"+(50*tier)+"MW\n</color>";
                 lineNum++;
             }
         }

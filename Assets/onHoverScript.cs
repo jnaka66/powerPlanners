@@ -38,7 +38,7 @@ public class onHoverScript : MonoBehaviour
             
             Transform Transform = txt.GetComponent<Transform>();
             Vector2 Pos = new Vector2(x * tileXOffset+1,y * tileYOffset/2 -.5f);
-            Vector2 txtPos = Pos+new Vector2(0,0.7f);
+            Vector2 txtPos = Pos+new Vector2(0,0.9f);
             Transform.position = txtPos;
             //set the text
             txt.AddComponent<TextMesh>();
@@ -89,8 +89,8 @@ public class onHoverScript : MonoBehaviour
             txtmsh.color = Color.red;
             */
             txtmsh.anchor = TextAnchor.UpperCenter;
-            Vector2 scale = new Vector2(.017f,.017f);//large fonsize and small scale makes it look much better
-            txtmsh.fontSize = 100;
+            Vector2 scale = new Vector2(.004f,.004f);//large fonsize and small scale makes it look much better
+            txtmsh.fontSize = 1000;
             Transform.localScale = scale;
             gameObject.transform.SetParent(this.transform);
             txt.SetActive(false);
@@ -99,7 +99,7 @@ public class onHoverScript : MonoBehaviour
             GameObject background = new GameObject("powerLine "+ location[0]+","+location[1]+" "+"statsBackground");
             Transform = background.GetComponent<Transform>();
             Transform.position = Pos;
-            scale = new Vector2(2f,2f);
+            scale = new Vector2(2.5f,2f);
             Transform.localScale = scale;
             renderer = background.AddComponent<SpriteRenderer>();
             renderer.sortingOrder = 3;

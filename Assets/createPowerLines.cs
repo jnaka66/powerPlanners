@@ -1456,7 +1456,7 @@ public class createPowerLines : MonoBehaviour
                                 playerTurn[(int)scoreMan.turn] -= 1;
                                 allPowLineSpots[i][3] = playerTurn;
                                 allPowLineSpots[i][4] = (int)allPowLineSpots[i][4] - 1;
-                                //Debug.Log("destroy");
+                                Debug.Log("destroyed");
                             }
                         }
                         //Debug.Log(allPowLineSpots[i][0].ToString() + " " + allPowLineSpots[i][1].ToString());

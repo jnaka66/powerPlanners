@@ -40,8 +40,11 @@ public class ScoreManager : MonoBehaviour
     float tileYOffset = .77f;
 
     //private GUIStyle currentStyle = null;
-    int boxHeight = 55;
-    int boxWidth = 100;
+    float boxHeight = 55;
+    float boxWidth = 100;
+    float ogscreenw = 708;
+    float ogscreenh = 342;
+    float scoredist = 120;
     List<Texture2D> colorList;
 
     public List<player> playerList;
@@ -242,7 +245,9 @@ public class ScoreManager : MonoBehaviour
                 GUI.backgroundColor = Color.red;
                 //currentStyle.normal.background = MakeTex(boxWidth, boxHeight, Color.red);
             }
-            GUI.Button(new Rect(i * 120, 0, boxWidth, boxHeight), playerList[i].text); //, currentStyle);
+            GUI.Button(new Rect(i * (scoredist/ogscreenw) * Screen.width, 0, (boxWidth/ogscreenw) * Screen.width, (boxHeight/ogscreenh) * Screen.height), playerList[i].text); //, currentStyle);
+            //Debug.Log("screen width = " + Screen.width);
+            //Debug.Log("screen height = " + Screen.height);
             GUI.color = Color.white;
         }
         

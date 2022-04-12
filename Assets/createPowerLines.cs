@@ -1680,6 +1680,26 @@ public class createPowerLines : MonoBehaviour
         
 
     }
+    // bool PowerLineTerrainLevel(int playerTurn, float x, float y)
+    // {
+    //     GameObject temp = new GameObject();
+    //     if (SetColor(temp) == Color.green)
+    //     {
+    //         //deleted so code can still run
+    //     }
+    //     else if (SetColor(temp) = Color.blue)
+    //     {
+
+    //     }
+    //     else if (SetColor(temp) == Color.gray)
+    //     {
+
+    //     }
+    //     else if (SetColor(temp) = Color.yellow)
+    //     {
+            
+    //     }
+    // }
     bool checkMaxPowerLines(int playerTurn, float x, float y)
     {
         for (int i = 0; i < allPowLineSpots.Count; i++)

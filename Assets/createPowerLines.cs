@@ -1608,6 +1608,54 @@ public class createPowerLines : MonoBehaviour
                     if(levels[turn][t] <2){
                         levels[turn][t]++;
                         allPowLineSpots[i][5] = levels;
+                        if(turn == 0)
+                        {
+                            for(int line = 0; line < P1Lines.Count;line++)
+                            {
+                                if(P1Lines[line][0] == x && P1Lines[line][1] == y)
+                                {
+                                    Quaternion tempQuat = P1Lines[line];
+                                    tempQuat[3] = levels[turn][t];
+                                    P1Lines[line] = tempQuat;
+                                }
+                            }
+                        }
+                        if (turn == 1)
+                        {
+                            for (int line = 0; line < P2Lines.Count; line++)
+                            {
+                                if (P2Lines[line][0] == x && P2Lines[line][1] == y)
+                                {
+                                    Quaternion tempQuat = P2Lines[line];
+                                    tempQuat[3] = levels[turn][t];
+                                    P2Lines[line] = tempQuat;
+                                }
+                            }
+                        }
+                        if (turn == 2)
+                        {
+                            for (int line = 0; line < P3Lines.Count; line++)
+                            {
+                                if (P3Lines[line][0] == x && P3Lines[line][1] == y)
+                                {
+                                    Quaternion tempQuat = P3Lines[line];
+                                    tempQuat[3] = levels[turn][t];
+                                    P3Lines[line] = tempQuat;
+                                }
+                            }
+                        }
+                        if (turn == 3)
+                        {
+                            for (int line = 0; line < P4Lines.Count; line++)
+                            {
+                                if (P4Lines[line][0] == x && P4Lines[line][1] == y)
+                                {
+                                    Quaternion tempQuat = P4Lines[line];
+                                    tempQuat[3] = levels[turn][t];
+                                    P4Lines[line] = tempQuat;
+                                }
+                            }
+                        }
                         Debug.Log("Upgraded player " + (turn+1) +" line "+ (t+1) +" to level "+ (levels[turn][t]+1));
                         return true;
                     }
@@ -1620,6 +1668,19 @@ public class createPowerLines : MonoBehaviour
 
             }
         }
+        return false;
+    }
+
+    bool checkIdenticalPaths(List<List<Quaternion>> PathList, List<Quaternion> path)
+    {
+        for (int i = 0; i < PathList.Count; i++)
+        {
+            if(PathList[i].SequenceEqual(path))
+            {
+                return true;
+            }
+        }
+        
         return false;
     }
     void ButtonClicked(Button tempButton, string buttonNo, float x, float y, Quaternion rotation)
@@ -1646,22 +1707,35 @@ public class createPowerLines : MonoBehaviour
                     if((int)scoreMan.turn == 0)
                     {
                         List<Quaternion> temp = determinePath((int)scoreMan.turn, x, y, P1Lines);
-                        P1Paths.Add(temp);
+                        if(checkIdenticalPaths(P1Paths, temp) == false)
+                        {
+                            P1Paths.Add(temp);
+                        }
+                       
                     }
                     if ((int)scoreMan.turn == 1)
                     {
                         List<Quaternion> temp = determinePath((int)scoreMan.turn, x, y, P2Lines);
-                        P2Paths.Add(temp);
+                        if (checkIdenticalPaths(P2Paths, temp) == false)
+                        {
+                            P2Paths.Add(temp);
+                        }
                     }
                     if ((int)scoreMan.turn == 2)
                     {
                         List<Quaternion> temp = determinePath((int)scoreMan.turn, x, y, P3Lines);
-                        P3Paths.Add(temp);
+                        if (checkIdenticalPaths(P3Paths, temp) == false)
+                        {
+                            P3Paths.Add(temp);
+                        }
                     }
                     if ((int)scoreMan.turn == 3)
                     {
                         List<Quaternion> temp = determinePath((int)scoreMan.turn, x, y, P4Lines);
-                        P4Paths.Add(temp);
+                        if (checkIdenticalPaths(P4Paths, temp) == false)
+                        {
+                            P4Paths.Add(temp);
+                        }
                     }
 
                 }
@@ -1767,6 +1841,7 @@ public class createPowerLines : MonoBehaviour
         int count = 0;
         foreach(List<Quaternion> p in paths)
         {
+
             if (checkforIntersection(p[p.Count - 1][0], p[p.Count - 1][1], plant[0], plant[1]))
             {
                 count++;
@@ -1862,8 +1937,18 @@ public class createPowerLines : MonoBehaviour
                     }
 
                     //Debug.Log(count);
-                    int minimum = Mathf.Min(numLinesPerSpot.Min(), lineTiers.Min());
-                    int delivered = Mathf.Min(minimum*50, produced);
+                    
+                    
+                    List<int> loads = new List<int>();
+                    for(int spot = 0; spot < numLinesPerSpot.Count; spot++)
+                    {
+                        int tempnum = numLinesPerSpot[spot] * lineTiers[spot];
+                        loads.Add(tempnum);
+                    }
+                    //int minimum = Mathf.Min(numLinesPerSpot.Min(), lineTiers.Min());
+                    int minimum = loads.Min();
+                    //Debug.Log(produced / count);
+                    int delivered = Mathf.Min(minimum*50, produced/count);
                     //Debug.Log(delivered);
                     GameObject t = GameObject.Find("Town " + connectedTown.x + "," + connectedTown.y);
                     //Debug.Log(t.name);
@@ -1956,10 +2041,16 @@ public class createPowerLines : MonoBehaviour
                         }
                         count += checkForPathSplits(plant, P2Paths);
                     }
-
-                    //Debug.Log(count);
-                    int minimum = Mathf.Min(numLinesPerSpot.Min(), lineTiers.Min());
-                    int delivered = Mathf.Min(minimum * 50, produced);
+                    List<int> loads = new List<int>();
+                    for (int spot = 0; spot < numLinesPerSpot.Count; spot++)
+                    {
+                        int tempnum = numLinesPerSpot[spot] * lineTiers[spot];
+                        loads.Add(tempnum);
+                    }
+                    //int minimum = Mathf.Min(numLinesPerSpot.Min(), lineTiers.Min());
+                    int minimum = loads.Min();
+                    //Debug.Log(produced / count);
+                    int delivered = Mathf.Min(minimum * 50, produced / count);
                     //Debug.Log(delivered);
                     GameObject t = GameObject.Find("Town " + connectedTown.x + "," + connectedTown.y);
                     //Debug.Log(t.name);
@@ -2053,9 +2144,16 @@ public class createPowerLines : MonoBehaviour
                         count += checkForPathSplits(plant, P3Paths);
                     }
 
-                    //Debug.Log(count);
-                    int minimum = Mathf.Min(numLinesPerSpot.Min(), lineTiers.Min());
-                    int delivered = Mathf.Min(minimum * 50, produced);
+                    List<int> loads = new List<int>();
+                    for (int spot = 0; spot < numLinesPerSpot.Count; spot++)
+                    {
+                        int tempnum = numLinesPerSpot[spot] * lineTiers[spot];
+                        loads.Add(tempnum);
+                    }
+                    //int minimum = Mathf.Min(numLinesPerSpot.Min(), lineTiers.Min());
+                    int minimum = loads.Min();
+                    //Debug.Log(produced / count);
+                    int delivered = Mathf.Min(minimum * 50, produced / count);
                     //Debug.Log(delivered);
                     GameObject t = GameObject.Find("Town " + connectedTown.x + "," + connectedTown.y);
                     //Debug.Log(t.name);
@@ -2149,9 +2247,16 @@ public class createPowerLines : MonoBehaviour
                         count += checkForPathSplits(plant, P4Paths);
                     }
 
-                    //Debug.Log(count);
-                    int minimum = Mathf.Min(numLinesPerSpot.Min(), lineTiers.Min());
-                    int delivered = Mathf.Min(minimum * 50, produced);
+                    List<int> loads = new List<int>();
+                    for (int spot = 0; spot < numLinesPerSpot.Count; spot++)
+                    {
+                        int tempnum = numLinesPerSpot[spot] * lineTiers[spot];
+                        loads.Add(tempnum);
+                    }
+                    //int minimum = Mathf.Min(numLinesPerSpot.Min(), lineTiers.Min());
+                    int minimum = loads.Min();
+                    //Debug.Log(produced / count);
+                    int delivered = Mathf.Min(minimum * 50, produced / count);
                     //Debug.Log(delivered);
                     GameObject t = GameObject.Find("Town " + connectedTown.x + "," + connectedTown.y);
                     //Debug.Log(t.name);

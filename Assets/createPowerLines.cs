@@ -105,6 +105,7 @@ public class createPowerLines : MonoBehaviour
     bool buildSelected = false;
    private void Update()
     {
+        updatePathTiers();
         PowerDelivery();
     }
     public void spawnButtons()
@@ -130,6 +131,85 @@ public class createPowerLines : MonoBehaviour
         {
             buttontest = GameObject.Find("LineButton(Clone)");
             buttontest.gameObject.SetActive(false);
+        }
+    }
+
+    void updatePathTiers()
+    {
+        for(int i = 0; i < P1Lines.Count; i++)
+        {
+            float x = (float)P1Lines[i][0];
+            float y = (float)P1Lines[i][1];
+
+            for(int j = 0; j < P1Paths.Count; j++)
+            {
+                for(int k = 0; k < P1Paths[j].Count; k++)
+                {
+                    if(x == P1Paths[j][k][0] && y == P1Paths[j][k][1])
+                    {
+                        Quaternion temp = P1Paths[j][k];
+                        temp[3] = P1Lines[i][3];
+                        P1Paths[j][k] = temp;
+                    }
+                }
+            }
+        }
+
+        for (int i = 0; i < P2Lines.Count; i++)
+        {
+            float x = (float)P2Lines[i][0];
+            float y = (float)P2Lines[i][1];
+
+            for (int j = 0; j < P2Paths.Count; j++)
+            {
+                for (int k = 0; k < P2Paths[j].Count; k++)
+                {
+                    if (x == P2Paths[j][k][0] && y == P2Paths[j][k][1])
+                    {
+                        Quaternion temp = P2Paths[j][k];
+                        temp[3] = P2Lines[i][3];
+                        P2Paths[j][k] = temp;
+                    }
+                }
+            }
+        }
+
+        for (int i = 0; i < P3Lines.Count; i++)
+        {
+            float x = (float)P3Lines[i][0];
+            float y = (float)P3Lines[i][1];
+
+            for (int j = 0; j < P3Paths.Count; j++)
+            {
+                for (int k = 0; k < P3Paths[j].Count; k++)
+                {
+                    if (x == P3Paths[j][k][0] && y == P3Paths[j][k][1])
+                    {
+                        Quaternion temp = P3Paths[j][k];
+                        temp[3] = P3Lines[i][3];
+                        P3Paths[j][k] = temp;
+                    }
+                }
+            }
+        }
+
+        for (int i = 0; i < P4Lines.Count; i++)
+        {
+            float x = (float)P4Lines[i][0];
+            float y = (float)P4Lines[i][1];
+
+            for (int j = 0; j < P4Paths.Count; j++)
+            {
+                for (int k = 0; k < P4Paths[j].Count; k++)
+                {
+                    if (x == P4Paths[j][k][0] && y == P4Paths[j][k][1])
+                    {
+                        Quaternion temp = P4Paths[j][k];
+                        temp[3] = P4Lines[i][3];
+                        P4Paths[j][k] = temp;
+                    }
+                }
+            }
         }
     }
     bool checkforIntersection(float x, float y, float vertexX, float vertexY)
@@ -1608,14 +1688,14 @@ public class createPowerLines : MonoBehaviour
                     if(levels[turn][t] <2){
                         levels[turn][t]++;
                         allPowLineSpots[i][5] = levels;
-                        if(turn == 0)
+                        if (turn == 0)
                         {
-                            for(int line = 0; line < P1Lines.Count;line++)
+                            for (int line = 0; line < P1Lines.Count; line++)
                             {
-                                if(P1Lines[line][0] == x && P1Lines[line][1] == y)
+                                if (P1Lines[line][0] == x && P1Lines[line][1] == y)
                                 {
                                     Quaternion tempQuat = P1Lines[line];
-                                    tempQuat[3] = levels[turn][t];
+                                    tempQuat[3] = levels[turn][t] + 1;
                                     P1Lines[line] = tempQuat;
                                 }
                             }
@@ -1627,7 +1707,7 @@ public class createPowerLines : MonoBehaviour
                                 if (P2Lines[line][0] == x && P2Lines[line][1] == y)
                                 {
                                     Quaternion tempQuat = P2Lines[line];
-                                    tempQuat[3] = levels[turn][t];
+                                    tempQuat[3] = levels[turn][t] + 1;
                                     P2Lines[line] = tempQuat;
                                 }
                             }
@@ -1639,7 +1719,7 @@ public class createPowerLines : MonoBehaviour
                                 if (P3Lines[line][0] == x && P3Lines[line][1] == y)
                                 {
                                     Quaternion tempQuat = P3Lines[line];
-                                    tempQuat[3] = levels[turn][t];
+                                    tempQuat[3] = levels[turn][t] + 1;
                                     P3Lines[line] = tempQuat;
                                 }
                             }
@@ -1651,12 +1731,12 @@ public class createPowerLines : MonoBehaviour
                                 if (P4Lines[line][0] == x && P4Lines[line][1] == y)
                                 {
                                     Quaternion tempQuat = P4Lines[line];
-                                    tempQuat[3] = levels[turn][t];
+                                    tempQuat[3] = levels[turn][t] + 1;
                                     P4Lines[line] = tempQuat;
                                 }
                             }
                         }
-                        Debug.Log("Upgraded player " + (turn+1) +" line "+ (t+1) +" to level "+ (levels[turn][t]+1));
+                            Debug.Log("Upgraded player " + (turn+1) +" line "+ (t+1) +" to level "+ (levels[turn][t]+1));
                         return true;
                     }
                 }
@@ -1942,6 +2022,7 @@ public class createPowerLines : MonoBehaviour
                     List<int> loads = new List<int>();
                     for(int spot = 0; spot < numLinesPerSpot.Count; spot++)
                     {
+                        Debug.Log(lineTiers[spot]);
                         int tempnum = numLinesPerSpot[spot] * lineTiers[spot];
                         loads.Add(tempnum);
                     }

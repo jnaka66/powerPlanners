@@ -105,6 +105,7 @@ public class createPowerLines : MonoBehaviour
     bool buildSelected = false;
    private void Update()
     {
+        updatePlantLists();
         updatePathTiers();
         PowerDelivery();
     }
@@ -444,6 +445,147 @@ public class createPowerLines : MonoBehaviour
         }
 
         return false;
+    }
+
+    void updatePlantLists()
+    {
+        coalPlants = Coal.GetComponent<createPowerPlantButtons>().builtCoal;
+        NaturalPlants = Coal.GetComponent<createPowerPlantButtons>().builtNatural;
+        NuclearPlants = Coal.GetComponent<createPowerPlantButtons>().builtNuclear;
+        SolarPlants = Coal.GetComponent<createPowerPlantButtons>().builtSolar;
+
+        int turn = 0;
+        for (int i = 0; i < coalPlants.Count; i++)
+        {
+            turn = (int)coalPlants[i][2];
+            if (turn == 0)
+            {
+                if (!P1Coal.Contains(new Vector2((float)coalPlants[i][0], (float)coalPlants[i][1])))
+                {
+                    P1Coal.Add(new Vector2((float)coalPlants[i][0], (float)coalPlants[i][1]));
+                }
+            }
+            if (turn == 1)
+            {
+                if (!P2Coal.Contains(new Vector2((float)coalPlants[i][0], (float)coalPlants[i][1])))
+                {
+                    P2Coal.Add(new Vector2((float)coalPlants[i][0], (float)coalPlants[i][1]));
+                }
+            }
+            if (turn == 2)
+            {
+                if (!P3Coal.Contains(new Vector2((float)coalPlants[i][0], (float)coalPlants[i][1])))
+                {
+                    P3Coal.Add(new Vector2((float)coalPlants[i][0], (float)coalPlants[i][1]));
+                }
+            }
+            if (turn == 3)
+            {
+                if (!P4Coal.Contains(new Vector2((float)coalPlants[i][0], (float)coalPlants[i][1])))
+                {
+                    P4Coal.Add(new Vector2((float)coalPlants[i][0], (float)coalPlants[i][1]));
+                }
+            }
+        }
+
+        for (int i = 0; i < SolarPlants.Count; i++)
+        {
+            turn = (int)SolarPlants[i][2];
+            if (turn == 0)
+            {
+                if (!P1Solar.Contains(new Vector2((float)SolarPlants[i][0], (float)SolarPlants[i][1])))
+                {
+                    P1Solar.Add(new Vector2((float)SolarPlants[i][0], (float)SolarPlants[i][1]));
+                }
+            }
+            if (turn == 1)
+            {
+                if (!P2Solar.Contains(new Vector2((float)SolarPlants[i][0], (float)SolarPlants[i][1])))
+                {
+                    P2Solar.Add(new Vector2((float)SolarPlants[i][0], (float)SolarPlants[i][1]));
+                }
+            }
+            if (turn == 2)
+            {
+                if (!P3Solar.Contains(new Vector2((float)SolarPlants[i][0], (float)SolarPlants[i][1])))
+                {
+                    P3Solar.Add(new Vector2((float)SolarPlants[i][0], (float)SolarPlants[i][1]));
+                }
+            }
+            if (turn == 3)
+            {
+                if (!P4Solar.Contains(new Vector2((float)SolarPlants[i][0], (float)SolarPlants[i][1])))
+                {
+                    P4Solar.Add(new Vector2((float)SolarPlants[i][0], (float)SolarPlants[i][1]));
+                }
+            }
+        }
+
+        for (int i = 0; i < NaturalPlants.Count; i++)
+        {
+            turn = (int)NaturalPlants[i][2];
+            if (turn == 0)
+            {
+                if (!P1Natural.Contains(new Vector2((float)NaturalPlants[i][0], (float)NaturalPlants[i][1])))
+                {
+                    P1Natural.Add(new Vector2((float)NaturalPlants[i][0], (float)NaturalPlants[i][1]));
+                }
+            }
+            if (turn == 1)
+            {
+                if (!P2Natural.Contains(new Vector2((float)NaturalPlants[i][0], (float)NaturalPlants[i][1])))
+                {
+                    P2Natural.Add(new Vector2((float)NaturalPlants[i][0], (float)NaturalPlants[i][1]));
+                }
+            }
+            if (turn == 2)
+            {
+                if (!P3Natural.Contains(new Vector2((float)NaturalPlants[i][0], (float)NaturalPlants[i][1])))
+                {
+                    P3Natural.Add(new Vector2((float)NaturalPlants[i][0], (float)NaturalPlants[i][1]));
+                }
+            }
+            if (turn == 3)
+            {
+                if (!P4Natural.Contains(new Vector2((float)NaturalPlants[i][0], (float)NaturalPlants[i][1])))
+                {
+                    P4Natural.Add(new Vector2((float)NaturalPlants[i][0], (float)NaturalPlants[i][1]));
+                }
+            }
+        }
+
+        for (int i = 0; i < NuclearPlants.Count; i++)
+        {
+            turn = (int)NuclearPlants[i][2];
+            if (turn == 0)
+            {
+                if (!P1Nuclear.Contains(new Vector2((float)NuclearPlants[i][0], (float)NuclearPlants[i][1])))
+                {
+                    P1Nuclear.Add(new Vector2((float)NuclearPlants[i][0], (float)NuclearPlants[i][1]));
+                }
+            }
+            if (turn == 1)
+            {
+                if (!P2Nuclear.Contains(new Vector2((float)NuclearPlants[i][0], (float)NuclearPlants[i][1])))
+                {
+                    P2Nuclear.Add(new Vector2((float)NuclearPlants[i][0], (float)NuclearPlants[i][1]));
+                }
+            }
+            if (turn == 2)
+            {
+                if (!P3Nuclear.Contains(new Vector2((float)NuclearPlants[i][0], (float)NuclearPlants[i][1])))
+                {
+                    P3Nuclear.Add(new Vector2((float)NuclearPlants[i][0], (float)NuclearPlants[i][1]));
+                }
+            }
+            if (turn == 3)
+            {
+                if (!P4Nuclear.Contains(new Vector2((float)NuclearPlants[i][0], (float)NuclearPlants[i][1])))
+                {
+                    P4Nuclear.Add(new Vector2((float)NuclearPlants[i][0], (float)NuclearPlants[i][1]));
+                }
+            }
+        }
     }
     void createButtons()//this calls makeButton on all of the bottoms of the hexagons
     {
@@ -1983,7 +2125,7 @@ public class createPowerLines : MonoBehaviour
                             plantType = "Coal";
                             produced = 100;
                         }
-                        count += checkForPathSplits(plant, P1Paths);
+                        count = checkForPathSplits(plant, P1Paths);
                     }
                     foreach (Vector2 plant in P1Solar)
                     {
@@ -1993,7 +2135,7 @@ public class createPowerLines : MonoBehaviour
                             plantType = "Solar";
                             produced = 200;
                         }
-                        count += checkForPathSplits(plant, P1Paths);
+                        count = checkForPathSplits(plant, P1Paths);
                     }
                     foreach (Vector2 plant in P1Natural)
                     {
@@ -2003,7 +2145,7 @@ public class createPowerLines : MonoBehaviour
                             plantType = "Natural";
                             produced = 150;
                         }
-                        count += checkForPathSplits(plant, P1Paths);
+                        count = checkForPathSplits(plant, P1Paths);
                     }
                     foreach (Vector2 plant in P1Nuclear)
                     {
@@ -2013,16 +2155,15 @@ public class createPowerLines : MonoBehaviour
                             plantType = "Nuclear";
                             produced = 300;
                         }
-                        count += checkForPathSplits(plant, P1Paths);
+                        count = checkForPathSplits(plant, P1Paths);
                     }
 
-                    //Debug.Log(count);
-                    
+                    Debug.Log(count);
+                    Debug.Log(produced/count);
                     
                     List<int> loads = new List<int>();
                     for(int spot = 0; spot < numLinesPerSpot.Count; spot++)
                     {
-                        Debug.Log(lineTiers[spot]);
                         int tempnum = numLinesPerSpot[spot] * lineTiers[spot];
                         loads.Add(tempnum);
                     }
@@ -2090,7 +2231,7 @@ public class createPowerLines : MonoBehaviour
                             plantType = "Coal";
                             produced = 100;
                         }
-                        count += checkForPathSplits(plant, P2Paths);
+                        count = checkForPathSplits(plant, P2Paths);
                     }
                     foreach (Vector2 plant in P2Solar)
                     {
@@ -2100,7 +2241,7 @@ public class createPowerLines : MonoBehaviour
                             plantType = "Solar";
                             produced = 200;
                         }
-                        count += checkForPathSplits(plant, P2Paths);
+                        count = checkForPathSplits(plant, P2Paths);
                     }
                     foreach (Vector2 plant in P2Natural)
                     {
@@ -2110,7 +2251,7 @@ public class createPowerLines : MonoBehaviour
                             plantType = "Natural";
                             produced = 150;
                         }
-                        count += checkForPathSplits(plant, P2Paths);
+                        count = checkForPathSplits(plant, P2Paths);
                     }
                     foreach (Vector2 plant in P2Nuclear)
                     {
@@ -2120,7 +2261,7 @@ public class createPowerLines : MonoBehaviour
                             plantType = "Nuclear";
                             produced = 300;
                         }
-                        count += checkForPathSplits(plant, P2Paths);
+                        count = checkForPathSplits(plant, P2Paths);
                     }
                     List<int> loads = new List<int>();
                     for (int spot = 0; spot < numLinesPerSpot.Count; spot++)
@@ -2192,7 +2333,7 @@ public class createPowerLines : MonoBehaviour
                             plantType = "Coal";
                             produced = 100;
                         }
-                        count += checkForPathSplits(plant, P3Paths);
+                        count = checkForPathSplits(plant, P3Paths);
                     }
                     foreach (Vector2 plant in P3Solar)
                     {
@@ -2202,7 +2343,7 @@ public class createPowerLines : MonoBehaviour
                             plantType = "Solar";
                             produced = 200;
                         }
-                        count += checkForPathSplits(plant, P3Paths);
+                        count = checkForPathSplits(plant, P3Paths);
                     }
                     foreach (Vector2 plant in P3Natural)
                     {
@@ -2212,7 +2353,7 @@ public class createPowerLines : MonoBehaviour
                             plantType = "Natural";
                             produced = 150;
                         }
-                        count += checkForPathSplits(plant, P3Paths);
+                        count = checkForPathSplits(plant, P3Paths);
                     }
                     foreach (Vector2 plant in P3Nuclear)
                     {
@@ -2222,7 +2363,7 @@ public class createPowerLines : MonoBehaviour
                             plantType = "Nuclear";
                             produced = 300;
                         }
-                        count += checkForPathSplits(plant, P3Paths);
+                        count = checkForPathSplits(plant, P3Paths);
                     }
 
                     List<int> loads = new List<int>();
@@ -2295,7 +2436,7 @@ public class createPowerLines : MonoBehaviour
                             plantType = "Coal";
                             produced = 100;
                         }
-                        count += checkForPathSplits(plant, P4Paths);
+                        count = checkForPathSplits(plant, P4Paths);
                     }
                     foreach (Vector2 plant in P4Solar)
                     {
@@ -2305,7 +2446,7 @@ public class createPowerLines : MonoBehaviour
                             plantType = "Solar";
                             produced = 200;
                         }
-                        count += checkForPathSplits(plant, P4Paths);
+                        count = checkForPathSplits(plant, P4Paths);
                     }
                     foreach (Vector2 plant in P4Natural)
                     {
@@ -2315,7 +2456,7 @@ public class createPowerLines : MonoBehaviour
                             plantType = "Natural";
                             produced = 150;
                         }
-                        count += checkForPathSplits(plant, P4Paths);
+                        count = checkForPathSplits(plant, P4Paths);
                     }
                     foreach (Vector2 plant in P4Nuclear)
                     {
@@ -2325,7 +2466,7 @@ public class createPowerLines : MonoBehaviour
                             plantType = "Nuclear";
                             produced = 300;
                         }
-                        count += checkForPathSplits(plant, P4Paths);
+                        count = checkForPathSplits(plant, P4Paths);
                     }
 
                     List<int> loads = new List<int>();

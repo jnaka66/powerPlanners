@@ -239,6 +239,42 @@ public class onHoverScript : MonoBehaviour
                 lineNum++;
             }
         }
+        else
+        {
+            var txtmsh = txt.GetComponent<TextMesh>();
+
+            if (objType == "City" || objType == "Town")
+            {
+                txtmsh.text = objType;
+                txtmsh.text += "\nDemand: " + demand;
+                txtmsh.text += "\nDelivered: " + delivered;
+                txtmsh.text += "\nHappiness: " + happiness;
+            }
+            if (objType == "coal")
+            {
+                txtmsh.text = "Coal Plant";
+                txtmsh.text += "\nProd: 100MW";
+                txtmsh.text += "\nDelivered: " + delivered;
+            }
+            if (objType == "nuclear")
+            {
+                txtmsh.text = "Nuclear Plant";
+                txtmsh.text += "\nProd: 300MW";
+                txtmsh.text += "\nDelivered: " + delivered;
+            }
+            if (objType == "natural")
+            {
+                txtmsh.text = "Natural Gas";
+                txtmsh.text += "\nProd: 150MW";
+                txtmsh.text += "\nDelivered: " + delivered;
+            }
+            if (objType == "solar")
+            {
+                txtmsh.text = "Solar Plant";
+                txtmsh.text += "\nProd: 200MW";
+                txtmsh.text += "\nDelivered: " + delivered;
+            }
+        }
         //background.SetActive(true);
         if(renderer != null){
             renderer.enabled = true;

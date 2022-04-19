@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 public class createPowerLines : MonoBehaviour
 {
@@ -102,10 +103,12 @@ public class createPowerLines : MonoBehaviour
     }
 
     bool buildSelected = false;
-   /* private void Update()
+   private void Update()
     {
-        Debug.Log("helloooo");
-    }*/
+        updatePlantLists();
+        updatePathTiers();
+        PowerDelivery();
+    }
     public void spawnButtons()
     {
         if (!buildSelected)
@@ -129,6 +132,85 @@ public class createPowerLines : MonoBehaviour
         {
             buttontest = GameObject.Find("LineButton(Clone)");
             buttontest.gameObject.SetActive(false);
+        }
+    }
+
+    void updatePathTiers()
+    {
+        for(int i = 0; i < P1Lines.Count; i++)
+        {
+            float x = (float)P1Lines[i][0];
+            float y = (float)P1Lines[i][1];
+
+            for(int j = 0; j < P1Paths.Count; j++)
+            {
+                for(int k = 0; k < P1Paths[j].Count; k++)
+                {
+                    if(x == P1Paths[j][k][0] && y == P1Paths[j][k][1])
+                    {
+                        Quaternion temp = P1Paths[j][k];
+                        temp[3] = P1Lines[i][3];
+                        P1Paths[j][k] = temp;
+                    }
+                }
+            }
+        }
+
+        for (int i = 0; i < P2Lines.Count; i++)
+        {
+            float x = (float)P2Lines[i][0];
+            float y = (float)P2Lines[i][1];
+
+            for (int j = 0; j < P2Paths.Count; j++)
+            {
+                for (int k = 0; k < P2Paths[j].Count; k++)
+                {
+                    if (x == P2Paths[j][k][0] && y == P2Paths[j][k][1])
+                    {
+                        Quaternion temp = P2Paths[j][k];
+                        temp[3] = P2Lines[i][3];
+                        P2Paths[j][k] = temp;
+                    }
+                }
+            }
+        }
+
+        for (int i = 0; i < P3Lines.Count; i++)
+        {
+            float x = (float)P3Lines[i][0];
+            float y = (float)P3Lines[i][1];
+
+            for (int j = 0; j < P3Paths.Count; j++)
+            {
+                for (int k = 0; k < P3Paths[j].Count; k++)
+                {
+                    if (x == P3Paths[j][k][0] && y == P3Paths[j][k][1])
+                    {
+                        Quaternion temp = P3Paths[j][k];
+                        temp[3] = P3Lines[i][3];
+                        P3Paths[j][k] = temp;
+                    }
+                }
+            }
+        }
+
+        for (int i = 0; i < P4Lines.Count; i++)
+        {
+            float x = (float)P4Lines[i][0];
+            float y = (float)P4Lines[i][1];
+
+            for (int j = 0; j < P4Paths.Count; j++)
+            {
+                for (int k = 0; k < P4Paths[j].Count; k++)
+                {
+                    if (x == P4Paths[j][k][0] && y == P4Paths[j][k][1])
+                    {
+                        Quaternion temp = P4Paths[j][k];
+                        temp[3] = P4Lines[i][3];
+                        P4Paths[j][k] = temp;
+                    }
+                }
+            }
         }
     }
     bool checkforIntersection(float x, float y, float vertexX, float vertexY)
@@ -363,6 +445,147 @@ public class createPowerLines : MonoBehaviour
         }
 
         return false;
+    }
+
+    void updatePlantLists()
+    {
+        coalPlants = Coal.GetComponent<createPowerPlantButtons>().builtCoal;
+        NaturalPlants = Coal.GetComponent<createPowerPlantButtons>().builtNatural;
+        NuclearPlants = Coal.GetComponent<createPowerPlantButtons>().builtNuclear;
+        SolarPlants = Coal.GetComponent<createPowerPlantButtons>().builtSolar;
+
+        int turn = 0;
+        for (int i = 0; i < coalPlants.Count; i++)
+        {
+            turn = (int)coalPlants[i][2];
+            if (turn == 0)
+            {
+                if (!P1Coal.Contains(new Vector2((float)coalPlants[i][0], (float)coalPlants[i][1])))
+                {
+                    P1Coal.Add(new Vector2((float)coalPlants[i][0], (float)coalPlants[i][1]));
+                }
+            }
+            if (turn == 1)
+            {
+                if (!P2Coal.Contains(new Vector2((float)coalPlants[i][0], (float)coalPlants[i][1])))
+                {
+                    P2Coal.Add(new Vector2((float)coalPlants[i][0], (float)coalPlants[i][1]));
+                }
+            }
+            if (turn == 2)
+            {
+                if (!P3Coal.Contains(new Vector2((float)coalPlants[i][0], (float)coalPlants[i][1])))
+                {
+                    P3Coal.Add(new Vector2((float)coalPlants[i][0], (float)coalPlants[i][1]));
+                }
+            }
+            if (turn == 3)
+            {
+                if (!P4Coal.Contains(new Vector2((float)coalPlants[i][0], (float)coalPlants[i][1])))
+                {
+                    P4Coal.Add(new Vector2((float)coalPlants[i][0], (float)coalPlants[i][1]));
+                }
+            }
+        }
+
+        for (int i = 0; i < SolarPlants.Count; i++)
+        {
+            turn = (int)SolarPlants[i][2];
+            if (turn == 0)
+            {
+                if (!P1Solar.Contains(new Vector2((float)SolarPlants[i][0], (float)SolarPlants[i][1])))
+                {
+                    P1Solar.Add(new Vector2((float)SolarPlants[i][0], (float)SolarPlants[i][1]));
+                }
+            }
+            if (turn == 1)
+            {
+                if (!P2Solar.Contains(new Vector2((float)SolarPlants[i][0], (float)SolarPlants[i][1])))
+                {
+                    P2Solar.Add(new Vector2((float)SolarPlants[i][0], (float)SolarPlants[i][1]));
+                }
+            }
+            if (turn == 2)
+            {
+                if (!P3Solar.Contains(new Vector2((float)SolarPlants[i][0], (float)SolarPlants[i][1])))
+                {
+                    P3Solar.Add(new Vector2((float)SolarPlants[i][0], (float)SolarPlants[i][1]));
+                }
+            }
+            if (turn == 3)
+            {
+                if (!P4Solar.Contains(new Vector2((float)SolarPlants[i][0], (float)SolarPlants[i][1])))
+                {
+                    P4Solar.Add(new Vector2((float)SolarPlants[i][0], (float)SolarPlants[i][1]));
+                }
+            }
+        }
+
+        for (int i = 0; i < NaturalPlants.Count; i++)
+        {
+            turn = (int)NaturalPlants[i][2];
+            if (turn == 0)
+            {
+                if (!P1Natural.Contains(new Vector2((float)NaturalPlants[i][0], (float)NaturalPlants[i][1])))
+                {
+                    P1Natural.Add(new Vector2((float)NaturalPlants[i][0], (float)NaturalPlants[i][1]));
+                }
+            }
+            if (turn == 1)
+            {
+                if (!P2Natural.Contains(new Vector2((float)NaturalPlants[i][0], (float)NaturalPlants[i][1])))
+                {
+                    P2Natural.Add(new Vector2((float)NaturalPlants[i][0], (float)NaturalPlants[i][1]));
+                }
+            }
+            if (turn == 2)
+            {
+                if (!P3Natural.Contains(new Vector2((float)NaturalPlants[i][0], (float)NaturalPlants[i][1])))
+                {
+                    P3Natural.Add(new Vector2((float)NaturalPlants[i][0], (float)NaturalPlants[i][1]));
+                }
+            }
+            if (turn == 3)
+            {
+                if (!P4Natural.Contains(new Vector2((float)NaturalPlants[i][0], (float)NaturalPlants[i][1])))
+                {
+                    P4Natural.Add(new Vector2((float)NaturalPlants[i][0], (float)NaturalPlants[i][1]));
+                }
+            }
+        }
+
+        for (int i = 0; i < NuclearPlants.Count; i++)
+        {
+            turn = (int)NuclearPlants[i][2];
+            if (turn == 0)
+            {
+                if (!P1Nuclear.Contains(new Vector2((float)NuclearPlants[i][0], (float)NuclearPlants[i][1])))
+                {
+                    P1Nuclear.Add(new Vector2((float)NuclearPlants[i][0], (float)NuclearPlants[i][1]));
+                }
+            }
+            if (turn == 1)
+            {
+                if (!P2Nuclear.Contains(new Vector2((float)NuclearPlants[i][0], (float)NuclearPlants[i][1])))
+                {
+                    P2Nuclear.Add(new Vector2((float)NuclearPlants[i][0], (float)NuclearPlants[i][1]));
+                }
+            }
+            if (turn == 2)
+            {
+                if (!P3Nuclear.Contains(new Vector2((float)NuclearPlants[i][0], (float)NuclearPlants[i][1])))
+                {
+                    P3Nuclear.Add(new Vector2((float)NuclearPlants[i][0], (float)NuclearPlants[i][1]));
+                }
+            }
+            if (turn == 3)
+            {
+                if (!P4Nuclear.Contains(new Vector2((float)NuclearPlants[i][0], (float)NuclearPlants[i][1])))
+                {
+                    P4Nuclear.Add(new Vector2((float)NuclearPlants[i][0], (float)NuclearPlants[i][1]));
+                }
+            }
+        }
     }
     void createButtons()//this calls makeButton on all of the bottoms of the hexagons
     {
@@ -1607,7 +1830,55 @@ public class createPowerLines : MonoBehaviour
                     if(levels[turn][t] <2){
                         levels[turn][t]++;
                         allPowLineSpots[i][5] = levels;
-                        Debug.Log("Upgraded player " + (turn+1) +" line "+ (t+1) +" to level "+ (levels[turn][t]+1));
+                        if (turn == 0)
+                        {
+                            for (int line = 0; line < P1Lines.Count; line++)
+                            {
+                                if (P1Lines[line][0] == x && P1Lines[line][1] == y)
+                                {
+                                    Quaternion tempQuat = P1Lines[line];
+                                    tempQuat[3] = levels[turn][t] + 1;
+                                    P1Lines[line] = tempQuat;
+                                }
+                            }
+                        }
+                        if (turn == 1)
+                        {
+                            for (int line = 0; line < P2Lines.Count; line++)
+                            {
+                                if (P2Lines[line][0] == x && P2Lines[line][1] == y)
+                                {
+                                    Quaternion tempQuat = P2Lines[line];
+                                    tempQuat[3] = levels[turn][t] + 1;
+                                    P2Lines[line] = tempQuat;
+                                }
+                            }
+                        }
+                        if (turn == 2)
+                        {
+                            for (int line = 0; line < P3Lines.Count; line++)
+                            {
+                                if (P3Lines[line][0] == x && P3Lines[line][1] == y)
+                                {
+                                    Quaternion tempQuat = P3Lines[line];
+                                    tempQuat[3] = levels[turn][t] + 1;
+                                    P3Lines[line] = tempQuat;
+                                }
+                            }
+                        }
+                        if (turn == 3)
+                        {
+                            for (int line = 0; line < P4Lines.Count; line++)
+                            {
+                                if (P4Lines[line][0] == x && P4Lines[line][1] == y)
+                                {
+                                    Quaternion tempQuat = P4Lines[line];
+                                    tempQuat[3] = levels[turn][t] + 1;
+                                    P4Lines[line] = tempQuat;
+                                }
+                            }
+                        }
+                            Debug.Log("Upgraded player " + (turn+1) +" line "+ (t+1) +" to level "+ (levels[turn][t]+1));
                         return true;
                     }
                 }
@@ -1619,6 +1890,19 @@ public class createPowerLines : MonoBehaviour
 
             }
         }
+        return false;
+    }
+
+    bool checkIdenticalPaths(List<List<Quaternion>> PathList, List<Quaternion> path)
+    {
+        for (int i = 0; i < PathList.Count; i++)
+        {
+            if(PathList[i].SequenceEqual(path))
+            {
+                return true;
+            }
+        }
+        
         return false;
     }
     void ButtonClicked(Button tempButton, string buttonNo, float x, float y, Quaternion rotation)
@@ -1645,22 +1929,35 @@ public class createPowerLines : MonoBehaviour
                     if((int)scoreMan.turn == 0)
                     {
                         List<Quaternion> temp = determinePath((int)scoreMan.turn, x, y, P1Lines);
-                        P1Paths.Add(temp);
+                        if(checkIdenticalPaths(P1Paths, temp) == false)
+                        {
+                            P1Paths.Add(temp);
+                        }
+                       
                     }
                     if ((int)scoreMan.turn == 1)
                     {
                         List<Quaternion> temp = determinePath((int)scoreMan.turn, x, y, P2Lines);
-                        P2Paths.Add(temp);
+                        if (checkIdenticalPaths(P2Paths, temp) == false)
+                        {
+                            P2Paths.Add(temp);
+                        }
                     }
                     if ((int)scoreMan.turn == 2)
                     {
                         List<Quaternion> temp = determinePath((int)scoreMan.turn, x, y, P3Lines);
-                        P3Paths.Add(temp);
+                        if (checkIdenticalPaths(P3Paths, temp) == false)
+                        {
+                            P3Paths.Add(temp);
+                        }
                     }
                     if ((int)scoreMan.turn == 3)
                     {
                         List<Quaternion> temp = determinePath((int)scoreMan.turn, x, y, P4Lines);
-                        P4Paths.Add(temp);
+                        if (checkIdenticalPaths(P4Paths, temp) == false)
+                        {
+                            P4Paths.Add(temp);
+                        }
                     }
 
                 }
@@ -1680,26 +1977,520 @@ public class createPowerLines : MonoBehaviour
         
 
     }
-    // bool PowerLineTerrainLevel(int playerTurn, float x, float y)
-    // {
-    //     GameObject temp = new GameObject();
-    //     if (SetColor(temp) == Color.green)
-    //     {
-    //         //deleted so code can still run
-    //     }
-    //     else if (SetColor(temp) = Color.blue)
-    //     {
+    bool PowerLineTerrainLevel(int playerTurn, float x, float y)
+    {
+        Dictionary<string, List<Vector2>> tiles = new Dictionary<string, List<Vector2>>();
+        tiles = mapGen.GetComponent<HexTileMapGenerator>().tiles;
+        Vector2 pos = new Vector2();
+        int maxTileVal = 0;
+        string maxTileType = "";
+        string temp = "";
+        foreach (KeyValuePair<string, List<Vector2>> item in tiles)
+        {
+            for(int i = 0; i < item.Value.Count; i++)
+            {
+                if(Vector2.Distance(item.Value[i], new Vector2((float)x * tileXOffset, (float)y * tileYOffset / 2 - .5f)) < 0.58843)
+                {
+                    //Debug.Log(item.Key);
+                    temp = item.Key.Split(",")[1];
+                    int tempTileVal = int.Parse(temp);
 
-    //     }
-    //     else if (SetColor(temp) == Color.gray)
-    //     {
+                    if(tempTileVal > maxTileVal)
+                    {
+                        maxTileVal = tempTileVal;
+                        maxTileType = item.Key.Split(",")[0];
+                    }
+                }
+            }
+        }
+        for(int i = 0; i < allPowLineSpots.Count; i++)
+        {
+            if (x == (float)allPowLineSpots[i][0] && y == (float)allPowLineSpots[i][1])
+            {
+                int[] currP1Lines = (int[])allPowLineSpots[i][3];
+                int numLines = currP1Lines[playerTurn];
+                if(maxTileType == "blue")
+                {
+                    if(numLines >= 3)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                if (maxTileType == "green")
+                {
+                    if (numLines >= 1)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                if (maxTileType == "gray")
+                {
+                    if (numLines >= 4)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                if (maxTileType == "yellow")
+                {
+                    if (numLines >= 2)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+        }
+        return false;
+    }
 
-    //     }
-    //     else if (SetColor(temp) = Color.yellow)
-    //     {
-            
-    //     }
-    // }
+    int checkForPathSplits(Vector2 plant, List<List<Quaternion>> paths)
+    {
+        int count = 0;
+        foreach(List<Quaternion> p in paths)
+        {
+
+            if (checkforIntersection(p[p.Count - 1][0], p[p.Count - 1][1], plant[0], plant[1]))
+            {
+                count++;
+            }
+        }
+        return count;
+    }
+    void PowerDelivery()
+    {
+        for(int i = 0; i < 4; i++)
+        {
+            if(i == 0)
+            {
+                foreach(List<Quaternion> path in P1Paths)
+                {
+                    bool terraincheck = true;
+                    //bool towncheck = false;
+                    Vector2 connectedTown = new Vector2();
+                    Vector2 connectedPlant = new Vector2();
+                    List<int> lineTiers = new List<int>();
+                    List<int> numLinesPerSpot = new List<int>();
+                    string plantType = "";
+                    int count = 0;
+                    int produced = 0;
+                    for (int j = 0; j < path.Count; j++)
+                    {
+                        float x = path[j][0];
+                        float y = path[j][1];
+                        if(PowerLineTerrainLevel(i,x,y) == false)
+                        {
+                            terraincheck = false;
+                        }
+
+                        lineTiers.Add((int)path[j][3]);
+
+                        for(int k = 0; k < allPowLineSpots.Count; k++)
+                        {
+                            if (x == (float)allPowLineSpots[k][0] && y == (float)allPowLineSpots[k][1])
+                            {
+                                int[] currP1Lines = (int[])allPowLineSpots[k][3];
+                                numLinesPerSpot.Add(currP1Lines[0]);
+                            }
+                        }
+                    }
+
+                    foreach(Vector2 town in P1reachedTowns)
+                    {
+                        if(checkforIntersection(path[0][0], path[0][1], town[0], town[1]))
+                        {
+                            connectedTown = town;
+                        }
+                    }
+
+                    foreach (Vector2 plant in P1Coal)
+                    {
+                        if (checkforIntersection(path[path.Count - 1][0], path[path.Count - 1][1], plant[0], plant[1]))
+                        {
+                            connectedPlant= plant;
+                            plantType = "Coal";
+                            produced = 100;
+                        }
+                        count = checkForPathSplits(plant, P1Paths);
+                    }
+                    foreach (Vector2 plant in P1Solar)
+                    {
+                        if (checkforIntersection(path[path.Count-1][0], path[path.Count - 1][1], plant[0], plant[1]))
+                        {
+                            connectedPlant = plant;
+                            plantType = "Solar";
+                            produced = 200;
+                        }
+                        count = checkForPathSplits(plant, P1Paths);
+                    }
+                    foreach (Vector2 plant in P1Natural)
+                    {
+                        if (checkforIntersection(path[path.Count - 1][0], path[path.Count - 1][1], plant[0], plant[1]))
+                        {
+                            connectedPlant = plant;
+                            plantType = "Natural";
+                            produced = 150;
+                        }
+                        count = checkForPathSplits(plant, P1Paths);
+                    }
+                    foreach (Vector2 plant in P1Nuclear)
+                    {
+                        if (checkforIntersection(path[path.Count - 1][0], path[path.Count - 1][1], plant[0], plant[1]))
+                        {
+                            connectedPlant = plant;
+                            plantType = "Nuclear";
+                            produced = 300;
+                        }
+                        count = checkForPathSplits(plant, P1Paths);
+                    }
+
+                    Debug.Log(count);
+                    Debug.Log(produced/count);
+                    
+                    List<int> loads = new List<int>();
+                    for(int spot = 0; spot < numLinesPerSpot.Count; spot++)
+                    {
+                        int tempnum = numLinesPerSpot[spot] * lineTiers[spot];
+                        loads.Add(tempnum);
+                    }
+                    //int minimum = Mathf.Min(numLinesPerSpot.Min(), lineTiers.Min());
+                    int minimum = loads.Min();
+                    //Debug.Log(produced / count);
+                    int delivered = Mathf.Min(minimum*50, produced/count);
+                    //Debug.Log(delivered);
+                    GameObject t = GameObject.Find("Town " + connectedTown.x + "," + connectedTown.y);
+                    //Debug.Log(t.name);
+                    //var hover = t.GetComponent<onHoverScript>();
+                    //Debug.Log(hover.demand);
+                    t.GetComponent<onHoverScript>().delivered = delivered;
+                    //Debug.Log(t.GetComponent<onHoverScript>().delivered);
+                    
+                }
+            }
+            if (i == 1)
+            {
+                foreach (List<Quaternion> path in P2Paths)
+                {
+                    bool terraincheck = true;
+                    //bool towncheck = false;
+                    Vector2 connectedTown = new Vector2();
+                    Vector2 connectedPlant = new Vector2();
+                    List<int> lineTiers = new List<int>();
+                    List<int> numLinesPerSpot = new List<int>();
+                    string plantType = "";
+                    int count = 0;
+                    int produced = 0;
+                    for (int j = 0; j < path.Count; j++)
+                    {
+                        float x = path[j][0];
+                        float y = path[j][1];
+                        if (PowerLineTerrainLevel(i, x, y) == false)
+                        {
+                            terraincheck = false;
+                        }
+
+                        lineTiers.Add((int)path[j][3]);
+
+                        for (int k = 0; k < allPowLineSpots.Count; k++)
+                        {
+                            if (x == (float)allPowLineSpots[k][0] && y == (float)allPowLineSpots[k][1])
+                            {
+                                int[] currP2Lines = (int[])allPowLineSpots[k][3];
+                                numLinesPerSpot.Add(currP2Lines[1]);
+                            }
+                        }
+                    }
+
+                    foreach (Vector2 town in P2reachedTowns)
+                    {
+                        if (checkforIntersection(path[0][0], path[0][1], town[0], town[1]))
+                        {
+                            connectedTown = town;
+                        }
+                    }
+
+                    foreach (Vector2 plant in P2Coal)
+                    {
+                        if (checkforIntersection(path[path.Count - 1][0], path[path.Count - 1][1], plant[0], plant[1]))
+                        {
+                            connectedPlant = plant;
+                            plantType = "Coal";
+                            produced = 100;
+                        }
+                        count = checkForPathSplits(plant, P2Paths);
+                    }
+                    foreach (Vector2 plant in P2Solar)
+                    {
+                        if (checkforIntersection(path[path.Count - 1][0], path[path.Count - 1][1], plant[0], plant[1]))
+                        {
+                            connectedPlant = plant;
+                            plantType = "Solar";
+                            produced = 200;
+                        }
+                        count = checkForPathSplits(plant, P2Paths);
+                    }
+                    foreach (Vector2 plant in P2Natural)
+                    {
+                        if (checkforIntersection(path[path.Count - 1][0], path[path.Count - 1][1], plant[0], plant[1]))
+                        {
+                            connectedPlant = plant;
+                            plantType = "Natural";
+                            produced = 150;
+                        }
+                        count = checkForPathSplits(plant, P2Paths);
+                    }
+                    foreach (Vector2 plant in P2Nuclear)
+                    {
+                        if (checkforIntersection(path[path.Count - 1][0], path[path.Count - 1][1], plant[0], plant[1]))
+                        {
+                            connectedPlant = plant;
+                            plantType = "Nuclear";
+                            produced = 300;
+                        }
+                        count = checkForPathSplits(plant, P2Paths);
+                    }
+                    List<int> loads = new List<int>();
+                    for (int spot = 0; spot < numLinesPerSpot.Count; spot++)
+                    {
+                        int tempnum = numLinesPerSpot[spot] * lineTiers[spot];
+                        loads.Add(tempnum);
+                    }
+                    //int minimum = Mathf.Min(numLinesPerSpot.Min(), lineTiers.Min());
+                    int minimum = loads.Min();
+                    //Debug.Log(produced / count);
+                    int delivered = Mathf.Min(minimum * 50, produced / count);
+                    //Debug.Log(delivered);
+                    GameObject t = GameObject.Find("Town " + connectedTown.x + "," + connectedTown.y);
+                    //Debug.Log(t.name);
+                    //var hover = t.GetComponent<onHoverScript>();
+                    //Debug.Log(hover.demand);
+                    t.GetComponent<onHoverScript>().delivered = delivered;
+                    //Debug.Log(t.GetComponent<onHoverScript>().delivered);
+
+                }
+            }
+            if (i == 2)
+            {
+                foreach (List<Quaternion> path in P3Paths)
+                {
+                    bool terraincheck = true;
+                    //bool towncheck = false;
+                    Vector2 connectedTown = new Vector2();
+                    Vector2 connectedPlant = new Vector2();
+                    List<int> lineTiers = new List<int>();
+                    List<int> numLinesPerSpot = new List<int>();
+                    string plantType = "";
+                    int count = 0;
+                    int produced = 0;
+                    for (int j = 0; j < path.Count; j++)
+                    {
+                        float x = path[j][0];
+                        float y = path[j][1];
+                        if (PowerLineTerrainLevel(i, x, y) == false)
+                        {
+                            terraincheck = false;
+                        }
+
+                        lineTiers.Add((int)path[j][3]);
+
+                        for (int k = 0; k < allPowLineSpots.Count; k++)
+                        {
+                            if (x == (float)allPowLineSpots[k][0] && y == (float)allPowLineSpots[k][1])
+                            {
+                                int[] currP3Lines = (int[])allPowLineSpots[k][3];
+                                numLinesPerSpot.Add(currP3Lines[2]);
+                            }
+                        }
+                    }
+
+                    foreach (Vector2 town in P3reachedTowns)
+                    {
+                        if (checkforIntersection(path[0][0], path[0][1], town[0], town[1]))
+                        {
+                            connectedTown = town;
+                        }
+                    }
+
+                    foreach (Vector2 plant in P3Coal)
+                    {
+                        if (checkforIntersection(path[path.Count - 1][0], path[path.Count - 1][1], plant[0], plant[1]))
+                        {
+                            connectedPlant = plant;
+                            plantType = "Coal";
+                            produced = 100;
+                        }
+                        count = checkForPathSplits(plant, P3Paths);
+                    }
+                    foreach (Vector2 plant in P3Solar)
+                    {
+                        if (checkforIntersection(path[path.Count - 1][0], path[path.Count - 1][1], plant[0], plant[1]))
+                        {
+                            connectedPlant = plant;
+                            plantType = "Solar";
+                            produced = 200;
+                        }
+                        count = checkForPathSplits(plant, P3Paths);
+                    }
+                    foreach (Vector2 plant in P3Natural)
+                    {
+                        if (checkforIntersection(path[path.Count - 1][0], path[path.Count - 1][1], plant[0], plant[1]))
+                        {
+                            connectedPlant = plant;
+                            plantType = "Natural";
+                            produced = 150;
+                        }
+                        count = checkForPathSplits(plant, P3Paths);
+                    }
+                    foreach (Vector2 plant in P3Nuclear)
+                    {
+                        if (checkforIntersection(path[path.Count - 1][0], path[path.Count - 1][1], plant[0], plant[1]))
+                        {
+                            connectedPlant = plant;
+                            plantType = "Nuclear";
+                            produced = 300;
+                        }
+                        count = checkForPathSplits(plant, P3Paths);
+                    }
+
+                    List<int> loads = new List<int>();
+                    for (int spot = 0; spot < numLinesPerSpot.Count; spot++)
+                    {
+                        int tempnum = numLinesPerSpot[spot] * lineTiers[spot];
+                        loads.Add(tempnum);
+                    }
+                    //int minimum = Mathf.Min(numLinesPerSpot.Min(), lineTiers.Min());
+                    int minimum = loads.Min();
+                    //Debug.Log(produced / count);
+                    int delivered = Mathf.Min(minimum * 50, produced / count);
+                    //Debug.Log(delivered);
+                    GameObject t = GameObject.Find("Town " + connectedTown.x + "," + connectedTown.y);
+                    //Debug.Log(t.name);
+                    //var hover = t.GetComponent<onHoverScript>();
+                    //Debug.Log(hover.demand);
+                    t.GetComponent<onHoverScript>().delivered = delivered;
+                    //Debug.Log(t.GetComponent<onHoverScript>().delivered);
+
+                }
+            }
+            if (i == 3)
+            {
+                foreach (List<Quaternion> path in P4Paths)
+                {
+                    bool terraincheck = true;
+                    //bool towncheck = false;
+                    Vector2 connectedTown = new Vector2();
+                    Vector2 connectedPlant = new Vector2();
+                    List<int> lineTiers = new List<int>();
+                    List<int> numLinesPerSpot = new List<int>();
+                    string plantType = "";
+                    int count = 0;
+                    int produced = 0;
+                    for (int j = 0; j < path.Count; j++)
+                    {
+                        float x = path[j][0];
+                        float y = path[j][1];
+                        if (PowerLineTerrainLevel(i, x, y) == false)
+                        {
+                            terraincheck = false;
+                        }
+
+                        lineTiers.Add((int)path[j][3]);
+
+                        for (int k = 0; k < allPowLineSpots.Count; k++)
+                        {
+                            if (x == (float)allPowLineSpots[k][0] && y == (float)allPowLineSpots[k][1])
+                            {
+                                int[] currP4Lines = (int[])allPowLineSpots[k][3];
+                                numLinesPerSpot.Add(currP4Lines[3]);
+                            }
+                        }
+                    }
+
+                    foreach (Vector2 town in P4reachedTowns)
+                    {
+                        if (checkforIntersection(path[0][0], path[0][1], town[0], town[1]))
+                        {
+                            connectedTown = town;
+                        }
+                    }
+
+                    foreach (Vector2 plant in P4Coal)
+                    {
+                        if (checkforIntersection(path[path.Count - 1][0], path[path.Count - 1][1], plant[0], plant[1]))
+                        {
+                            connectedPlant = plant;
+                            plantType = "Coal";
+                            produced = 100;
+                        }
+                        count = checkForPathSplits(plant, P4Paths);
+                    }
+                    foreach (Vector2 plant in P4Solar)
+                    {
+                        if (checkforIntersection(path[path.Count - 1][0], path[path.Count - 1][1], plant[0], plant[1]))
+                        {
+                            connectedPlant = plant;
+                            plantType = "Solar";
+                            produced = 200;
+                        }
+                        count = checkForPathSplits(plant, P4Paths);
+                    }
+                    foreach (Vector2 plant in P4Natural)
+                    {
+                        if (checkforIntersection(path[path.Count - 1][0], path[path.Count - 1][1], plant[0], plant[1]))
+                        {
+                            connectedPlant = plant;
+                            plantType = "Natural";
+                            produced = 150;
+                        }
+                        count = checkForPathSplits(plant, P4Paths);
+                    }
+                    foreach (Vector2 plant in P4Nuclear)
+                    {
+                        if (checkforIntersection(path[path.Count - 1][0], path[path.Count - 1][1], plant[0], plant[1]))
+                        {
+                            connectedPlant = plant;
+                            plantType = "Nuclear";
+                            produced = 300;
+                        }
+                        count = checkForPathSplits(plant, P4Paths);
+                    }
+
+                    List<int> loads = new List<int>();
+                    for (int spot = 0; spot < numLinesPerSpot.Count; spot++)
+                    {
+                        int tempnum = numLinesPerSpot[spot] * lineTiers[spot];
+                        loads.Add(tempnum);
+                    }
+                    //int minimum = Mathf.Min(numLinesPerSpot.Min(), lineTiers.Min());
+                    int minimum = loads.Min();
+                    //Debug.Log(produced / count);
+                    int delivered = Mathf.Min(minimum * 50, produced / count);
+                    //Debug.Log(delivered);
+                    GameObject t = GameObject.Find("Town " + connectedTown.x + "," + connectedTown.y);
+                    //Debug.Log(t.name);
+                    //var hover = t.GetComponent<onHoverScript>();
+                    //Debug.Log(hover.demand);
+                    t.GetComponent<onHoverScript>().delivered = delivered;
+                    //Debug.Log(t.GetComponent<onHoverScript>().delivered);
+
+                }
+            }
+        }
+    }
     bool checkMaxPowerLines(int playerTurn, float x, float y)
     {
         for (int i = 0; i < allPowLineSpots.Count; i++)
@@ -2375,7 +3166,7 @@ public class createPowerLines : MonoBehaviour
             hover.objType = "powerLine";//and type
             hover.parent = TempGo;
             hover.rotation = rotation;
-
+            bool aaa = PowerLineTerrainLevel(playerTurn, x, y);
 
             
         }
